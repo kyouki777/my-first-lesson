@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject closedDoorTilemap;   // your default closed door tilemap
     [SerializeField] private GameObject openedDoorTilemap;   // your open door tilemap (disabled at start)
     [SerializeField] private GameObject escapeInteractionZone; // the area that ends the game (disabled at start)
+    public AudioSource doorAudio; // assign in Inspector
+
 
     private bool doorUnlocked = false;
 
@@ -157,7 +159,13 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void Accept()
     {
-        //UpdateTimer(false);
+        // Skip if no answer has been picked
+        if (PickedAnswers.Count == 0)
+        {
+            Debug.Log("Accept() skipped — no answer picked yet.");
+            return;
+        }
+
         bool isCorrect = CheckAnswers();
         FinishedQuestions.Add(currentQuestion);
 
@@ -180,7 +188,11 @@ public class GameManager : MonoBehaviour
             events.DisplayResolutionScreen(type, QuestionList[currentQuestion].AddScore);
         }
 
-        //AudioManager.Instance.PlaySound((isCorrect) ? "CorrectSFX" : "IncorrectSFX");
+        // Only play SFX for actual submissions
+        ComputerAudioManager.Instance.PlaySound(
+            (isCorrect) ? "CorrectSFX" : "IncorrectSFX",
+            true // bypass UI check
+        );
 
         if (type != UIManager.ResolutionScreenType.Finish)
         {
@@ -192,6 +204,8 @@ public class GameManager : MonoBehaviour
             StartCoroutine(IE_WaitTillNextRound);
         }
     }
+
+
 
     #region Timer Methods
 
@@ -337,7 +351,7 @@ public class GameManager : MonoBehaviour
         {
             events.ScoreUpdated();
         }
-        if (events.CurrentFinalScore >= 3)
+        if (events.CurrentFinalScore >= 50)
         {
             UnlockDoor();
         }
@@ -345,20 +359,22 @@ public class GameManager : MonoBehaviour
 
     public void UnlockDoor()
     {
-
         doorUnlocked = true;
 
         if (closedDoorTilemap != null)
-            closedDoorTilemap.SetActive(false); // hide closed door
+            closedDoorTilemap.SetActive(false);
 
         if (openedDoorTilemap != null)
-            openedDoorTilemap.SetActive(true); // show open door
+            openedDoorTilemap.SetActive(true);
 
         if (escapeInteractionZone != null)
-            escapeInteractionZone.SetActive(true); // allow escape trigger
+            escapeInteractionZone.SetActive(true);
+
+        // Play the door audio
+        if (doorAudio != null)
+            doorAudio.Play();
 
         Debug.Log("Door opened and escape zone activated!");
-
     }
 
     #region Getters

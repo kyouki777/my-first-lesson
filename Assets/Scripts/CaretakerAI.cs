@@ -1,113 +1,108 @@
 using UnityEngine;
+using System.Collections;
+using Pathfinding; // For A* Pathfinding components
 
-[RequireComponent(typeof(Rigidbody2D))]
-public class CaretakerAI2D_Aggressive : MonoBehaviour
+[RequireComponent(typeof(AIPath), typeof(AIDestinationSetter))]
+public class CaretakerAI : MonoBehaviour
 {
-    public Transform player;
-    public float chaseSpeed = 3.5f;
-    public float patrolSpeed = 1.5f;
-    public float detectionRange = 10f;
-    public LayerMask obstacleMask;
+    [HideInInspector] public Transform player; // assigned by spawner
 
-    [Header("Unpredictability")]
-    public float jitterIntensity = 1.2f;
-    public float hesitationChance = 0.02f;
-
-    private Rigidbody2D rb;
-    private Vector2 moveDir;
+    private AIPath aiPath;
+    private AIDestinationSetter destinationSetter;
     private Animator animator;
     private bool capturedPlayer = false;
+    public AudioClip jumpscareClip;
 
-    void Start()
+
+    void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        aiPath = GetComponent<AIPath>();
+        destinationSetter = GetComponent<AIDestinationSetter>();
         animator = GetComponent<Animator>();
+    }
+
+    // Called by CaretakerSpawner right after spawning
+    public void Initialize(Transform target)
+    {
+        player = target;
+        if (destinationSetter != null)
+        {
+            destinationSetter.target = player;
+        }
+
+        aiPath.canMove = true;
+        capturedPlayer = false;
+
+        // Start reappear cycle
+        StartCoroutine(DisappearAndReappearRoutine());
     }
 
     void Update()
     {
-        if (capturedPlayer) return; // stop moving if captured
+        if (capturedPlayer || player == null) return;
 
-        if (!player) return;
+        // Continuously follow the player
+        if (destinationSetter != null)
+            destinationSetter.target = player;
 
-        Vector2 dirToPlayer = (player.position - transform.position);
-        float distance = dirToPlayer.magnitude;
-
-        bool canSee = CanSeePlayer();
-
-        if (canSee || distance < detectionRange)
-        {
-            ChasePlayer(dirToPlayer.normalized);
-        }
-        else
-        {
-            moveDir = Vector2.zero;
-        }
-
-        // Update animator movement direction
+        // Animate speed
         if (animator != null)
-        {
-            animator.SetFloat("moveX", moveDir.x);
-            animator.SetFloat("moveY", moveDir.y);
-        }
+            animator.SetFloat("Speed", aiPath.velocity.magnitude);
     }
 
-    void FixedUpdate()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (capturedPlayer || moveDir == Vector2.zero) return;
+        if (capturedPlayer) return;
 
-        Vector2 nextPos = rb.position + moveDir * Time.fixedDeltaTime;
-        RaycastHit2D hit = Physics2D.Raycast(rb.position, moveDir.normalized,
-            moveDir.magnitude * Time.fixedDeltaTime + 0.05f, obstacleMask);
-
-        if (hit.collider != null)
-        {
-            Vector2 slideDir = Vector2.Perpendicular(hit.normal) *
-                               Mathf.Sign(Vector2.Dot(moveDir, Vector2.Perpendicular(hit.normal)));
-            rb.MovePosition(rb.position + slideDir * moveDir.magnitude * Time.fixedDeltaTime);
-        }
-        else
-        {
-            rb.MovePosition(nextPos);
-        }
-    }
-
-    bool CanSeePlayer()
-    {
-        Vector2 dir = (player.position - transform.position).normalized;
-        float dist = Vector2.Distance(transform.position, player.position);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, dist, obstacleMask);
-        return hit.collider == null;
-    }
-
-    void ChasePlayer(Vector2 direction)
-    {
-        Vector2 jitter = new Vector2(
-            Mathf.PerlinNoise(Time.time * 1.5f, 0f) - 0.5f,
-            Mathf.PerlinNoise(0f, Time.time * 1.5f) - 0.5f
-        ) * jitterIntensity;
-
-        direction += jitter * 0.2f;
-
-        if (Random.value < hesitationChance)
-            moveDir = Vector2.zero;
-        else
-            moveDir = direction.normalized * chaseSpeed;
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             capturedPlayer = true;
-            moveDir = Vector2.zero;
+            aiPath.canMove = false;
 
             if (animator != null)
                 animator.SetBool("CapturedPlayer", true);
 
-            Debug.Log("Caretaker captured the player!");
-            Object.FindAnyObjectByType<GameOverManager>().TriggerGameOver();
+            Debug.Log("Caretaker captured the player (trigger)!");
 
+            // Play jumpscare sound at caretaker's position
+            if (jumpscareClip != null)
+                AudioSource.PlayClipAtPoint(jumpscareClip, transform.position);
+
+            GameOverManager gameOver = Object.FindAnyObjectByType<GameOverManager>();
+            if (gameOver != null)
+                gameOver.TriggerGameOver();
+        }
+    }
+
+
+    IEnumerator DisappearAndReappearRoutine()
+    {
+        while (!capturedPlayer)
+        {
+            // Wait before disappearing (30–180 sec)
+            float waitTime = Random.Range(30f, 180f);
+            yield return new WaitForSeconds(waitTime);
+
+            // Disappear
+            aiPath.canMove = false;
+            gameObject.SetActive(false);
+            Debug.Log("Caretaker disappeared...");
+
+            // Wait before reappearing (15–45 sec)
+            float hiddenTime = Random.Range(15f, 45f);
+            yield return new WaitForSeconds(hiddenTime);
+
+            // Reappear at a random spawn point
+            CaretakerSpawner spawner = Object.FindAnyObjectByType<CaretakerSpawner>();
+            if (spawner != null && spawner.spawnPoints.Length > 0)
+            {
+                Transform newSpot = spawner.spawnPoints[Random.Range(0, spawner.spawnPoints.Length)];
+                transform.position = newSpot.position;
+            }
+
+            gameObject.SetActive(true);
+            aiPath.canMove = true;
+            Debug.Log("Caretaker reappeared!");
         }
     }
 }

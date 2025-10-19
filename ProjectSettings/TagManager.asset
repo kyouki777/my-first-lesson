@@ -15,6 +15,7 @@ TagManager:
   - NaughtyCage 2
   - NaughtyCage 3
   - NaughtyCage 4
+  - Caretaker
   layers:
   - Default
   - TransparentFX
