@@ -64,15 +64,21 @@ public class CaretakerAI : MonoBehaviour
 
             Debug.Log("Caretaker captured the player (trigger)!");
 
-            // Play jumpscare sound at caretaker's position
+            // Play jumpscare sound
             if (jumpscareClip != null)
                 AudioSource.PlayClipAtPoint(jumpscareClip, transform.position);
 
+            // Close computer UI if open
+            if (Computer1.Instance != null)
+                Computer1.Instance.CloseComputerUI();
+
+            // Trigger Game Over
             GameOverManager gameOver = Object.FindAnyObjectByType<GameOverManager>();
             if (gameOver != null)
                 gameOver.TriggerGameOver();
         }
     }
+
 
 
     IEnumerator DisappearAndReappearRoutine()

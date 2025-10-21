@@ -9,7 +9,7 @@ public class GameOverManager : MonoBehaviour
     public CanvasGroup gameOverUI; // Assign your UI panel (with CanvasGroup)
     public float fadeDuration = 1.5f;
 
-    private bool isGameOver = false;
+    public bool isGameOver = false;
 
     public void TriggerGameOver()
     {
@@ -43,7 +43,8 @@ public class GameOverManager : MonoBehaviour
 
     public void RestartGame()
     {
-        Time.timeScale = 1f; // Resume before reload
+        Debug.Log("Button clicked");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        
     }
 }

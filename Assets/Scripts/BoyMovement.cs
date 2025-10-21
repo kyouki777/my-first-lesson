@@ -8,6 +8,7 @@ public class BoyMovement : MonoBehaviour
     public ContactFilter2D movementFilter;
 
     Vector2 movementInput;
+    Vector2 lastMoveDir; // 🔹 Remember last direction moved
     SpriteRenderer spriteRenderer;
     Rigidbody2D rb;
     Animator animator;
@@ -19,7 +20,7 @@ public class BoyMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = rb.GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>(); // 🔹 Make sure you have an Animator component
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -34,23 +35,24 @@ public class BoyMovement : MonoBehaviour
             Vector2 moveDir = movementInput.normalized;
             TryMoveSliding(moveDir);
 
-            // 🔹 Flip sprite depending on direction
+            // 🔹 Store the last non-zero direction
+            lastMoveDir = movementInput;
+
+            // 🔹 Flip sprite horizontally if needed
             /*if (movementInput.x < 0)
                 spriteRenderer.flipX = false;
             else if (movementInput.x > 0)
                 spriteRenderer.flipX = true;*/
-
         }
 
         // 🔹 Update animator parameters
         if (animator != null)
         {
             animator.SetBool("isWalking", isMoving);
-            animator.SetFloat("moveX", movementInput.x);
-            animator.SetFloat("moveY", movementInput.y);
+            animator.SetFloat("moveX", isMoving ? movementInput.x : lastMoveDir.x);
+            animator.SetFloat("moveY", isMoving ? movementInput.y : lastMoveDir.y);
         }
     }
-
 
     private void TryMoveSliding(Vector2 direction)
     {
@@ -64,7 +66,6 @@ public class BoyMovement : MonoBehaviour
 
         TryMove(new Vector2(0, direction.y));
     }
-
 
     private bool TryMove(Vector2 direction)
     {

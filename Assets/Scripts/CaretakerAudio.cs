@@ -1,12 +1,12 @@
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-public class CaretakerAudio : MonoBehaviour
+public class CaretakerAudio : MonoBehaviour //For the heartbeat sound
 {
     public Transform player; // assign via spawner or inspector
     public float maxDistance = 20f; // distance where volume is 0
     public float minVolume = 0.1f;  // optional minimum for suspense
-    public float maxVolume = 1f;    // full volume when very close
+    public float maxVolume = 1.8f;    // full volume when very close
 
     private AudioSource audioSource;
 
@@ -43,6 +43,7 @@ public class CaretakerAudio : MonoBehaviour
         // Smooth volume fade based on distance
         float targetVolume = Mathf.Lerp(minVolume, maxVolume, 1f - Mathf.Clamp01(distance / maxDistance));
         audioSource.volume = Mathf.Lerp(audioSource.volume, targetVolume, Time.deltaTime * 5f);
+        
     }
 }
 

@@ -16,7 +16,7 @@ public class CaretakerSpawner : MonoBehaviour
 
     IEnumerator SpawnOnceAfterDelay()
     {
-        float wait = Random.Range(300f, 600f);//(300f, 600f); // delay before spawn
+        float wait = Random.Range(1f, 5f);//(300f, 600f); // delay before spawn
         yield return new WaitForSeconds(wait);
 
         SpawnCaretaker();

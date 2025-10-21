@@ -16,9 +16,9 @@ MonoBehaviour:
   answers:
   - info: 2
     isCorrect: 1
-  - info: 
+  - info: 1
     isCorrect: 0
-  - info: 
+  - info: 3
     isCorrect: 0
   answerType: 1
   addScore: 1

@@ -2,8 +2,15 @@ using UnityEngine;
 
 public class Computer1 : MonoBehaviour
 {
+    public static Computer1 Instance;
+
     public GameObject uiPanel; // assign in Inspector
     private bool playerInZone = false;
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     void Update()
     {
@@ -14,25 +21,17 @@ public class Computer1 : MonoBehaviour
             Debug.Log("Toggled UI!");
 
             // Play or stop audio depending on UI state
-            if (uiPanel.activeSelf)
+            if (uiPanel.activeSelf && playerInZone)
             {
-                // Play the computer UI sound
                 ComputerAudioManager.Instance.PlaySound("ComputerSound");
-                //ComputerAudioManager.Instance.PlaySound("CorrectSFX");
-                //ComputerAudioManager.Instance.PlaySound("IncorrectSFX");
-
                 Debug.Log("Audiomanager running");
             }
             else
             {
-                // Stop all sounds or just the UI sound
                 ComputerAudioManager.Instance.StopSound("ComputerSound");
-                //ComputerAudioManager.Instance.StopSound("CorrectSFX");
-                //ComputerAudioManager.Instance.StopSound("IncorrectSFX");
             }
         }
     }
-
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -52,6 +51,14 @@ public class Computer1 : MonoBehaviour
             Debug.Log("Player left zone");
         }
     }
+
+    public void CloseComputerUI()
+    {
+        if (uiPanel.activeSelf)
+        {
+            uiPanel.SetActive(false);
+            ComputerAudioManager.Instance.StopSound("ComputerSound");
+            Debug.Log("Computer UI closed by external event");
+        }
+    }
 }
-
-
