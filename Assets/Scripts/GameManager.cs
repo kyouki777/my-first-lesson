@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +17,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject openedDoorTilemap;   // your open door tilemap (disabled at start)
     [SerializeField] private GameObject escapeInteractionZone; // the area that ends the game (disabled at start)
     public AudioSource doorAudio; // assign in Inspector
+
+    [Header("Ending Slides")]
+    [SerializeField] private List<CanvasGroup> endingSlides; // assign slides in order
+    [SerializeField] private float fadeDuration = 1f;
+    [SerializeField] private float stayDuration = 1.5f;
+
 
 
     private bool doorUnlocked = false;
@@ -351,7 +358,7 @@ public class GameManager : MonoBehaviour
         {
             events.ScoreUpdated();
         }
-        if (events.CurrentFinalScore >= 50)
+        if (events.CurrentFinalScore >= 100)
         {
             UnlockDoor();
         }
@@ -403,24 +410,62 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Player has won the game!");
 
-        // Stop gameplay
+        // Pause gameplay
         Time.timeScale = 0f;
 
-        // Show "You’ve Escaped" UI instantly
-        if (youEscapedUI != null)
+        // Start fade-to-white coroutine
+        StartCoroutine(FadeToOutroScene("OutroScene", 1.5f));
+    }
+
+    private IEnumerator FadeToOutroScene(string outroSceneName, float duration)
+    {
+        Debug.Log("[GameManager] Preparing white fade overlay...");
+
+        // Create a full-screen UI overlay for fade
+        GameObject fadeRoot = new GameObject("SceneFadeRoot");
+        Canvas canvas = fadeRoot.AddComponent<Canvas>();
+        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+        canvas.sortingOrder = 999;
+
+        fadeRoot.AddComponent<CanvasScaler>();
+        fadeRoot.AddComponent<GraphicRaycaster>();
+
+        // Create a white image filling the screen
+        GameObject fadeImageObj = new GameObject("FadeImage", typeof(RectTransform));
+        fadeImageObj.transform.SetParent(fadeRoot.transform, false);
+        UnityEngine.UI.Image fadeImage = fadeImageObj.AddComponent<UnityEngine.UI.Image>();
+        fadeImage.color = new Color(1f, 1f, 1f, 0f); // white but transparent
+
+        RectTransform rt = fadeImageObj.GetComponent<RectTransform>();
+        rt.anchorMin = Vector2.zero;
+        rt.anchorMax = Vector2.one;
+        rt.offsetMin = Vector2.zero;
+        rt.offsetMax = Vector2.zero;
+
+        Debug.Log("[GameManager] Starting fade to white...");
+
+        float t = 0f;
+        while (t < duration)
         {
-            youEscapedUI.SetActive(true);
-            Debug.Log("You’ve Escaped UI activated!");
-        }
-        else
-        {
-            Debug.LogWarning("You’ve Escaped UI not assigned in Inspector!");
+            t += Time.unscaledDeltaTime; // works even while paused
+            float alpha = Mathf.Clamp01(t / duration);
+            fadeImage.color = new Color(1f, 1f, 1f, alpha);
+            yield return null;
         }
 
-        // Optional: still trigger the event for score UI etc.
-        if (events.DisplayResolutionScreen != null)
-            events.DisplayResolutionScreen(UIManager.ResolutionScreenType.Finish, events.CurrentFinalScore);
+        // Ensure fully white
+        fadeImage.color = Color.white;
+
+        Debug.Log("[GameManager] Fade complete. Loading OutroScene...");
+
+        // Unpause before switching scenes
+        Time.timeScale = 1f;
+
+        // Load the outro scene
+        SceneManager.LoadScene(outroSceneName);
     }
+
+
     private void DisableAllComputers()
     {
         disableOnExit = true;

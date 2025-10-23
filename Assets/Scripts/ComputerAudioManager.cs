@@ -54,6 +54,13 @@ public class ComputerAudioManager : MonoBehaviour
     [Header("UI Reference")]
     [Tooltip("The computer UI GameObject. Sounds will only play when this is active.")]
     [SerializeField] private GameObject computerUI = null;
+    private void Update()
+    {
+        if (computerUI != null && !computerUI.activeSelf)
+        {
+            StopAllSounds();
+        }
+    }
 
     private void Awake()
     {
@@ -158,7 +165,13 @@ public class ComputerAudioManager : MonoBehaviour
         if (computerUI != null)
             computerUI.SetActive(isOpen);
 
+        Debug.Log($"[ComputerAudioManager] UI {(isOpen ? "opened" : "closed")}.");
+
         if (!isOpen)
+        {
+            Debug.Log("[ComputerAudioManager] Stopping all sounds.");
             StopAllSounds();
+        }
     }
+
 }
