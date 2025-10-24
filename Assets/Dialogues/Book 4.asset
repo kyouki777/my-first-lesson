@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbfa127177765cd4ea0ccae4fa6e5cbe, type: 3}
+  m_Name: Book 4
+  m_EditorClassIdentifier: Assembly-CSharp::ItemDialogue
+  itemName: 
+  dialogues:
+  - text: "You open a book with the title \u201CSkinny Jilly Billy\u201D on it. "
+  - text: 'You can''t read, but there''s a few recognizable words. '
+  - text: "\u201COngoing\u2026..one\u2026\u2026empty with no\u2026..Putra\u2019s\u2026..\u201D "
+  - text: 'You feel too bored to continue reading. '

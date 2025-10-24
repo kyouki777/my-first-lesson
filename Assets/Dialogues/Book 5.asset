@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbfa127177765cd4ea0ccae4fa6e5cbe, type: 3}
+  m_Name: Book 5
+  m_EditorClassIdentifier: Assembly-CSharp::ItemDialogue
+  itemName: 
+  dialogues:
+  - text: 'This is the book caretakers read to them every night before bed. '
+  - text: 'You recognize each page like the back of your hand. '
+  - text: "\u201COnce upon a time, there were a group of kids born without parents,\u201D "
+  - text: "\u201Cand another group of kids born with parents.\u201D "
+  - text: "\u201CThe kids with parents were forced to read, write, and count.\u201D "
+  - text: "\u201CThe kids without parents were always laughing and playing with the
+      caretakers.\u201D "
+  - text: "\u201CThe kids with parents were not hugged or taken care of.\u201D "
+  - text: "\u201CThey later die from the disease.\" "
+  - text: "\u201CThe kids without parents lived longer and happier.\u201D "
+  - text: "\u201COne day, every kid without parents will find one.\u201D "
+  - text: "\u201CBut don\u2019t worry! The caretakers will choose the best parents
+      for them!\u201D "
