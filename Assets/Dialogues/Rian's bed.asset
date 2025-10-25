@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbfa127177765cd4ea0ccae4fa6e5cbe, type: 3}
+  m_Name: Rian's bed
+  m_EditorClassIdentifier: Assembly-CSharp::ItemDialogue
+  itemName: 
+  dialogues:
+  - text: This is Rian's bed.
+  - text: Rian's face was very similar to Riri's. It often made you wonder if there's
+      another kid that has a face like yours.
+  - text: You frequently hear him sneak into Riri's bed at night with his pants wet.
+  - text: Until now, you don't understand why he did that, but Rian was the strongest
+      kid amongst them, he would always hit you if you didn't do your daily laps
+      around the place.
