@@ -18,6 +18,7 @@ public class DialogueManager : MonoBehaviour
     private bool isTyping = false;
 
     // --- START DIALOGUE ---
+    
     public void StartDialogue(ItemDialogue itemDialogue)
     {
         if (dialoguePanel == null || dialogueText == null)
@@ -85,6 +86,9 @@ public class DialogueManager : MonoBehaviour
     // --- HANDLE INPUT ---
     void Update()
     {
+        if (PauseManager.IsPaused)
+            return;
+
         if (!dialoguePanel.activeSelf) return;
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))

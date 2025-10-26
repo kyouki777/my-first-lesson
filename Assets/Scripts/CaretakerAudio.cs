@@ -36,6 +36,9 @@ public class CaretakerAudio : MonoBehaviour //For the heartbeat sound
 
     void Update()
     {
+        if (PauseManager.IsPaused)
+            return;
+
         if (player == null) return;
 
         float distance = Vector2.Distance(player.position, transform.position);

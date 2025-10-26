@@ -8,15 +8,17 @@ public class CaretakerSpawner : MonoBehaviour
     public Transform player;
 
     private GameObject currentCaretaker;
+    private bool hasSpawned = false;
 
     void Start()
     {
-        StartCoroutine(SpawnOnceAfterDelay());
+        StartCoroutine(SpawnAfterDelay());
     }
 
-    IEnumerator SpawnOnceAfterDelay()
+    IEnumerator SpawnAfterDelay()
     {
-        float wait = Random.Range(500f, 700f);//(300f, 600f); // delay before spawn
+        float wait = Random.Range(500f, 700f); // random delay before spawn
+        Debug.Log($"[CaretakerSpawner] Waiting {wait:F1} seconds before spawn...");
         yield return new WaitForSeconds(wait);
 
         SpawnCaretaker();
@@ -24,19 +26,34 @@ public class CaretakerSpawner : MonoBehaviour
 
     void SpawnCaretaker()
     {
-        if (currentCaretaker != null)
-            Destroy(currentCaretaker);
+        // Prevent multiple spawns
+        if (hasSpawned)
+        {
+            Debug.LogWarning("[CaretakerSpawner] Caretaker already spawned. Skipping.");
+            return;
+        }
+
+        if (spawnPoints == null || spawnPoints.Length == 0)
+        {
+            Debug.LogError("[CaretakerSpawner] No spawn points assigned!");
+            return;
+        }
 
         Transform spawn = spawnPoints[Random.Range(0, spawnPoints.Length)];
         currentCaretaker = Instantiate(caretakerPrefab, spawn.position, Quaternion.identity);
+        hasSpawned = true;
 
+        Debug.Log($"[CaretakerSpawner] Spawned caretaker at {spawn.name}");
+
+        // Link with heartbeat (optional)
         PlayerHeartbeat heartbeat = player.GetComponent<PlayerHeartbeat>();
         if (heartbeat != null)
         {
             heartbeat.caretaker = currentCaretaker.transform;
-            Debug.Log("Heartbeat is now tracking: " + currentCaretaker.name);
+            Debug.Log("[CaretakerSpawner] Heartbeat now tracking caretaker.");
         }
 
+        // Initialize caretaker AI (optional)
         var ai = currentCaretaker.GetComponent<CaretakerAI>();
         if (ai != null)
         {

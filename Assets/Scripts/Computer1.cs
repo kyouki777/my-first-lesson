@@ -14,6 +14,8 @@ public class Computer1 : MonoBehaviour
 
     void Update()
     {
+        
+
         if (playerInZone && Input.GetKeyDown(KeyCode.E))
         {
             // Toggle the UI panel
@@ -23,6 +25,7 @@ public class Computer1 : MonoBehaviour
             // Play or stop audio depending on UI state
             if (uiPanel.activeSelf && playerInZone)
             {
+                if (PauseManager.IsPaused) return;
                 ComputerAudioManager.Instance.PlaySound("ComputerSound");
                 Debug.Log("Audiomanager running");
             }
@@ -30,6 +33,7 @@ public class Computer1 : MonoBehaviour
             {
                 ComputerAudioManager.Instance.StopSound("ComputerSound");
             }
+            
         }
     }
 

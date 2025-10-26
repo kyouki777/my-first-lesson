@@ -831,7 +831,6 @@ GameObject:
   m_Component:
   - component: {fileID: 882077178}
   - component: {fileID: 882077180}
-  - component: {fileID: 882077179}
   - component: {fileID: 882077181}
   m_Layer: 0
   m_Name: IntroManager
@@ -855,20 +854,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 104176972}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &882077179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 882077177}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e10f158b86ac6b40b0ef1728b554ab8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::IntroManager
-  autoLoadDelay: 10
-  nextSceneName: MainScene
 --- !u!114 &882077180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -882,7 +867,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IntroSlideshow
   slides:
-  - {fileID: 387212839}
   - {fileID: 746768547}
   - {fileID: 1179560511}
   - {fileID: 1671393875}
@@ -890,7 +874,6 @@ MonoBehaviour:
   - {fileID: 595156635}
   - {fileID: 162891835}
   fadeDuration: 1.5
-  displayDuration: 2.5
   audioSource: {fileID: 882077181}
   openBookSound: {fileID: 8300000, guid: a10639ccf0c78dc4788a5aa4f72b9cd7, type: 3}
   closeBookSound: {fileID: 8300000, guid: c34cbdd776f00494392a88dacbc07c63, type: 3}

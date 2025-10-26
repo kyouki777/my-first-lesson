@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class OutroSlideshow : MonoBehaviour
 {
     [Header("Slides and Settings")]
-    public CanvasGroup[] slides;          // Assign in Inspector
-    public float fadeDuration = 1f;       // How long fades take
+    public CanvasGroup[] slides;
+    public float fadeDuration = 1f;
     public string mainSceneName = "MainScene";
 
     private int currentIndex = 0;
@@ -30,29 +30,33 @@ public class OutroSlideshow : MonoBehaviour
 
         isPlaying = true;
 
-        // Initialize all slides as invisible
+        // Make sure all slides start invisible and active
         foreach (CanvasGroup cg in slides)
         {
             cg.alpha = 0f;
-            cg.gameObject.SetActive(true); // make sure they're active
+            cg.gameObject.SetActive(true);
         }
 
         // Loop through all slides
         for (currentIndex = 0; currentIndex < slides.Length; currentIndex++)
         {
             CanvasGroup slide = slides[currentIndex];
-            Debug.Log($"[OutroSlideshow] Fading in slide {currentIndex + 1}/{slides.Length}: {slide.gameObject.name}");
-            yield return StartCoroutine(FadeSlide(slide, 0f, 1f));
 
-            Debug.Log($"[OutroSlideshow] Slide {currentIndex + 1} fully visible. Waiting for player input...");
-
-            // Wait for player input before continuing
+            Debug.Log($"[OutroSlideshow] Waiting for input to show slide {currentIndex + 1}/{slides.Length}...");
             yield return StartCoroutine(WaitForInput());
 
-            // If this is NOT the last slide, fade out before moving to next
+            // Fade in current slide
+            Debug.Log($"[OutroSlideshow] Fading in slide {slide.gameObject.name}");
+            yield return StartCoroutine(FadeSlide(slide, 0f, 1f));
+
+            // Wait for input before moving to next
+            Debug.Log("[OutroSlideshow] Waiting for input to continue...");
+            yield return StartCoroutine(WaitForInput());
+
+            // If not last, fade out before next
             if (currentIndex < slides.Length - 1)
             {
-                Debug.Log($"[OutroSlideshow] Fading out slide {currentIndex + 1}");
+                Debug.Log($"[OutroSlideshow] Fading out slide {slide.gameObject.name}");
                 yield return StartCoroutine(FadeSlide(slide, 1f, 0f));
             }
             else
@@ -68,7 +72,6 @@ public class OutroSlideshow : MonoBehaviour
     {
         float timer = 0f;
         cg.alpha = from;
-        Debug.Log($"[OutroSlideshow] Fading {cg.gameObject.name} from {from} - {to}");
 
         while (timer < fadeDuration)
         {
@@ -78,7 +81,6 @@ public class OutroSlideshow : MonoBehaviour
         }
 
         cg.alpha = to;
-        Debug.Log($"[OutroSlideshow] Fade complete for {cg.gameObject.name}, alpha={cg.alpha}");
     }
 
     IEnumerator WaitForInput()
@@ -87,10 +89,8 @@ public class OutroSlideshow : MonoBehaviour
         {
             yield return null;
         }
-        Debug.Log("[OutroSlideshow] Player input detected — moving to next slide.");
     }
 
-    //  Button: Go to main scene (you can assign this to your button)
     public void OnSkipButtonPressed()
     {
         Debug.Log("[OutroSlideshow] Skip button pressed — loading MainScene immediately!");
@@ -101,7 +101,7 @@ public class OutroSlideshow : MonoBehaviour
     public void LoadMainScene()
     {
         Debug.Log($"[OutroSlideshow] Loading main scene: {mainSceneName}");
-        Time.timeScale = 1f; // Resume time before switching scenes
+        Time.timeScale = 1f;
         SceneManager.LoadScene(mainSceneName);
     }
 }

@@ -22,6 +22,8 @@ public class Sound
     public SoundParameters Parameters => parameters;
 
     [HideInInspector] public AudioSource Source = null;
+    
+
 
     public void Play()
     {
@@ -52,13 +54,23 @@ public class ComputerAudioManager : MonoBehaviour
     [SerializeField] private string startupTrack = string.Empty;
 
     [Header("UI Reference")]
+    [Header("Mouse Click Sound")]
+    [SerializeField] private string clickSoundName = "Click";
     [Tooltip("The computer UI GameObject. Sounds will only play when this is active.")]
     [SerializeField] private GameObject computerUI = null;
     private void Update()
     {
+        // If the UI is closed, stop all sounds and ignore clicks
         if (computerUI != null && !computerUI.activeSelf)
         {
             StopAllSounds();
+            return;
+        }
+
+        // Play click sound when mouse is pressed
+        if (Input.GetMouseButtonDown(0)) // 0 = left mouse button
+        {
+            PlaySound(clickSoundName);
         }
     }
 

@@ -25,6 +25,10 @@ public class BoyMovement : MonoBehaviour
 
     void Update()
     {
+        if (PauseManager.IsPaused)
+            return;
+
+
         movementInput.x = Input.GetAxisRaw("Horizontal");
         movementInput.y = Input.GetAxisRaw("Vertical");
 

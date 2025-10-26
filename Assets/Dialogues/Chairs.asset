@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbfa127177765cd4ea0ccae4fa6e5cbe, type: 3}
-  m_Name: William's bed
+  m_Name: Chairs
   m_EditorClassIdentifier: Assembly-CSharp::ItemDialogue
   itemName: 
   dialogues:
-  - text: This is William's bed.
-  - text: He was often teased by you and the others because his eyes were smaller
-      than theirs.
-  - text: But William was proud of it, and even called it his "spying eyes".
-  - text: A few days before he got adopted, his eyes were blown wide all the time.
+  - text: This is the caretaker's chair.
+  - text: They often sit here while watching you and your friends play.
+  - text: Sometimes caretaker call it the "smarty pants' corner" and make a kid sit
+      here facing the wall whenever they act smart.
+  - text: Everyone you knew have been placed here.
+  - text: Except for you.

@@ -1,11 +1,10 @@
 using UnityEngine;
-using System.Collections;
-using Pathfinding; // For A* Pathfinding components
+using Pathfinding;
 
 [RequireComponent(typeof(AIPath), typeof(AIDestinationSetter))]
 public class CaretakerAI : MonoBehaviour
 {
-    [HideInInspector] public Transform player; // assigned by spawner
+    [HideInInspector] public Transform player;
 
     private AIPath aiPath;
     private AIDestinationSetter destinationSetter;
@@ -13,6 +12,9 @@ public class CaretakerAI : MonoBehaviour
     private bool capturedPlayer = false;
     public AudioClip jumpscareClip;
 
+    // For manual movement when stuck
+    private bool forceMoveThroughObstacles = false;
+    private float forceMoveSpeed = 3f;
 
     void Awake()
     {
@@ -26,28 +28,35 @@ public class CaretakerAI : MonoBehaviour
     {
         player = target;
         if (destinationSetter != null)
-        {
             destinationSetter.target = player;
-        }
 
         aiPath.canMove = true;
         capturedPlayer = false;
-
-        // Start reappear cycle
-        StartCoroutine(DisappearAndReappearRoutine());
     }
 
     void Update()
     {
         if (capturedPlayer || player == null) return;
 
-        // Continuously follow the player
-        if (destinationSetter != null)
+        if (destinationSetter != null && !forceMoveThroughObstacles)
             destinationSetter.target = player;
 
-        // Animate speed
         if (animator != null)
             animator.SetFloat("Speed", aiPath.velocity.magnitude);
+
+        if (forceMoveThroughObstacles)
+        {
+            // Move directly towards the player ignoring pathfinding
+            transform.position = Vector3.MoveTowards(transform.position, player.position, forceMoveSpeed * Time.deltaTime);
+        }
+
+        // Check if AIPath is stuck
+        if (!forceMoveThroughObstacles && aiPath.reachedEndOfPath && Vector3.Distance(transform.position, player.position) > 1f)
+        {
+            Debug.Log("Path blocked, forcing movement through obstacles...");
+            forceMoveThroughObstacles = true;
+            aiPath.canMove = false; // temporarily disable AIPath
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -62,53 +71,15 @@ public class CaretakerAI : MonoBehaviour
             if (animator != null)
                 animator.SetBool("CapturedPlayer", true);
 
-            Debug.Log("Caretaker captured the player (trigger)!");
-
-            // Play jumpscare sound
             if (jumpscareClip != null)
                 AudioSource.PlayClipAtPoint(jumpscareClip, transform.position);
 
-            // Close computer UI if open
             if (Computer1.Instance != null)
                 Computer1.Instance.CloseComputerUI();
 
-            // Trigger Game Over
             GameOverManager gameOver = Object.FindAnyObjectByType<GameOverManager>();
             if (gameOver != null)
                 gameOver.TriggerGameOver();
-        }
-    }
-
-
-
-    IEnumerator DisappearAndReappearRoutine()
-    {
-        while (!capturedPlayer)
-        {
-            // Wait before disappearing (30–180 sec)
-            float waitTime = Random.Range(30f, 180f);
-            yield return new WaitForSeconds(waitTime);
-
-            // Disappear
-            aiPath.canMove = false;
-            gameObject.SetActive(false);
-            Debug.Log("Caretaker disappeared...");
-
-            // Wait before reappearing (15–45 sec)
-            float hiddenTime = Random.Range(15f, 45f);
-            yield return new WaitForSeconds(hiddenTime);
-
-            // Reappear at a random spawn point
-            CaretakerSpawner spawner = Object.FindAnyObjectByType<CaretakerSpawner>();
-            if (spawner != null && spawner.spawnPoints.Length > 0)
-            {
-                Transform newSpot = spawner.spawnPoints[Random.Range(0, spawner.spawnPoints.Length)];
-                transform.position = newSpot.position;
-            }
-
-            gameObject.SetActive(true);
-            aiPath.canMove = true;
-            Debug.Log("Caretaker reappeared!");
         }
     }
 }

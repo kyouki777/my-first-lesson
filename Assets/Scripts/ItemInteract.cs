@@ -48,6 +48,9 @@ public class ItemInteract : MonoBehaviour
 
     void Update()
     {
+        if (PauseManager.IsPaused)
+            return;
+
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
             if (dialogueManager != null && bookshelfDialogue != null)

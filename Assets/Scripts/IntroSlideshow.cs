@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class IntroSlideshow : MonoBehaviour
@@ -10,7 +9,6 @@ public class IntroSlideshow : MonoBehaviour
 
     [Header("Timing")]
     public float fadeDuration = 1.5f;
-    public float displayDuration = 2.5f;
 
     [Header("Audio")]
     public AudioSource audioSource;
@@ -22,17 +20,14 @@ public class IntroSlideshow : MonoBehaviour
     public GameObject nextCanvas; // Optional
     public string nextSceneName;  // Optional
 
-    private bool canClick = false;
     private bool skipRequested = false;
-    private int currentSlide = 0;
 
     void Start()
     {
-        // Prepare all slides
+        // Hide all slides at start
         foreach (CanvasGroup cg in slides)
         {
             cg.alpha = 0f;
-            cg.blocksRaycasts = false; // Prevent blocking clicks
             cg.gameObject.SetActive(true);
         }
 
@@ -41,48 +36,41 @@ public class IntroSlideshow : MonoBehaviour
 
     void Update()
     {
-        // Press ESC to skip
+        // ESC to skip
         if (Input.GetKeyDown(KeyCode.Escape))
-        {
             SkipSlideshow();
-        }
     }
 
     IEnumerator PlayIntro()
     {
-        // --- First Slide (auto fade in/out) ---
-        if (slides.Length > 0)
-        {
-            PlaySound(openBookSound);
-            yield return StartCoroutine(FadeIn(slides[0]));
-            yield return new WaitForSeconds(displayDuration);
-            yield return StartCoroutine(FadeOut(slides[0]));
-        }
-
-        // --- Remaining Slides (manual click to continue) ---
-        for (int i = 1; i < slides.Length; i++)
+        for (int i = 0; i < slides.Length; i++)
         {
             if (skipRequested) break;
 
-            currentSlide = i;
-            PlaySound(pageTurnSound);
+            //  play proper sound
+            if (i == 0) PlaySound(openBookSound);
+            else PlaySound(pageTurnSound);
+
+            //  fade in
             yield return StartCoroutine(FadeIn(slides[i]));
 
-            canClick = true;
+            //  wait for player input
             yield return new WaitUntil(() =>
                 Input.GetMouseButtonDown(0) ||
                 Input.GetKeyDown(KeyCode.Space) ||
                 skipRequested);
-            canClick = false;
 
             if (skipRequested) break;
+
+            //  fade out
             yield return StartCoroutine(FadeOut(slides[i]));
         }
 
-        // --- End of slideshow ---
+        //  closing sound
         PlaySound(closeBookSound);
         yield return new WaitForSeconds(1f);
 
+        // move to next UI/scene
         if (nextCanvas != null)
             nextCanvas.SetActive(true);
 
@@ -128,6 +116,6 @@ public class IntroSlideshow : MonoBehaviour
     {
         if (skipRequested) return;
         skipRequested = true;
-        Debug.Log(" ESC pressed — skipping slideshow!");
+        Debug.Log("ESC pressed — skipping slideshow!");
     }
 }
