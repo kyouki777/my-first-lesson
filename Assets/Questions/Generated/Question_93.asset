@@ -18,7 +18,7 @@ MonoBehaviour:
     isCorrect: 0
   - info: 14
     isCorrect: 1
-  - info: 13
+  - info: 15
     isCorrect: 0
   answerType: 1
   addScore: 1

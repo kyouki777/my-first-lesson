@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Questions
   info: 3+9
   answers:
-  - info: 12
+  - info: 13
     isCorrect: 0
   - info: 14
     isCorrect: 0

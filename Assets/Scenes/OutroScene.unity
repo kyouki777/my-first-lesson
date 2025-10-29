@@ -137,7 +137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &260210411
 RectTransform:
   m_ObjectHideFlags: 0
@@ -226,7 +226,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &533344069
 RectTransform:
   m_ObjectHideFlags: 0
@@ -451,7 +451,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &887130987
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1155,9 +1155,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutroSlideshow
   slides:
   - {fileID: 1877634085}
-  - {fileID: 887130990}
-  - {fileID: 533344072}
-  - {fileID: 260210414}
   - {fileID: 1102035570}
   fadeDuration: 1.5
   mainSceneName: MainScene

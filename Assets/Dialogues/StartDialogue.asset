@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbfa127177765cd4ea0ccae4fa6e5cbe, type: 3}
-  m_Name: Budi's bed
+  m_Name: StartDialogue
   m_EditorClassIdentifier: Assembly-CSharp::ItemDialogue
   itemName: 
   dialogues:
-  - text: This is Budi's bed.
-  - text: Budi was annoying. He would always pester you to know what letters are
-      and recognize some of them on the floor's pattern.
-  - text: Inspite of that, you miss him.
-  - text: You wish you learned more from him.
+  - text: (?!)
+  - text: (The lights are gone!)
+  - text: (Did caretaker put them out?)
+  - text: (I need to find one of the computers fast!!)

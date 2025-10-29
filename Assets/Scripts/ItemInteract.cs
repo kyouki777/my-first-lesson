@@ -48,8 +48,7 @@ public class ItemInteract : MonoBehaviour
 
     void Update()
     {
-        if (PauseManager.IsPaused)
-            return;
+        //if (PauseManager.IsPaused) return;
 
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {

@@ -4,6 +4,8 @@ public class MainMenuUI : MonoBehaviour
 {
     [SerializeField] private GameObject mainMenuCanvas;
     [SerializeField] private AudioSource menuMusic; // assign in Inspector
+    [SerializeField] private DialogueManager dialogueManager; //  Drag this in Inspector
+    [SerializeField] private ItemDialogue startDialogue;      //  Dialogue shown at Start
 
     void Start()
     {
@@ -24,6 +26,14 @@ public class MainMenuUI : MonoBehaviour
         if (menuMusic != null && menuMusic.isPlaying)
         {
             menuMusic.Stop(); // stop music when entering the game
+        }
+        if (dialogueManager != null && startDialogue != null)
+        {
+            dialogueManager.StartDialogue(startDialogue);
+        }
+        else
+        {
+            Debug.LogWarning("DialogueManager or startDialogue not assigned in MainMenuManager.");
         }
     }
 

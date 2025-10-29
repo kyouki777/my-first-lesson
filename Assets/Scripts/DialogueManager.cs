@@ -86,8 +86,7 @@ public class DialogueManager : MonoBehaviour
     // --- HANDLE INPUT ---
     void Update()
     {
-        if (PauseManager.IsPaused)
-            return;
+        //if (PauseManager.IsPaused) return;
 
         if (!dialoguePanel.activeSelf) return;
 

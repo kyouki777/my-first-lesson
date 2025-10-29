@@ -1,65 +1,96 @@
+
+// 10/26/2025 AI-Tag
+// This was created with the help of Assistant, a Unity Artificial Intelligence product.
+
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class PauseManager : MonoBehaviour
 {
-    [SerializeField] private GameObject pauseUI;
-    [SerializeField] private GameObject mainMenuUI; //  Add this in Inspector
+    [Header("UI References")]
+    public CanvasGroup pauseCanvasGroup;
+    public GameObject mainMenuUI; // assign in Inspector\
+    public GameObject pauseUI;
 
-    public static bool IsPaused { get; private set; } = false;
     private bool isPaused = false;
 
     void Update()
     {
-        //  Do nothing if main menu is visible
-        if (mainMenuUI != null && mainMenuUI.activeSelf)
-            return;
-
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (isPaused) ResumeGame();
-            else PauseGame();
+            // Don’t pause if the main menu is active
+            if (mainMenuUI != null && mainMenuUI.activeSelf)
+                return;
+
+            TogglePause();
         }
     }
 
-    public void PauseGame()
+    void TogglePause()
     {
-        if (mainMenuUI != null && mainMenuUI.activeSelf) return; // extra safety
+        isPaused = !isPaused;
 
-        pauseUI.SetActive(true);
-        Time.timeScale = 0f;
-        AudioListener.pause = true;
-        IsPaused = true;
-        isPaused = true;
+        if (isPaused)
+        {
+            Debug.Log("Game paused");
 
-        // Disable UI input to prevent unwanted clicks
-        if (EventSystem.current != null)
-            EventSystem.current.enabled = false;
-
-        Debug.Log("[PauseManager] Game Paused.");
-    }
-
-    public void ResumeGame()
-    {
-        pauseUI.SetActive(false);
-        Time.timeScale = 1f;
-        AudioListener.pause = false;
-        IsPaused = false;
-        isPaused = false;
-
-        if (EventSystem.current != null)
-            EventSystem.current.enabled = true;
-
-        Debug.Log("[PauseManager] Game Resumed.");
-    }
-
-    public void ExitGame()
-    {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-        Debug.Log("[PauseManager] Exit button clicked.");
-#else
-        Application.Quit();
-#endif
+            pauseUI.SetActive(true);
+            AudioListener.pause = true;
+            Time.timeScale = 0; // Pause the game
+            pauseCanvasGroup.interactable = false; // Disable UI interaction
+            pauseCanvasGroup.blocksRaycasts = false; // Prevent clicks
+        }
+        else
+        {
+            pauseUI.SetActive(false);
+            AudioListener.pause = false;
+            Debug.Log("Game resumed");
+            Time.timeScale = 1; // Resume the game
+            pauseCanvasGroup.interactable = true; // Enable UI interaction
+            pauseCanvasGroup.blocksRaycasts = true; // Allow clicks
+        }
     }
 }
+
+
+// 10/26/2025 AI-Tag
+// This was created with the help of Assistant, a Unity Artificial Intelligence product.
+
+/*using UnityEngine;
+
+public class PauseManager : MonoBehaviour
+{
+    public CanvasGroup pauseCanvasGroup;
+
+    private bool isPaused = false;
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)) // Replace with your pause key
+        {
+            TogglePause();
+        }
+    }
+
+    void TogglePause()
+    {
+        isPaused = !isPaused;
+
+        if (isPaused)
+        {
+            Debug.Log("Game paused");
+
+            AudioListener.pause = true;
+            Time.timeScale = 0; // Pause the game
+            pauseCanvasGroup.interactable = false; // Disable UI interaction
+            pauseCanvasGroup.blocksRaycasts = false; // Prevent clicks
+        }
+        else
+        {
+            AudioListener.pause = false;
+            Debug.Log("Game resumed");
+            Time.timeScale = 1; // Resume the game
+            pauseCanvasGroup.interactable = true; // Enable UI interaction
+            pauseCanvasGroup.blocksRaycasts = true; // Allow clicks
+        }
+    }
+}*/
