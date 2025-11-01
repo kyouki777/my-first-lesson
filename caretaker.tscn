@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4la7kcg2s8dq"]
+
+[ext_resource type="Script" uid="uid://beg6whu8kdaq5" path="res://caretaker.gd" id="1_cgjin"]
+[ext_resource type="Texture2D" uid="uid://dencco77q5ify" path="res://Assets/caretaker_animation.png" id="1_iy8re"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cgjin"]
+size = Vector2(13, 5)
+
+[node name="caretaker" type="CharacterBody2D"]
+script = ExtResource("1_cgjin")
+speed = 100.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, -13)
+texture = ExtResource("1_iy8re")
+region_enabled = true
+region_rect = Rect2(2, 0, 12, 27)
+
+[node name="PathUpdateTimer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cgjin")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+debug_enabled = true

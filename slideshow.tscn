@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://4hm1tcxceum"]
+
+[ext_resource type="Script" uid="uid://0px8m54pkn13" path="res://slideshow.gd" id="1_ym11s"]
+[ext_resource type="AudioStream" uid="uid://bc4stuinioiaq" path="res://Assets/sounds/old-broken-music-box-sound-effect-386717.mp3" id="2_5spr4"]
+
+[node name="Slideshow" type="Control"]
+texture_filter = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ym11s")
+
+[node name="SlideDisplay" type="TextureRect" parent="."]
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 2
+
+[node name="SlideTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_5spr4")
+autoplay = true
+
+[connection signal="timeout" from="SlideTimer" to="." method="_on_slide_timer_timeout"]
