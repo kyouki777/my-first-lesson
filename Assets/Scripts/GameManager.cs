@@ -11,19 +11,19 @@ public class GameManager : MonoBehaviour
 {
     [HideInInspector] public bool disableOnExit = false;
     [SerializeField] private GameObject youEscapedUI;
+
     #region Variables
+
     [Header("Door Settings")]
-    [SerializeField] private GameObject closedDoorTilemap;   // your default closed door tilemap
-    [SerializeField] private GameObject openedDoorTilemap;   // your open door tilemap (disabled at start)
-    [SerializeField] private GameObject escapeInteractionZone; // the area that ends the game (disabled at start)
-    public AudioSource doorAudio; // assign in Inspector
+    [SerializeField] private GameObject closedDoorTilemap;
+    [SerializeField] private GameObject openedDoorTilemap;
+    [SerializeField] private GameObject escapeInteractionZone;
+    public AudioSource doorAudio;
 
     [Header("Ending Slides")]
-    [SerializeField] private List<CanvasGroup> endingSlides; // assign slides in order
+    [SerializeField] private List<CanvasGroup> endingSlides;
     [SerializeField] private float fadeDuration = 1f;
     [SerializeField] private float stayDuration = 1.5f;
-
-
 
     private bool doorUnlocked = false;
 
@@ -32,8 +32,6 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameEvents events = null;
 
-    //[SerializeField] Animator timerAnimtor = null;
-    //[SerializeField] TextMeshProUGUI timerText = null;
     [SerializeField] Color timerHalfWayOutColor = Color.yellow;
     [SerializeField] Color timerAlmostOutColor = Color.red;
     private Color timerDefaultColor = Color.white;
@@ -42,79 +40,198 @@ public class GameManager : MonoBehaviour
     private List<int> FinishedQuestions = new List<int>();
     private int currentQuestion = 0;
 
-    private int timerStateParaHash = 0;
-
     private IEnumerator IE_WaitTillNextRound = null;
-    //private IEnumerator IE_StartTimer = null;
+
+    private GameMode currentMode;
+    private Questions currentGeneratedQuestion = null; // for Endless mode
+    public TextMeshProUGUI textToHide; //in endless mode
+
 
     private bool IsFinished
     {
-        get
-        {
-            return (FinishedQuestions.Count < QuestionList.Length) ? false : true;
-        }
-
+        get { return (FinishedQuestions.Count < QuestionList.Length) ? false : true; }
     }
 
     #endregion
 
-    #region Default Unity methods
+    #region Unity Methods
 
-    /// <summary>
-    /// Function that is called when the object becomes enabled and active
-    /// </summary>
     void OnEnable()
     {
         events.UpdateQuestionAnswer += UpdateAnswers;
     }
-    /// <summary>
-    /// Function that is called when the behaviour becomes disabled
-    /// </summary>
+
     void OnDisable()
     {
         events.UpdateQuestionAnswer -= UpdateAnswers;
     }
 
-    /// <summary>
-    /// Function that is called on the frame when a script is enabled just before any of the Update methods are called the first time.
-    /// </summary>
     void Awake()
     {
+        Debug.Log("[GameManager] Awake — Mode: " + GameModeSelector.SelectedMode);
         events.CurrentFinalScore = 0;
     }
-    /// <summary>
-    /// Function that is called when the script instance is being loaded.
-    /// </summary>
+
     void Start()
     {
-        events.StartupHighscore = PlayerPrefs.GetInt(GameUtility.SavePrefKey);
+        currentMode = GameModeSelector.SelectedMode;
+        Debug.Log("[GameManager] Starting mode: " + currentMode);
 
-        //timerDefaultColor = timerText.color;
-        LoadQuestions();
-
-        timerStateParaHash = Animator.StringToHash("TimerState");
-
-        var seed = UnityEngine.Random.Range(int.MinValue, int.MaxValue);
-        UnityEngine.Random.InitState(seed);
+        if (currentMode == GameMode.Story)
+        {
+            LoadQuestions();
+        }
+        else
+        {
+            currentGeneratedQuestion = GenerateRandomQuestion();
+        }
 
         Display();
     }
 
     #endregion
 
-    /// <summary>
-    /// Function that is called to update new selected answer.
-    /// </summary>
+    #region Endless Question Generator
+
+    Questions GenerateRandomQuestion()
+    {
+        Questions q = ScriptableObject.CreateInstance<Questions>();
+
+        int a = Random.Range(1, 20);
+        int b = Random.Range(1, 20);
+        string[] ops = { "+", "-", "*", "/" };
+        string op = ops[Random.Range(0, ops.Length)];
+
+        int correctAnswer = op switch
+        {
+            "+" => a + b,
+            "-" => a - b,
+            "*" => a * b,
+            "/" => b != 0 ? a / b : 0,
+            _ => 0
+        };
+
+        typeof(Questions).GetField("info", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+            .SetValue(q, $"What is {a} {op} {b}?");
+
+        List<Answer> answers = new List<Answer>();
+        int correctIndex = Random.Range(0, 4);
+
+        for (int j = 0; j < 4; j++)
+        {
+            Answer ans = new Answer();
+            int optionValue = (j == correctIndex) ? correctAnswer : correctAnswer + Random.Range(-5, 6);
+
+            typeof(Answer).GetField("info", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+                .SetValueDirect(__makeref(ans), optionValue.ToString());
+            typeof(Answer).GetField("isCorrect", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+                .SetValueDirect(__makeref(ans), j == correctIndex);
+
+            answers.Add(ans);
+        }
+
+        typeof(Questions).GetField("answers", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+            .SetValue(q, answers.ToArray());
+        typeof(Questions).GetField("answerType", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+            .SetValue(q, Questions.AnswerType.Single);
+        typeof(Questions).GetField("addScore", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+            .SetValue(q, 1);
+
+        return q;
+    }
+
+    #endregion
+
+    #region Question Flow
+
+    public void StartGameManually()
+    {
+        currentMode = GameModeSelector.SelectedMode;
+        Debug.Log("[GameManager] Manual Start - Mode: " + currentMode);
+
+        if (currentMode == GameMode.Endless)
+        {
+            currentGeneratedQuestion = GenerateRandomQuestion();
+        }
+        else
+        {
+            LoadQuestions();
+        }
+
+        Display();
+    }
+
+    void Display()
+    {
+        EraseAnswers();
+
+        Questions question;
+
+        if (currentMode == GameMode.Endless)
+        {
+            currentGeneratedQuestion = GenerateRandomQuestion();
+            question = currentGeneratedQuestion;
+            Debug.Log($"[GameManager] Showing new Endless question: {question.Info}");
+        }
+        else
+        {
+            question = GetRandomQuestion();
+            Debug.Log($"[GameManager] Showing Story question: {question.Info}");
+        }
+
+        events.UpdateQuestionUI?.Invoke(question);
+    }
+
+    void LoadQuestions()
+    {
+        Debug.Log("Story questions loaded");
+        Object[] objs = Resources.LoadAll("Questions", typeof(Questions));
+        _questions = new Questions[objs.Length];
+        for (int i = 0; i < objs.Length; i++)
+        {
+            _questions[i] = (Questions)objs[i];
+        }
+    }
+
+    Questions GetRandomQuestion()
+    {
+        var randomIndex = GetRandomQuestionIndex();
+        currentQuestion = randomIndex;
+        return QuestionList[currentQuestion];
+    }
+
+    int GetRandomQuestionIndex()
+    {
+        var random = 0;
+        if (FinishedQuestions.Count < QuestionList.Length)
+        {
+            do
+            {
+                random = UnityEngine.Random.Range(0, QuestionList.Length);
+            } while (FinishedQuestions.Contains(random) || random == currentQuestion);
+        }
+        return random;
+    }
+
+    Questions GetActiveQuestion()
+    {
+        if (currentMode == GameMode.Endless)
+            return currentGeneratedQuestion;
+        else
+            return QuestionList.Length > 0 ? QuestionList[currentQuestion] : null;
+    }
+
+    #endregion
+
+    #region Answer and Score Handling
+
     public void UpdateAnswers(AnswerData newAnswer)
     {
-        if (QuestionList[currentQuestion].GetAnswerType == Questions.AnswerType.Single)
+        if (GetActiveQuestion().GetAnswerType == Questions.AnswerType.Single)
         {
             foreach (var answer in PickedAnswers)
             {
-                if (answer != newAnswer)
-                {
-                    answer.Reset();
-                }
+                if (answer != newAnswer) answer.Reset();
             }
             PickedAnswers.Clear();
             PickedAnswers.Add(newAnswer);
@@ -122,51 +239,15 @@ public class GameManager : MonoBehaviour
         else
         {
             bool alreadyPicked = PickedAnswers.Exists(x => x == newAnswer);
-            if (alreadyPicked)
-            {
-                PickedAnswers.Remove(newAnswer);
-            }
-            else
-            {
-                PickedAnswers.Add(newAnswer);
-            }
+            if (alreadyPicked) PickedAnswers.Remove(newAnswer);
+            else PickedAnswers.Add(newAnswer);
         }
     }
 
-    /// <summary>
-    /// Function that is called to clear PickedAnswers list.
-    /// </summary>
-    public void EraseAnswers()
-    {
-        PickedAnswers = new List<AnswerData>();
-    }
+    public void EraseAnswers() => PickedAnswers = new List<AnswerData>();
 
-    /// <summary>
-    /// Function that is called to display new question.
-    /// </summary>
-    void Display()
-    {
-        EraseAnswers();
-        var question = GetRandomQuestion();
-
-        if (events.UpdateQuestionUI != null)
-        {
-            events.UpdateQuestionUI(question);
-        }
-        else { Debug.LogWarning("Ups! Something went wrong while trying to display new Question UI Data. GameEvents.UpdateQuestionUI is null. Issue occured in GameManager.Display() method."); }
-
-        /*if (question.UseTimer)
-        {
-            UpdateTimer(question.UseTimer);
-        }*/
-    }
-
-    /// <summary>
-    /// Function that is called to accept picked answers and check/display the result.
-    /// </summary>
     public void Accept()
     {
-        // Skip if no answer has been picked
         if (PickedAnswers.Count == 0)
         {
             Debug.Log("Accept() skipped — no answer picked yet.");
@@ -174,121 +255,43 @@ public class GameManager : MonoBehaviour
         }
 
         bool isCorrect = CheckAnswers();
-        FinishedQuestions.Add(currentQuestion);
 
-        UpdateScore((isCorrect) ? QuestionList[currentQuestion].AddScore : -QuestionList[currentQuestion].AddScore);
+        if (currentMode == GameMode.Story)
+            FinishedQuestions.Add(currentQuestion);
 
-        if (IsFinished)
+        int scoreDelta = (isCorrect) ? GetActiveQuestion().AddScore : -GetActiveQuestion().AddScore;
+        UpdateScore(scoreDelta);
+
+        if (currentMode == GameMode.Story && IsFinished)
         {
             SetHighscore();
             DisableAllComputers();
         }
 
-        var type
-            = (IsFinished)
+        var type = (currentMode == GameMode.Story && IsFinished)
             ? UIManager.ResolutionScreenType.Finish
             : (isCorrect) ? UIManager.ResolutionScreenType.Correct
             : UIManager.ResolutionScreenType.Incorrect;
 
-        if (events.DisplayResolutionScreen != null)
-        {
-            events.DisplayResolutionScreen(type, QuestionList[currentQuestion].AddScore);
-        }
+        events.DisplayResolutionScreen?.Invoke(type, GetActiveQuestion().AddScore);
 
-        // Only play SFX for actual submissions
-        ComputerAudioManager.Instance.PlaySound(
-            (isCorrect) ? "CorrectSFX" : "IncorrectSFX",
-            true // bypass UI check
-        );
+        ComputerAudioManager.Instance.PlaySound(isCorrect ? "CorrectSFX" : "IncorrectSFX", true);
 
         if (type != UIManager.ResolutionScreenType.Finish)
         {
-            if (IE_WaitTillNextRound != null)
-            {
-                StopCoroutine(IE_WaitTillNextRound);
-            }
+            if (IE_WaitTillNextRound != null) StopCoroutine(IE_WaitTillNextRound);
             IE_WaitTillNextRound = WaitTillNextRound();
             StartCoroutine(IE_WaitTillNextRound);
         }
     }
 
+    bool CheckAnswers() => CompareAnswers();
 
-
-    #region Timer Methods
-
-    /*void UpdateTimer(bool state)
-    {
-        switch (state)
-        {
-            case true:
-                IE_StartTimer = StartTimer();
-                StartCoroutine(IE_StartTimer);
-
-                timerAnimtor.SetInteger(timerStateParaHash, 2);
-                break;
-            case false:
-                if (IE_StartTimer != null)
-                {
-                    StopCoroutine(IE_StartTimer);
-                }
-
-                timerAnimtor.SetInteger(timerStateParaHash, 1);
-                break;
-        }
-    }*/
-    /*IEnumerator StartTimer()
-    {
-        var totalTime = QuestionList[currentQuestion].Timer;
-        var timeLeft = totalTime;
-
-        timerText.color = timerDefaultColor;
-        while (timeLeft > 0)
-        {
-            timeLeft--;
-
-            //AudioManager.Instance.PlaySound("CountdownSFX");
-
-            if (timeLeft < totalTime / 2 && timeLeft > totalTime / 4)
-            {
-                timerText.color = timerHalfWayOutColor;
-            }
-            if (timeLeft < totalTime / 4)
-            {
-                timerText.color = timerAlmostOutColor;
-            }
-
-            timerText.text = timeLeft.ToString();
-            yield return new WaitForSeconds(1.0f);
-        }
-        Accept();
-    }*/
-    IEnumerator WaitTillNextRound()
-    {
-        yield return new WaitForSeconds(GameUtility.ResolutionDelayTime);
-        Display();
-    }
-
-    #endregion
-
-    /// <summary>
-    /// Function that is called to check currently picked answers and return the result.
-    /// </summary>
-    bool CheckAnswers()
-    {
-        if (!CompareAnswers())
-        {
-            return false;
-        }
-        return true;
-    }
-    /// <summary>
-    /// Function that is called to compare picked answers with question correct answers.
-    /// </summary>
     bool CompareAnswers()
     {
         if (PickedAnswers.Count > 0)
         {
-            List<int> c = QuestionList[currentQuestion].GetCorrectAnswer();
+            List<int> c = GetActiveQuestion().GetCorrectAnswer();
             List<int> p = PickedAnswers.Select(x => x.AnswerIndex).ToList();
 
             var f = c.Except(p).ToList();
@@ -299,68 +302,49 @@ public class GameManager : MonoBehaviour
         return false;
     }
 
-    /// <summary>
-    /// Function that is called to load all questions from the Resource folder.
-    /// </summary>
-    void LoadQuestions()
+    private IEnumerator WaitTillNextRound()
     {
-        Object[] objs = Resources.LoadAll("Questions", typeof(Questions));
-        _questions = new Questions[objs.Length];
-        for (int i = 0; i < objs.Length; i++)
+        yield return new WaitForSeconds(GameUtility.ResolutionDelayTime);
+        Display();
+    }
+
+    private void UpdateScore(int add)
+    {
+        events.CurrentFinalScore += add;
+        events.ScoreUpdated?.Invoke();
+
+        if (events.CurrentFinalScore >= 100)
         {
-            _questions[i] = (Questions)objs[i];
+            UnlockDoor();
         }
     }
 
-    /// <summary>
-    /// Function that is called restart the game.
-    /// </summary>
+    #endregion
+
+    #region Utility + Scene Flow
+
     public void RestartGame()
     {
-        Debug.Log("HEEEEEEEEEE");
         events.CurrentFinalScore = 0;
         FinishedQuestions.Clear();
         PickedAnswers.Clear();
 
-        // Reload questions just in case (optional)
-        LoadQuestions();
+        if (currentMode == GameMode.Story)
+            LoadQuestions();
+        else
+            currentGeneratedQuestion = GenerateRandomQuestion();
 
-        // Reset the quiz UI
         Display();
     }
-    /// <summary>
-    /// Function that is called to quit the application.
-    /// </summary>
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
 
-    /// <summary>
-    /// Function that is called to set new highscore if game score is higher.
-    /// </summary>
+    public void QuitGame() => Application.Quit();
+
     private void SetHighscore()
     {
         var highscore = PlayerPrefs.GetInt(GameUtility.SavePrefKey);
         if (highscore < events.CurrentFinalScore)
         {
             PlayerPrefs.SetInt(GameUtility.SavePrefKey, events.CurrentFinalScore);
-        }
-    }
-    /// <summary>
-    /// Function that is called update the score and update the UI.
-    /// </summary>
-    private void UpdateScore(int add)
-    {
-        events.CurrentFinalScore += add;
-
-        if (events.ScoreUpdated != null)
-        {
-            events.ScoreUpdated();
-        }
-        if (events.CurrentFinalScore >= 100)
-        {
-            UnlockDoor();
         }
     }
 
@@ -377,43 +361,16 @@ public class GameManager : MonoBehaviour
         if (escapeInteractionZone != null)
             escapeInteractionZone.SetActive(true);
 
-        // Play the door audio
         if (doorAudio != null)
             doorAudio.Play();
 
         Debug.Log("Door opened and escape zone activated!");
     }
 
-    #region Getters
-
-    Questions GetRandomQuestion()
-    {
-        var randomIndex = GetRandomQuestionIndex();
-        currentQuestion = randomIndex;
-
-        return QuestionList[currentQuestion];
-    }
-    int GetRandomQuestionIndex()
-    {
-        var random = 0;
-        if (FinishedQuestions.Count < QuestionList.Length)
-        {
-            do
-            {
-                random = UnityEngine.Random.Range(0, QuestionList.Length);
-            } while (FinishedQuestions.Contains(random) || random == currentQuestion);
-        }
-        return random;
-    }
-
     public void PlayerWins()
     {
         Debug.Log("Player has won the game!");
-
-        // Pause gameplay
         Time.timeScale = 0f;
-
-        // Start fade-to-white coroutine
         StartCoroutine(FadeToOutroScene("OutroScene", 1.5f));
     }
 
@@ -421,7 +378,6 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("[GameManager] Preparing white fade overlay...");
 
-        // Create a full-screen UI overlay for fade
         GameObject fadeRoot = new GameObject("SceneFadeRoot");
         Canvas canvas = fadeRoot.AddComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
@@ -430,11 +386,10 @@ public class GameManager : MonoBehaviour
         fadeRoot.AddComponent<CanvasScaler>();
         fadeRoot.AddComponent<GraphicRaycaster>();
 
-        // Create a white image filling the screen
         GameObject fadeImageObj = new GameObject("FadeImage", typeof(RectTransform));
         fadeImageObj.transform.SetParent(fadeRoot.transform, false);
         UnityEngine.UI.Image fadeImage = fadeImageObj.AddComponent<UnityEngine.UI.Image>();
-        fadeImage.color = new Color(1f, 1f, 1f, 0f); // white but transparent
+        fadeImage.color = new Color(1f, 1f, 1f, 0f);
 
         RectTransform rt = fadeImageObj.GetComponent<RectTransform>();
         rt.anchorMin = Vector2.zero;
@@ -447,30 +402,23 @@ public class GameManager : MonoBehaviour
         float t = 0f;
         while (t < duration)
         {
-            t += Time.unscaledDeltaTime; // works even while paused
+            t += Time.unscaledDeltaTime;
             float alpha = Mathf.Clamp01(t / duration);
             fadeImage.color = new Color(1f, 1f, 1f, alpha);
             yield return null;
         }
 
-        // Ensure fully white
         fadeImage.color = Color.white;
-
         Debug.Log("[GameManager] Fade complete. Loading OutroScene...");
 
-        // Unpause before switching scenes
         Time.timeScale = 1f;
-
-        // Load the outro scene
         SceneManager.LoadScene(outroSceneName);
     }
-
 
     private void DisableAllComputers()
     {
         disableOnExit = true;
     }
-
 
     #endregion
 }
