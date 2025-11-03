@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="GAMETEST"
-run/main_scene="uid://4hm1tcxceum"
+config/name="my-first-lesson"
+run/main_scene="uid://b7rfq14kadqc3"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://cwwvsd2t3ko03"
 
 [display]
 
@@ -28,3 +28,6 @@ enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addon
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/main_scene="uid://b7rfq14kadqc3"
+environment/icon="uid://cwwvsd2t3ko03"
+environment/name="my-first-lesson"
