@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b52no2g14wdda" path="res://Assets/game background main menu.png" id="1_06t4h"]
 [ext_resource type="Script" uid="uid://ddqen73x1aytt" path="res://main_menu.gd" id="1_7vrkn"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://Assets/UI/kenneyUI.tres" id="3_fu7sn"]
-[ext_resource type="AudioStream" uid="uid://bc4stuinioiaq" path="res://Assets/sounds/old-broken-music-box-sound-effect-386717.mp3" id="4_jix8l"]
+[ext_resource type="AudioStream" uid="uid://qb65ufe4oef4" path="res://Assets/sounds/sounds/Emily J. - Untitled Oct 7, 2025, 314 AM 2025-10-07 04_05.mp3" id="4_qe12f"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -34,11 +34,13 @@ offset_top = -73.0
 offset_right = 349.0
 offset_bottom = 80.5
 grow_vertical = 2
+theme = ExtResource("3_fu7sn")
 alignment = 1
 
 [node name="Play" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_fu7sn")
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
 text = "Play"
 
 [node name="Quit" type="Button" parent="VBoxContainer"]
@@ -48,7 +50,7 @@ text = "Quit
 "
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_jix8l")
+stream = ExtResource("4_qe12f")
 autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]

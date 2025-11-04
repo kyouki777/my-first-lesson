@@ -28,6 +28,7 @@ enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addon
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
 environment/main_scene="uid://b7rfq14kadqc3"
 environment/icon="uid://cwwvsd2t3ko03"
 environment/name="my-first-lesson"

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://qb65ufe4oef4"
+path="res://.godot/imported/Emily J. - Untitled Oct 7, 2025, 314 AM 2025-10-07 04_05.mp3-e56c268807e66841be892364bf2ef924.mp3str"
+
+[deps]
+
+source_file="res://Assets/sounds/sounds/Emily J. - Untitled Oct 7, 2025, 314 AM 2025-10-07 04_05.mp3"
+dest_files=["res://.godot/imported/Emily J. - Untitled Oct 7, 2025, 314 AM 2025-10-07 04_05.mp3-e56c268807e66841be892364bf2ef924.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://bgv3f261vgjjd"]
+[gd_scene load_steps=52 format=4 uid="uid://bgv3f261vgjjd"]
 
 [ext_resource type="Texture2D" uid="uid://73p0gd6l6qtm" path="res://Assets/Floor_sheet.png" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://m84r3dm21jgq" path="res://player.tscn" id="1_ig7tw"]
@@ -9,6 +9,63 @@
 [ext_resource type="Texture2D" uid="uid://c4viyumhd4c4" path="res://Assets/Items_sheet.png" id="5_7mycd"]
 [ext_resource type="Script" uid="uid://17pwme1hl174" path="res://floor.gd" id="5_kek77"]
 [ext_resource type="PackedScene" uid="uid://chhaw4ayjg0do" path="res://quiz_ui.tscn" id="6_7mycd"]
+[ext_resource type="AudioStream" uid="uid://348ylsy7towo" path="res://Assets/sounds/heartbeat-02-225103.mp3" id="8_4c57u"]
+[ext_resource type="AudioStream" uid="uid://cf6aqrhkypacx" path="res://Assets/sounds/sound-effect-707.mp3" id="9_efxa6"]
+[ext_resource type="Script" uid="uid://cxr877fjl6npm" path="res://pause_menu.gd" id="12_dg77c"]
+[ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://Assets/UI/kenneyUI.tres" id="13_ycdy4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_efxa6"]
+size = Vector2(25, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ycdy4"]
+size = Vector2(20, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a6jrf"]
+size = Vector2(16, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w48qg"]
+size = Vector2(20, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vivmo"]
+size = Vector2(20, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2cqfq"]
+size = Vector2(20, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yaehf"]
+size = Vector2(20, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_074og"]
+size = Vector2(20, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cegan"]
+size = Vector2(20, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_82xsv"]
+size = Vector2(20, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_getpj"]
+size = Vector2(20, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ryguw"]
+size = Vector2(20, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d13ii"]
+size = Vector2(25, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1u8w0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0odxb"]
+size = Vector2(50, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lswn8"]
+size = Vector2(80, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xuqvo"]
+size = Vector2(16, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qsp4k"]
+size = Vector2(16, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
 
@@ -426,7 +483,7 @@ sources/1 = SubResource("TileSetAtlasSource_5vw27")
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_272bh"]
 texture = ExtResource("2_272bh")
 13:8/0 = 0
-13:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+13:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -8, 4, -4, 4, 4, -4, 4)
 14:8/0 = 0
 14:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 15:8/0 = 0
@@ -444,9 +501,11 @@ texture = ExtResource("2_272bh")
 12:9/0 = 0
 12:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 13:9/0 = 0
+13:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, 0, 4, 0, 4, 8, -8, 8, -4, 8)
 7:10/0 = 0
 7:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 8:10/0 = 0
+8:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0, -8, 0)
 9:10/0 = 0
 9:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0, -8, 0)
 10:10/0 = 0
@@ -456,6 +515,7 @@ texture = ExtResource("2_272bh")
 12:10/0 = 0
 12:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0, -8, 0)
 13:10/0 = 0
+13:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -8, 4, -8, 4, 0, -4, 0)
 6:11/0 = 0
 7:11/0 = 0
 6:12/0 = 0
@@ -524,15 +584,707 @@ sources/1 = SubResource("TileSetAtlasSource_kek77")
 y_sort_enabled = true
 
 [node name="Env" type="Node2D" parent="."]
+y_sort_enabled = true
 
-[node name="ObstaclesObjects" type="Node" parent="Env"]
+[node name="InteractObstaclesObjects" type="Node" parent="Env"]
 
-[node name="Balls" type="Area2D" parent="Env/ObstaclesObjects"]
+[node name="InteractBalls" type="Node" parent="Env/InteractObstaclesObjects"]
 
-[node name="Sprite2D" type="Sprite2D" parent="Env/ObstaclesObjects/Balls"]
+[node name="Balls17" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
+position = Vector2(614, 281)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls17"]
 region_rect = Rect2(0, 0, 320, 143)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/ObstaclesObjects/Balls"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls17"]
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="Balls16" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
+position = Vector2(405, 986)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls16"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls16"]
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="Balls15" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
+position = Vector2(185, 938)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls15"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls15"]
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="Balls14" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
+position = Vector2(37, 918)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls14"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls14"]
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="Balls13" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
+position = Vector2(821, 920)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls13"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls13"]
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="Balls12" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
+position = Vector2(629, 890)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls12"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls12"]
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="Balls11" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
+position = Vector2(614, 795)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls11"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls11"]
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="Balls10" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
+position = Vector2(246, 747)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls10"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls10"]
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="Balls8" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls10"]
+position = Vector2(240, -34)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls10/Balls8"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls10/Balls8"]
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="Balls9" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
+position = Vector2(-135, 586)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls9"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls9"]
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="Balls8" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls9"]
+position = Vector2(77, 144)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls9/Balls8"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls9/Balls8"]
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="Balls8" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
+position = Vector2(278, 506)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls8"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls8"]
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="Balls7" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
+position = Vector2(228, 284)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls7"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls7"]
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="Balls5" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
+position = Vector2(870, 699)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls5"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls5"]
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="Balls6" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
+position = Vector2(629, 714)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls6"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls6"]
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="Balls4" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
+position = Vector2(822, 523)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls4"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls4"]
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="Balls3" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
+position = Vector2(486, 522)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls3"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls3"]
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="Balls2" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
+position = Vector2(389, 347)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls2"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls2"]
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="Balls" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
+position = Vector2(405, 185)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls"]
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="TheBalls" type="Area2D" parent="Env/InteractObstaclesObjects"]
+position = Vector2(-133, 411)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/TheBalls"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/TheBalls"]
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="InteractionBeds" type="Node" parent="Env/InteractObstaclesObjects"]
+
+[node name="Putra_Bed" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBeds"]
+position = Vector2(-90, 477)
+collision_layer = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBeds/Putra_Bed"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractionBeds/Putra_Bed"]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_ycdy4")
+
+[node name="Putra_Table_Lamp" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBeds"]
+position = Vector2(-72, 462)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBeds/Putra_Table_Lamp"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractionBeds/Putra_Table_Lamp"]
+shape = SubResource("RectangleShape2D_a6jrf")
+
+[node name="William_Bed" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBeds"]
+position = Vector2(-54, 477)
+collision_layer = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBeds/William_Bed"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractionBeds/William_Bed"]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_w48qg")
+
+[node name="Budi_Bed" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBeds"]
+position = Vector2(-26, 477)
+collision_layer = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBeds/Budi_Bed"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractionBeds/Budi_Bed"]
+position = Vector2(2, -12)
+shape = SubResource("RectangleShape2D_vivmo")
+
+[node name="Riri_Bed" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBeds"]
+position = Vector2(6, 477)
+collision_layer = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBeds/Riri_Bed"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractionBeds/Riri_Bed"]
+position = Vector2(2, -12)
+shape = SubResource("RectangleShape2D_2cqfq")
+
+[node name="Rian_Bed" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBeds"]
+position = Vector2(806, 476)
+collision_layer = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBeds/Rian_Bed"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractionBeds/Rian_Bed"]
+position = Vector2(2, -11)
+shape = SubResource("RectangleShape2D_yaehf")
+
+[node name="Melati_Bed" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBeds"]
+position = Vector2(838, 476)
+collision_layer = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBeds/Melati_Bed"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractionBeds/Melati_Bed"]
+position = Vector2(2, -11)
+shape = SubResource("RectangleShape2D_074og")
+
+[node name="Yulia_Bed" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBeds"]
+position = Vector2(870, 476)
+collision_layer = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBeds/Yulia_Bed"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractionBeds/Yulia_Bed"]
+position = Vector2(2, -11)
+shape = SubResource("RectangleShape2D_cegan")
+
+[node name="Beni_Bed" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBeds"]
+position = Vector2(902, 476)
+collision_layer = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBeds/Beni_Bed"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractionBeds/Beni_Bed"]
+position = Vector2(2, -11)
+shape = SubResource("RectangleShape2D_82xsv")
+
+[node name="Sri_Bed" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBeds"]
+position = Vector2(376, 958)
+collision_layer = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBeds/Sri_Bed"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractionBeds/Sri_Bed"]
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_getpj")
+
+[node name="Ulka_Bed" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBeds"]
+position = Vector2(440, 946)
+collision_layer = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBeds/Ulka_Bed"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractionBeds/Ulka_Bed"]
+shape = SubResource("RectangleShape2D_ryguw")
+
+[node name="InteractionBooks" type="Node" parent="Env/InteractObstaclesObjects"]
+
+[node name="Book 7" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBooks"]
+position = Vector2(408, 1056)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBooks/Book 7"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractionBooks/Book 7"]
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="Book 6" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBooks"]
+position = Vector2(264, 644)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBooks/Book 6"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractionBooks/Book 6"]
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="Book 5" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBooks"]
+position = Vector2(904, 404)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBooks/Book 5"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractionBooks/Book 5"]
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="Book 4" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBooks"]
+position = Vector2(504, 372)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBooks/Book 4"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractionBooks/Book 4"]
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="Book 3" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBooks"]
+position = Vector2(24, 404)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBooks/Book 3"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractionBooks/Book 3"]
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="Book 2" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBooks"]
+position = Vector2(813, 133)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBooks/Book 2"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractionBooks/Book 2"]
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="Book 1" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBooks"]
+position = Vector2(3, 132)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBooks/Book 1"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractionBooks/Book 1"]
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="InteractComputers" type="Node" parent="Env/InteractObstaclesObjects"]
+
+[node name="Computer 5" type="Area2D" parent="Env/InteractObstaclesObjects/InteractComputers"]
+position = Vector2(574, 959)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractComputers/Computer 5"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractComputers/Computer 5"]
+position = Vector2(-3, -5)
+shape = SubResource("RectangleShape2D_d13ii")
+
+[node name="Computer 4" type="Area2D" parent="Env/InteractObstaclesObjects/InteractComputers"]
+position = Vector2(238, 959)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractComputers/Computer 4"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractComputers/Computer 4"]
+position = Vector2(-3, -5)
+shape = SubResource("RectangleShape2D_d13ii")
+
+[node name="Computer 3" type="Area2D" parent="Env/InteractObstaclesObjects/InteractComputers"]
+position = Vector2(302, 383)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractComputers/Computer 3"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractComputers/Computer 3"]
+position = Vector2(-3, -5)
+shape = SubResource("RectangleShape2D_d13ii")
+
+[node name="Computer 2" type="Area2D" parent="Env/InteractObstaclesObjects/InteractComputers"]
+position = Vector2(862, 143)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractComputers/Computer 2"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractComputers/Computer 2"]
+position = Vector2(-3, -5)
+shape = SubResource("RectangleShape2D_d13ii")
+
+[node name="Computer 1" type="Area2D" parent="Env/InteractObstaclesObjects/InteractComputers"]
+position = Vector2(-51, 137)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractComputers/Computer 1"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractComputers/Computer 1"]
+shape = SubResource("RectangleShape2D_d13ii")
+
+[node name="InteractChairs" type="Node" parent="Env/InteractObstaclesObjects"]
+
+[node name="Chair 1" type="Area2D" parent="Env/InteractObstaclesObjects/InteractChairs"]
+position = Vector2(88, 400)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractChairs/Chair 1"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractChairs/Chair 1"]
+shape = SubResource("RectangleShape2D_1u8w0")
+
+[node name="Chair 2" type="Area2D" parent="Env/InteractObstaclesObjects/InteractChairs"]
+position = Vector2(232, 383)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractChairs/Chair 2"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractChairs/Chair 2"]
+shape = SubResource("RectangleShape2D_1u8w0")
+
+[node name="Chair 3" type="Area2D" parent="Env/InteractObstaclesObjects/InteractChairs"]
+position = Vector2(728, 401)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractChairs/Chair 3"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractChairs/Chair 3"]
+shape = SubResource("RectangleShape2D_1u8w0")
+
+[node name="Chair 4" type="Area2D" parent="Env/InteractObstaclesObjects/InteractChairs"]
+position = Vector2(-88, 656)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractChairs/Chair 4"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractChairs/Chair 4"]
+shape = SubResource("RectangleShape2D_1u8w0")
+
+[node name="Chair 5" type="Area2D" parent="Env/InteractObstaclesObjects/InteractChairs"]
+position = Vector2(104, 641)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractChairs/Chair 5"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractChairs/Chair 5"]
+shape = SubResource("RectangleShape2D_1u8w0")
+
+[node name="Chair 6" type="Area2D" parent="Env/InteractObstaclesObjects/InteractChairs"]
+position = Vector2(904, 657)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractChairs/Chair 6"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractChairs/Chair 6"]
+shape = SubResource("RectangleShape2D_1u8w0")
+
+[node name="InteractNaughtyCages" type="Node" parent="Env/InteractObstaclesObjects"]
+
+[node name="Naughty Cage 1" type="Area2D" parent="Env/InteractObstaclesObjects/InteractNaughtyCages"]
+position = Vector2(-129, 285)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractNaughtyCages/Naughty Cage 1"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractNaughtyCages/Naughty Cage 1"]
+shape = SubResource("RectangleShape2D_0odxb")
+
+[node name="Naughty Cage 2" type="Area2D" parent="Env/InteractObstaclesObjects/InteractNaughtyCages"]
+position = Vector2(943, 284)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractNaughtyCages/Naughty Cage 2"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractNaughtyCages/Naughty Cage 2"]
+shape = SubResource("RectangleShape2D_0odxb")
+
+[node name="Naughty Cage 3" type="Area2D" parent="Env/InteractObstaclesObjects/InteractNaughtyCages"]
+position = Vector2(145, 638)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractNaughtyCages/Naughty Cage 3"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractNaughtyCages/Naughty Cage 3"]
+shape = SubResource("RectangleShape2D_0odxb")
+
+[node name="Naughty Cage 4" type="Area2D" parent="Env/InteractObstaclesObjects/InteractNaughtyCages"]
+position = Vector2(257, 1051)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractNaughtyCages/Naughty Cage 4"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractNaughtyCages/Naughty Cage 4"]
+shape = SubResource("RectangleShape2D_0odxb")
+
+[node name="Naughty Cage 5" type="Area2D" parent="Env/InteractObstaclesObjects/InteractNaughtyCages"]
+position = Vector2(561, 1054)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractNaughtyCages/Naughty Cage 5"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractNaughtyCages/Naughty Cage 5"]
+shape = SubResource("RectangleShape2D_0odxb")
+
+[node name="Naughty Cage 6" type="Area2D" parent="Env/InteractObstaclesObjects/InteractNaughtyCages"]
+position = Vector2(576, 366)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractNaughtyCages/Naughty Cage 6"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractNaughtyCages/Naughty Cage 6"]
+shape = SubResource("RectangleShape2D_0odxb")
+
+[node name="InteractDiningTables" type="Node" parent="Env/InteractObstaclesObjects"]
+
+[node name="DiningTable 1" type="Area2D" parent="Env/InteractObstaclesObjects/InteractDiningTables"]
+position = Vector2(192, 686)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractDiningTables/DiningTable 1"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractDiningTables/DiningTable 1"]
+shape = SubResource("RectangleShape2D_lswn8")
+
+[node name="DiningTable 2" type="Area2D" parent="Env/InteractObstaclesObjects/InteractDiningTables"]
+position = Vector2(303, 686)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractDiningTables/DiningTable 2"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractDiningTables/DiningTable 2"]
+shape = SubResource("RectangleShape2D_lswn8")
+
+[node name="DiningTable 3" type="Area2D" parent="Env/InteractObstaclesObjects/InteractDiningTables"]
+position = Vector2(192, 782)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractDiningTables/DiningTable 3"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractDiningTables/DiningTable 3"]
+shape = SubResource("RectangleShape2D_lswn8")
+
+[node name="DiningTable 4" type="Area2D" parent="Env/InteractObstaclesObjects/InteractDiningTables"]
+position = Vector2(304, 782)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractDiningTables/DiningTable 4"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractDiningTables/DiningTable 4"]
+shape = SubResource("RectangleShape2D_lswn8")
+
+[node name="InteractWindows" type="Node" parent="Env/InteractObstaclesObjects"]
+
+[node name="Window 1" type="Area2D" parent="Env/InteractObstaclesObjects/InteractWindows"]
+position = Vector2(-72, 132)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractWindows/Window 1"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractWindows/Window 1"]
+shape = SubResource("RectangleShape2D_xuqvo")
+
+[node name="Window 2" type="Area2D" parent="Env/InteractObstaclesObjects/InteractWindows"]
+position = Vector2(24, 132)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractWindows/Window 2"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractWindows/Window 2"]
+shape = SubResource("RectangleShape2D_xuqvo")
+
+[node name="Window 3" type="Area2D" parent="Env/InteractObstaclesObjects/InteractWindows"]
+position = Vector2(168, 277)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractWindows/Window 3"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractWindows/Window 3"]
+shape = SubResource("RectangleShape2D_xuqvo")
+
+[node name="Window 4" type="Area2D" parent="Env/InteractObstaclesObjects/InteractWindows"]
+position = Vector2(280, 277)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractWindows/Window 4"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractWindows/Window 4"]
+shape = SubResource("RectangleShape2D_xuqvo")
+
+[node name="Window 5" type="Area2D" parent="Env/InteractObstaclesObjects/InteractWindows"]
+position = Vector2(536, 277)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractWindows/Window 5"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractWindows/Window 5"]
+shape = SubResource("RectangleShape2D_xuqvo")
+
+[node name="Window 6" type="Area2D" parent="Env/InteractObstaclesObjects/InteractWindows"]
+position = Vector2(648, 277)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractWindows/Window 6"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractWindows/Window 6"]
+shape = SubResource("RectangleShape2D_xuqvo")
+
+[node name="Window 7" type="Area2D" parent="Env/InteractObstaclesObjects/InteractWindows"]
+position = Vector2(792, 133)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractWindows/Window 7"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractWindows/Window 7"]
+shape = SubResource("RectangleShape2D_xuqvo")
+
+[node name="Window 8" type="Area2D" parent="Env/InteractObstaclesObjects/InteractWindows"]
+position = Vector2(888, 133)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractWindows/Window 8"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractWindows/Window 8"]
+shape = SubResource("RectangleShape2D_xuqvo")
+
+[node name="Window 9" type="Area2D" parent="Env/InteractObstaclesObjects/InteractWindows"]
+position = Vector2(376, 117)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractWindows/Window 9"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractWindows/Window 9"]
+shape = SubResource("RectangleShape2D_xuqvo")
+
+[node name="Window 10" type="Area2D" parent="Env/InteractObstaclesObjects/InteractWindows"]
+position = Vector2(440, 117)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractWindows/Window 10"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractWindows/Window 10"]
+shape = SubResource("RectangleShape2D_xuqvo")
+
+[node name="InteractFridges" type="Node" parent="Env/InteractObstaclesObjects"]
+
+[node name="Fridge 1" type="Area2D" parent="Env/InteractObstaclesObjects/InteractFridges"]
+position = Vector2(456, 659)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractFridges/Fridge 1"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractFridges/Fridge 1"]
+shape = SubResource("RectangleShape2D_qsp4k")
+
+[node name="Fridge 2" type="Area2D" parent="Env/InteractObstaclesObjects/InteractFridges"]
+position = Vector2(472, 659)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractFridges/Fridge 2"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractFridges/Fridge 2"]
+shape = SubResource("RectangleShape2D_qsp4k")
+
+[node name="Fridge 3" type="Area2D" parent="Env/InteractObstaclesObjects/InteractFridges"]
+position = Vector2(488, 659)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractFridges/Fridge 3"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractFridges/Fridge 3"]
+shape = SubResource("RectangleShape2D_qsp4k")
+
+[node name="Fridge 4" type="Area2D" parent="Env/InteractObstaclesObjects/InteractFridges"]
+position = Vector2(504, 659)
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractFridges/Fridge 4"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractFridges/Fridge 4"]
+shape = SubResource("RectangleShape2D_qsp4k")
 
 [node name="Objects" type="Node" parent="Env"]
 
@@ -629,7 +1381,8 @@ tile_set = SubResource("TileSet_1bvp3")
 script = ExtResource("5_kek77")
 
 [node name="ObstacleObjects" type="TileMapLayer" parent="Env"]
-tile_map_data = PackedByteArray("AAAXADsAAAAHAAoAAAAbADsAAAAHAAoAAAD6/x0AAAAHAAoAAAD6/xwAAAAHAAkAAAD8/x0AAAAHAAoAAAD8/xwAAAAHAAkAAAD+/x0AAAAHAAoAAAD+/xwAAAAHAAkAAAAAAB0AAAAHAAoAAAAAABwAAAAHAAkAAAA4AB0AAAAHAAoAAAA4ABwAAAAHAAkAAAA2AB0AAAAHAAoAAAA2ABwAAAAHAAkAAAA0AB0AAAAHAAoAAAA0ABwAAAAHAAkAAAAyAB0AAAAHAAoAAAAyABwAAAAHAAkAAAD7/xwAAAAIAAkAAAD7/x0AAAAIAAoAAAD9/xwAAAAIAAkAAAD9/x0AAAAIAAoAAAD//xwAAAAIAAkAAAD//x0AAAAIAAoAAAABABwAAAAIAAkAAAABAB0AAAAIAAoAAAAzABwAAAAIAAkAAAAzAB0AAAAIAAoAAAA1ABwAAAAIAAkAAAA1AB0AAAAIAAoAAAA3ABwAAAAIAAkAAAA3AB0AAAAIAAoAAAA5ABwAAAAIAAkAAAA5AB0AAAAIAAoAAAAYADoAAAAIAAkAAAAYADsAAAAIAAoAAAAaADoAAAAIAAkAAAAaADsAAAAIAAoAAAAbADoAAAAHAAkAAAAXADoAAAAHAAkAAAAmACgAAAAJAAwAAAAnACgAAAAKAAwAAAAcACcAAAAGAAsAAAAcACgAAAAGAAwAAAAdACcAAAAGAAsAAAAdACgAAAAGAAwAAAAeACcAAAAGAAsAAAAeACgAAAAGAAwAAAAfACcAAAAGAAsAAAAfACgAAAAGAAwAAAAgACcAAAAHAAsAAAAgACgAAAAHAAwAAAAhACgAAAAIAAwAAAAiACgAAAAJAAwAAAAjACgAAAAKAAwAAAAkACgAAAAJAAwAAAAlACgAAAAKAAwAAAAoACgAAAALAAwAAAApACgAAAAKAAwAAAAsACgAAAANAAwAAAAqACgAAAALAAwAAAArACgAAAAKAAwAAAAKACoAAAAJAAkAAAAKACsAAAAJAAoAAAALACoAAAAKAAkAAAALACsAAAAKAAoAAAAMACoAAAALAAkAAAAMACsAAAALAAoAAAANACoAAAAMAAkAAAANACsAAAAMAAoAAAARACoAAAAJAAkAAAARACsAAAAJAAoAAAASACoAAAAKAAkAAAASACsAAAAKAAoAAAATACoAAAALAAkAAAATACsAAAALAAoAAAAUACoAAAAMAAkAAAAUACsAAAAMAAoAAAAKADAAAAAJAAkAAAAKADEAAAAJAAoAAAALADAAAAAKAAkAAAALADEAAAAKAAoAAAAMADAAAAALAAkAAAAMADEAAAALAAoAAAANADAAAAAMAAkAAAANADEAAAAMAAoAAAARADAAAAAJAAkAAAARADEAAAAJAAoAAAASADAAAAAKAAkAAAASADEAAAAKAAoAAAATADAAAAALAAkAAAATADEAAAALAAoAAAAUADAAAAAMAAkAAAAUADEAAAAMAAoAAAAVADAAAAANAAkAAAAVADEAAAANAAoAAAAVACoAAAANAAkAAAAVACsAAAANAAoAAAAOACoAAAANAAkAAAAOACsAAAANAAoAAAAJACoAAAANAAkAAAAJACsAAAANAAoAAAAJADAAAAANAAkAAAAJADEAAAANAAoAAAAOADAAAAANAAkAAAAOADEAAAANAAoAAAAQADAAAAANAAkAAAAQADEAAAANAAoAAAAQACoAAAANAAkAAAAQACsAAAANAAoAAAASAC8AAAANAAkAAAATAC8AAAANAAkAAAALAC8AAAANAAkAAAAMAC8AAAANAAkAAAALACkAAAANAAkAAAAMACkAAAANAAkAAAASACkAAAANAAkAAAATACkAAAANAAkAAAALADIAAAANAAkAAAALADMAAAANAAoAAAAMADIAAAANAAkAAAAMADMAAAANAAoAAAASADIAAAANAAkAAAASADMAAAANAAoAAAATADIAAAANAAkAAAATADMAAAANAAoAAAALACwAAAANAAkAAAALAC0AAAANAAoAAAAMACwAAAANAAkAAAAMAC0AAAANAAoAAAASACwAAAANAAkAAAASAC0AAAANAAoAAAATACwAAAANAAkAAAATAC0AAAANAAoAAAAGADMAAAANAAwAAAAGACcAAAANAAkAAAAGACgAAAANAAoAAAAFABgAAAANAAkAAAAFABkAAAANAAoAAAAtABgAAAANAAkAAAAtABkAAAANAAoAAAD3/wcAAAAHAAkAAAD3/wgAAAAHAAoAAAA7AAcAAAAHAAkAAAA7AAgAAAAHAAoAAAD3/yoAAAAOAAgAAAD3/ywAAAAOAAgAAAD3/y4AAAAOAAgAAAD//yoAAAAPAAgAAAD//ywAAAAPAAgAAAAzACoAAAAOAAgAAAAzACwAAAAOAAgAAAA7ACoAAAAPAAgAAAA7ACwAAAAPAAgAAAA7AC4AAAAPAAgAAAD//ygAAAANAAwAAAAzACgAAAANAAwAAAD6/ygAAAANAAkAAAD6/ykAAAANAAoAAAA4ACgAAAANAAkAAAA4ACkAAAANAAoAAAD3/xkAAAANAAgAAAAOABcAAAANAAkAAAAOABgAAAANAAoAAAAzACAAAAANAAgAAAAZAAsAAAANAAgAAAAYABUAAAANAAgAAAAmABEAAAANAAgAAAAeACAAAAANAAgAAAARAB8AAAANAAgAAAD8/y0AAAANAAgAAAAPAC4AAAANAAgAAAAeACwAAAANAAgAAAAmADEAAAANAAgAAAAnACwAAAANAAgAAAA2ACsAAAANAAgAAAAzADkAAAANAAgAAAAnADcAAAANAAgAAAALADoAAAANAAgAAAAZAD0AAAANAAgAAAACADkAAAANAAgAAAD3/yQAAAANAAgAAAAOABEAAAANAAgAAAAFAAgAAAANAAwAAAAtAAgAAAANAAwAAAAkACMAAAANAAwAAAASABYAAQACAAAAAAASABcAAQACAAEAAAATABYAAQADAAAAAAATABcAAQADAAEAAAD8/wcAAQACAAAAAAD8/wgAAQACAAEAAAD9/wcAAQADAAAAAAD9/wgAAQADAAEAAAA1AAcAAQACAAAAAAA1AAgAAQACAAEAAAA2AAcAAQADAAAAAAA2AAgAAQADAAEAAAAOADoAAQACAAAAAAAOADsAAQACAAEAAAAPADoAAQADAAAAAAAPADsAAQADAAEAAAAjADoAAQACAAAAAAAjADsAAQACAAEAAAAkADoAAQADAAAAAAAkADsAAQADAAEAAAAQACcAAQAEAAAAAAAQACgAAQAEAAEAAAAAAAcAAQAEAAAAAAAAAAgAAQAEAAEAAAAyAAcAAQAEAAAAAAAyAAgAAQAEAAEAAAAfABYAAQAEAAAAAAAfABcAAQAEAAEAAAABABgAAQAEAAAAAAABABkAAQAEAAEAAAA4ABgAAQAEAAAAAAA4ABkAAQAEAAEAAAAZAEEAAQAEAAAAAAAZAEIAAQAEAAEAAAAjABYAAQAHAAAAAAAjABcAAQAHAAEAAAAkABYAAQAIAAAAAAAkABcAAQAIAAEAAAD3/xEAAQAHAAAAAAD3/xIAAQAHAAEAAAD4/xEAAQAIAAAAAAD4/xIAAQAIAAEAAAA6ABEAAQAHAAAAAAA6ABIAAQAHAAEAAAA7ABEAAQAIAAAAAAA7ABIAAQAIAAEAAAAIACcAAQAHAAAAAAAIACgAAQAHAAEAAAAJACcAAQAIAAAAAAAJACgAAQAIAAEAAAAPAEEAAQAHAAAAAAAPAEIAAQAHAAEAAAAQAEEAAQAIAAAAAAAQAEIAAQAIAAEAAAAiAEEAAQAHAAAAAAAiAEIAAQAHAAEAAAAjAEEAAQAIAAAAAAAjAEIAAQAIAAEAAAA=")
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAAXADsAAAAHAAoAAAAbADsAAAAHAAoAAAD6/x0AAAAHAAoAAAD6/xwAAAAHAAkAAAD8/x0AAAAHAAoAAAD8/xwAAAAHAAkAAAD+/x0AAAAHAAoAAAD+/xwAAAAHAAkAAAAAAB0AAAAHAAoAAAAAABwAAAAHAAkAAAA4AB0AAAAHAAoAAAA4ABwAAAAHAAkAAAA2AB0AAAAHAAoAAAA2ABwAAAAHAAkAAAA0AB0AAAAHAAoAAAA0ABwAAAAHAAkAAAAyAB0AAAAHAAoAAAAyABwAAAAHAAkAAAD7/xwAAAAIAAkAAAD7/x0AAAAIAAoAAAD9/xwAAAAIAAkAAAD9/x0AAAAIAAoAAAD//xwAAAAIAAkAAAD//x0AAAAIAAoAAAABABwAAAAIAAkAAAABAB0AAAAIAAoAAAAzABwAAAAIAAkAAAAzAB0AAAAIAAoAAAA1ABwAAAAIAAkAAAA1AB0AAAAIAAoAAAA3ABwAAAAIAAkAAAA3AB0AAAAIAAoAAAA5ABwAAAAIAAkAAAA5AB0AAAAIAAoAAAAYADoAAAAIAAkAAAAYADsAAAAIAAoAAAAaADoAAAAIAAkAAAAaADsAAAAIAAoAAAAXADoAAAAHAAkAAAAmACgAAAAJAAwAAAAnACgAAAAKAAwAAAAcACcAAAAGAAsAAAAcACgAAAAGAAwAAAAdACcAAAAGAAsAAAAdACgAAAAGAAwAAAAeACcAAAAGAAsAAAAeACgAAAAGAAwAAAAfACcAAAAGAAsAAAAfACgAAAAGAAwAAAAgACcAAAAHAAsAAAAgACgAAAAHAAwAAAAhACgAAAAIAAwAAAAiACgAAAAJAAwAAAAjACgAAAAKAAwAAAAkACgAAAAJAAwAAAAlACgAAAAKAAwAAAAoACgAAAALAAwAAAApACgAAAAKAAwAAAAsACgAAAANAAwAAAAqACgAAAALAAwAAAArACgAAAAKAAwAAAAKACoAAAAJAAkAAAAKACsAAAAJAAoAAAALACoAAAAKAAkAAAALACsAAAAKAAoAAAAMACoAAAALAAkAAAAMACsAAAALAAoAAAANACoAAAAMAAkAAAANACsAAAAMAAoAAAARACoAAAAJAAkAAAARACsAAAAJAAoAAAASACoAAAAKAAkAAAASACsAAAAKAAoAAAATACoAAAALAAkAAAATACsAAAALAAoAAAAUACoAAAAMAAkAAAAUACsAAAAMAAoAAAAKADAAAAAJAAkAAAAKADEAAAAJAAoAAAALADAAAAAKAAkAAAALADEAAAAKAAoAAAAMADAAAAALAAkAAAAMADEAAAALAAoAAAANADAAAAAMAAkAAAANADEAAAAMAAoAAAARADAAAAAJAAkAAAARADEAAAAJAAoAAAASADAAAAAKAAkAAAASADEAAAAKAAoAAAATADAAAAALAAkAAAATADEAAAALAAoAAAAUADAAAAAMAAkAAAAUADEAAAAMAAoAAAAVADAAAAANAAkAAAAVADEAAAANAAoAAAAVACoAAAANAAkAAAAVACsAAAANAAoAAAAOACoAAAANAAkAAAAOACsAAAANAAoAAAAJACoAAAANAAkAAAAJACsAAAANAAoAAAAJADAAAAANAAkAAAAJADEAAAANAAoAAAAOADAAAAANAAkAAAAOADEAAAANAAoAAAAQADAAAAANAAkAAAAQADEAAAANAAoAAAAQACoAAAANAAkAAAAQACsAAAANAAoAAAASAC8AAAANAAkAAAAMAC8AAAANAAkAAAALACkAAAANAAkAAAAMACkAAAANAAkAAAASACkAAAANAAkAAAALACwAAAANAAkAAAALAC0AAAANAAoAAAAMAC0AAAANAAoAAAASACwAAAANAAkAAAASAC0AAAANAAoAAAATACwAAAANAAkAAAATAC0AAAANAAoAAAAGADMAAAANAAwAAAAGACcAAAANAAkAAAAGACgAAAANAAoAAAAFABgAAAANAAkAAAAFABkAAAANAAoAAAAtABgAAAANAAkAAAAtABkAAAANAAoAAAD3/wcAAAAHAAkAAAD3/wgAAAAHAAoAAAA7AAcAAAAHAAkAAAA7AAgAAAAHAAoAAAD3/yoAAAAOAAgAAAD3/ywAAAAOAAgAAAD3/y4AAAAOAAgAAAD//yoAAAAPAAgAAAD//ywAAAAPAAgAAAA7ACoAAAAPAAgAAAA7ACwAAAAPAAgAAAA7AC4AAAAPAAgAAAD//ygAAAANAAwAAAAzACgAAAANAAwAAAD6/ygAAAANAAkAAAD6/ykAAAANAAoAAAA4ACgAAAANAAkAAAA4ACkAAAANAAoAAAD3/xkAAAANAAgAAAAOABcAAAANAAkAAAAOABgAAAANAAoAAAAzACAAAAANAAgAAAAZAAsAAAANAAgAAAAYABUAAAANAAgAAAAmABEAAAANAAgAAAAeACAAAAANAAgAAAARAB8AAAANAAgAAAD8/y0AAAANAAgAAAAPAC4AAAANAAgAAAAeACwAAAANAAgAAAAmADEAAAANAAgAAAAnACwAAAANAAgAAAA2ACsAAAANAAgAAAAzADkAAAANAAgAAAAnADcAAAANAAgAAAALADoAAAANAAgAAAAZAD0AAAANAAgAAAACADkAAAANAAgAAAD3/yQAAAANAAgAAAAOABEAAAANAAgAAAAFAAgAAAANAAwAAAAtAAgAAAANAAwAAAAkACMAAAANAAwAAAASABYAAQACAAAAAAASABcAAQACAAEAAAATABYAAQADAAAAAAATABcAAQADAAEAAAD8/wcAAQACAAAAAAD8/wgAAQACAAEAAAD9/wcAAQADAAAAAAD9/wgAAQADAAEAAAA1AAcAAQACAAAAAAA1AAgAAQACAAEAAAA2AAcAAQADAAAAAAA2AAgAAQADAAEAAAAOADoAAQACAAAAAAAOADsAAQACAAEAAAAPADoAAQADAAAAAAAPADsAAQADAAEAAAAjADoAAQACAAAAAAAjADsAAQACAAEAAAAkADoAAQADAAAAAAAkADsAAQADAAEAAAAQACcAAQAEAAAAAAAQACgAAQAEAAEAAAAAAAcAAQAEAAAAAAAAAAgAAQAEAAEAAAAyAAcAAQAEAAAAAAAyAAgAAQAEAAEAAAAfABYAAQAEAAAAAAAfABcAAQAEAAEAAAABABgAAQAEAAAAAAABABkAAQAEAAEAAAA4ABgAAQAEAAAAAAA4ABkAAQAEAAEAAAAZAEEAAQAEAAAAAAAZAEIAAQAEAAEAAAAjABYAAQAHAAAAAAAjABcAAQAHAAEAAAAkABYAAQAIAAAAAAAkABcAAQAIAAEAAAD3/xEAAQAHAAAAAAD3/xIAAQAHAAEAAAD4/xEAAQAIAAAAAAD4/xIAAQAIAAEAAAA6ABEAAQAHAAAAAAA6ABIAAQAHAAEAAAA7ABEAAQAIAAAAAAA7ABIAAQAIAAEAAAAIACcAAQAHAAAAAAAIACgAAQAHAAEAAAAJACcAAQAIAAAAAAAJACgAAQAIAAEAAAAPAEEAAQAHAAAAAAAPAEIAAQAHAAEAAAAQAEEAAQAIAAAAAAAQAEIAAQAIAAEAAAAiAEEAAQAHAAAAAAAiAEIAAQAHAAEAAAAjAEEAAQAIAAAAAAAjAEIAAQAIAAEAAAATACkAAAANAAkAAAAMACwAAAANAAkAAAALAC8AAAANAAkAAAAzACoAAAAOAAgAAAAzACwAAAAOAAgAAAAbADoAAAAHAAkAAAA=")
 tile_set = SubResource("TileSet_kek77")
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("1_ig7tw")]
@@ -641,14 +1394,76 @@ zoom = Vector2(4, 4)
 
 [node name="PointLight2D" type="PointLight2D" parent="Player"]
 scale = Vector2(10, 10)
-color = Color(1.6568738, 1.4337622, 0.7644277, 1)
+color = Color(1.2103415, 1.0436434, 0.98809123, 1)
 shadow_enabled = true
 shadow_filter = 1
 texture = ExtResource("5_5vw27")
 texture_scale = 0.03
 
-[node name="caretaker" parent="." instance=ExtResource("3_h2yge")]
+[node name="Heartbeat" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("8_4c57u")
+parameters/looping = true
+
+[node name="Footsteps" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("9_efxa6")
+
+[node name="caretaker" parent="." groups=["Caretaker"] instance=ExtResource("3_h2yge")]
 y_sort_enabled = true
-position = Vector2(512, 208)
+position = Vector2(407, 723)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.06879826, 0.06879829, 0.068798244, 1)
 
 [node name="QuizUI" parent="." groups=["quiz_popup"] instance=ExtResource("6_7mycd")]
+
+[node name="PauseMenuUI" type="CanvasLayer" parent="."]
+process_mode = 2
+
+[node name="PauseMenu" type="Control" parent="PauseMenuUI"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_dg77c")
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenuUI/PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6862745)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenuUI/PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = -67.0
+offset_right = 66.0
+offset_bottom = 67.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ResumeButton" type="Button" parent="PauseMenuUI/PauseMenu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("13_ycdy4")
+text = "Resume"
+
+[node name="MainMenuButton" type="Button" parent="PauseMenuUI/PauseMenu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("13_ycdy4")
+text = "Main Menu"
+
+[node name="QuitGameButton" type="Button" parent="PauseMenuUI/PauseMenu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("13_ycdy4")
+text = "Quit Game"

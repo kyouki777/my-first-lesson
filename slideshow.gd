@@ -6,46 +6,78 @@ extends Control
 	preload("res://Assets/game intro 3.png"),
 	preload("res://Assets/game intro 4.png"),
 	preload("res://Assets/game intro 5.png"),
-	
 ]
-# game
+
 @export var next_scene_path: String = "res://main_menu.tscn"
+
+# Sounds (set these in the Inspector)
+@export var book_open_sound: AudioStream
+@export var book_close_sound: AudioStream
+@export var page_flip_sound: AudioStream
+
 @onready var slide_display: TextureRect = $SlideDisplay
-@onready var slide_timer: Timer = $SlideTimer
+@onready var sfx_player: AudioStreamPlayer2D = $SFXPlayer
+@onready var bgm_player: AudioStreamPlayer2D = $BGMPlayer
 
 var current_slide_index: int = 0
 
 func _ready() -> void:
-	#slide_timer.timeout.connect(_on_slide_timer_timeout)
-	
 	show_slide(current_slide_index)
-	
+
+	# Play background music if not already playing
+	if bgm_player and not bgm_player.playing:
+		bgm_player.play()
+
+	# Play book opening sound
+	if sfx_player and book_open_sound:
+		sfx_player.stream = book_open_sound
+		sfx_player.play()
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
-		# If they press skip, stop the timer and go to the next scene immediately.
-		slide_timer.stop()
-		go_to_next_scene()
+	# Skip entire slideshow if Enter pressed
+	if event is InputEventKey and event.pressed and event.keycode == KEY_ENTER:
+		skip_slideshow()
+	
+	# Detect Z / Space (default ui_accept)
+	elif event.is_action_pressed("ui_accept"):
+		next_slide()
+	
+	# Detect left mouse click (or touchscreen tap)
+	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		next_slide()
 
-func _on_slide_timer_timeout() -> void:
-	# Move to the next slide index.
+func next_slide() -> void:
 	current_slide_index += 1
-	# Show the next slide.
-	show_slide(current_slide_index)
 
-# custom
+	if current_slide_index < slide_images.size():
+		show_slide(current_slide_index)
 
-func show_slide(index:int):
-	if index < slide_images.size():
-		# Set the texture of our TextureRect to the correct image.
-		slide_display.texture = slide_images[index]
-		# Start the timer.
-		slide_timer.start()
+		# Play page flip sound
+		if sfx_player and page_flip_sound:
+			sfx_player.stream = page_flip_sound
+			sfx_player.play()
 	else:
-		# If we're out of slides, go to the main game.
+		# Play book closing sound
+		if sfx_player and book_close_sound:
+			sfx_player.stream = book_close_sound
+			sfx_player.play()
+
+		# Wait a moment before going to next scene
+		await get_tree().create_timer(1.0).timeout
 		go_to_next_scene()
-		
+
+func skip_slideshow() -> void:
+	# Instantly skip to the end with closing sound
+	if sfx_player and book_close_sound:
+		sfx_player.stream = book_close_sound
+		sfx_player.play()
+
+	await get_tree().create_timer(0.5).timeout
+	go_to_next_scene()
+
+func show_slide(index: int) -> void:
+	if index < slide_images.size():
+		slide_display.texture = slide_images[index]
 
 func go_to_next_scene():
-	# This is the standard Godot function for changing scenes.
 	get_tree().change_scene_to_file(next_scene_path)
