@@ -27,10 +27,10 @@ func _physics_process(delta):
 	update_heartbeat()
 	update_footsteps(direction)
 
-	if caretaker:
-		print("Distance to caretaker:", global_position.distance_to(caretaker.global_position))
-	else:
-		print("Caretaker is null!")
+	#if caretaker:
+		#print("Distance to caretaker:", global_position.distance_to(caretaker.global_position))
+	#else:
+		#print("Caretaker is null!")
 
 func update_animation(direction: Vector2):
 	var anim_to_play: String = ""

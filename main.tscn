@@ -1,9 +1,14 @@
-[gd_scene load_steps=52 format=4 uid="uid://bgv3f261vgjjd"]
+[gd_scene load_steps=66 format=4 uid="uid://bgv3f261vgjjd"]
 
 [ext_resource type="Texture2D" uid="uid://73p0gd6l6qtm" path="res://Assets/Floor_sheet.png" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://il8sug0nh6ds" path="res://main.gd" id="1_cegan"]
 [ext_resource type="PackedScene" uid="uid://m84r3dm21jgq" path="res://Objects/player.tscn" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://c86laoldengdf" path="res://DialogTrigger.gd" id="1_w48qg"]
+[ext_resource type="Script" uid="uid://hcek0mkrtd0d" path="res://hidden_room_dialogue.gd" id="2_2cqfq"]
 [ext_resource type="Texture2D" uid="uid://csggriy3nmvva" path="res://Assets/Furnitures_sheet.png" id="2_272bh"]
+[ext_resource type="AudioStream" uid="uid://ckm2jsxp4rryu" path="res://Assets/sounds/door-opening-397990.mp3" id="3_074og"]
 [ext_resource type="PackedScene" uid="uid://c4la7kcg2s8dq" path="res://Objects/caretaker.tscn" id="3_h2yge"]
+[ext_resource type="AudioStream" uid="uid://b44uel54hoq80" path="res://Assets/sounds/door-slam-172171.mp3" id="4_cegan"]
 [ext_resource type="Script" uid="uid://dni34tnxfbdho" path="res://Scripts/pc.gd" id="4_lquwl"]
 [ext_resource type="Texture2D" uid="uid://citgokmdyn5vr" path="res://Assets/Circular 2 - 512x512.png" id="5_5vw27"]
 [ext_resource type="Texture2D" uid="uid://c4viyumhd4c4" path="res://Assets/Items_sheet.png" id="5_7mycd"]
@@ -13,6 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://cf6aqrhkypacx" path="res://Assets/sounds/sound-effect-707.mp3" id="9_efxa6"]
 [ext_resource type="Script" uid="uid://cxr877fjl6npm" path="res://Scripts/pause_menu.gd" id="12_dg77c"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://Assets/UI/kenneyUI.tres" id="13_ycdy4"]
+[ext_resource type="Script" uid="uid://ds65fpi23x2ty" path="res://global_inventory.gd" id="15_vivmo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_efxa6"]
 size = Vector2(25, 25)
@@ -66,6 +72,23 @@ size = Vector2(16, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qsp4k"]
 size = Vector2(16, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kq58d"]
+size = Vector2(16, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_seu75"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_htxhm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jq2sk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4k2k6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0rl1p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ok6jj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_facbu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
 
@@ -126,7 +149,7 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
 agent_radius = 0.0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h2yge"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vivmo"]
 texture = ExtResource("1_0xm2m")
 5:5/0 = 0
 5:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -419,7 +442,7 @@ texture = ExtResource("1_0xm2m")
 9:7/0 = 0
 9:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5vw27"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2cqfq"]
 texture = ExtResource("2_272bh")
 13:8/0 = 0
 13:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -477,8 +500,8 @@ texture = ExtResource("2_272bh")
 [sub_resource type="TileSet" id="TileSet_1bvp3"]
 physics_layer_0/collision_layer = 1
 navigation_layer_0/layers = 1
-sources/0 = SubResource("TileSetAtlasSource_h2yge")
-sources/1 = SubResource("TileSetAtlasSource_5vw27")
+sources/0 = SubResource("TileSetAtlasSource_vivmo")
+sources/1 = SubResource("TileSetAtlasSource_2cqfq")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_272bh"]
 texture = ExtResource("2_272bh")
@@ -582,16 +605,20 @@ sources/1 = SubResource("TileSetAtlasSource_kek77")
 
 [node name="main" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_cegan")
+start_dialog_name = "StartDialogue"
 
 [node name="Env" type="Node2D" parent="."]
 y_sort_enabled = true
 
 [node name="InteractObstaclesObjects" type="Node" parent="Env"]
 
-[node name="InteractBalls" type="Node" parent="Env/InteractObstaclesObjects"]
+[node name="InteractBalls" type="Node2D" parent="Env/InteractObstaclesObjects"]
 
 [node name="Balls17" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
 position = Vector2(614, 281)
+script = ExtResource("1_w48qg")
+dialog_name = "balls"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls17"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -601,6 +628,8 @@ shape = SubResource("RectangleShape2D_efxa6")
 
 [node name="Balls16" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
 position = Vector2(405, 986)
+script = ExtResource("1_w48qg")
+dialog_name = "balls"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls16"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -610,6 +639,8 @@ shape = SubResource("RectangleShape2D_efxa6")
 
 [node name="Balls15" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
 position = Vector2(185, 938)
+script = ExtResource("1_w48qg")
+dialog_name = "balls"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls15"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -619,6 +650,8 @@ shape = SubResource("RectangleShape2D_efxa6")
 
 [node name="Balls14" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
 position = Vector2(37, 918)
+script = ExtResource("1_w48qg")
+dialog_name = "balls"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls14"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -628,6 +661,8 @@ shape = SubResource("RectangleShape2D_efxa6")
 
 [node name="Balls13" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
 position = Vector2(821, 920)
+script = ExtResource("1_w48qg")
+dialog_name = "balls"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls13"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -637,6 +672,8 @@ shape = SubResource("RectangleShape2D_efxa6")
 
 [node name="Balls12" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
 position = Vector2(629, 890)
+script = ExtResource("1_w48qg")
+dialog_name = "balls"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls12"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -646,6 +683,8 @@ shape = SubResource("RectangleShape2D_efxa6")
 
 [node name="Balls11" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
 position = Vector2(614, 795)
+script = ExtResource("1_w48qg")
+dialog_name = "balls"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls11"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -655,6 +694,8 @@ shape = SubResource("RectangleShape2D_efxa6")
 
 [node name="Balls10" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
 position = Vector2(246, 747)
+script = ExtResource("1_w48qg")
+dialog_name = "balls"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls10"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -662,17 +703,21 @@ region_rect = Rect2(0, 0, 320, 143)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls10"]
 shape = SubResource("RectangleShape2D_efxa6")
 
-[node name="Balls8" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls10"]
-position = Vector2(240, -34)
+[node name="Balls18" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
+position = Vector2(486, 713)
+script = ExtResource("1_w48qg")
+dialog_name = "balls"
 
-[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls10/Balls8"]
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls18"]
 region_rect = Rect2(0, 0, 320, 143)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls10/Balls8"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls18"]
 shape = SubResource("RectangleShape2D_efxa6")
 
 [node name="Balls9" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
 position = Vector2(-135, 586)
+script = ExtResource("1_w48qg")
+dialog_name = "balls"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls9"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -680,17 +725,21 @@ region_rect = Rect2(0, 0, 320, 143)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls9"]
 shape = SubResource("RectangleShape2D_efxa6")
 
-[node name="Balls8" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls9"]
-position = Vector2(77, 144)
+[node name="Balls19" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
+position = Vector2(-58, 730)
+script = ExtResource("1_w48qg")
+dialog_name = "balls"
 
-[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls9/Balls8"]
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls19"]
 region_rect = Rect2(0, 0, 320, 143)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls9/Balls8"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls19"]
 shape = SubResource("RectangleShape2D_efxa6")
 
 [node name="Balls8" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
 position = Vector2(278, 506)
+script = ExtResource("1_w48qg")
+dialog_name = "balls"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls8"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -700,6 +749,8 @@ shape = SubResource("RectangleShape2D_efxa6")
 
 [node name="Balls7" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
 position = Vector2(228, 284)
+script = ExtResource("1_w48qg")
+dialog_name = "balls"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls7"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -709,6 +760,8 @@ shape = SubResource("RectangleShape2D_efxa6")
 
 [node name="Balls5" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
 position = Vector2(870, 699)
+script = ExtResource("1_w48qg")
+dialog_name = "balls"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls5"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -718,6 +771,8 @@ shape = SubResource("RectangleShape2D_efxa6")
 
 [node name="Balls6" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
 position = Vector2(629, 714)
+script = ExtResource("1_w48qg")
+dialog_name = "balls"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls6"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -727,6 +782,8 @@ shape = SubResource("RectangleShape2D_efxa6")
 
 [node name="Balls4" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
 position = Vector2(822, 523)
+script = ExtResource("1_w48qg")
+dialog_name = "balls"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls4"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -736,6 +793,8 @@ shape = SubResource("RectangleShape2D_efxa6")
 
 [node name="Balls3" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
 position = Vector2(486, 522)
+script = ExtResource("1_w48qg")
+dialog_name = "balls"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls3"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -745,6 +804,8 @@ shape = SubResource("RectangleShape2D_efxa6")
 
 [node name="Balls2" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
 position = Vector2(389, 347)
+script = ExtResource("1_w48qg")
+dialog_name = "balls"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls2"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -754,6 +815,8 @@ shape = SubResource("RectangleShape2D_efxa6")
 
 [node name="Balls" type="Area2D" parent="Env/InteractObstaclesObjects/InteractBalls"]
 position = Vector2(405, 185)
+script = ExtResource("1_w48qg")
+dialog_name = "balls"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractBalls/Balls"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -763,6 +826,8 @@ shape = SubResource("RectangleShape2D_efxa6")
 
 [node name="TheBalls" type="Area2D" parent="Env/InteractObstaclesObjects"]
 position = Vector2(-133, 411)
+script = ExtResource("1_w48qg")
+dialog_name = "theBalls"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/TheBalls"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -775,6 +840,8 @@ shape = SubResource("RectangleShape2D_efxa6")
 [node name="Putra_Bed" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBeds"]
 position = Vector2(-90, 477)
 collision_layer = 0
+script = ExtResource("1_w48qg")
+dialog_name = "putra_bed"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBeds/Putra_Bed"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -785,6 +852,8 @@ shape = SubResource("RectangleShape2D_ycdy4")
 
 [node name="Putra_Table_Lamp" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBeds"]
 position = Vector2(-72, 462)
+script = ExtResource("1_w48qg")
+dialog_name = "putra_table"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBeds/Putra_Table_Lamp"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -795,6 +864,8 @@ shape = SubResource("RectangleShape2D_a6jrf")
 [node name="William_Bed" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBeds"]
 position = Vector2(-54, 477)
 collision_layer = 0
+script = ExtResource("1_w48qg")
+dialog_name = "william_bed"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBeds/William_Bed"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -806,6 +877,8 @@ shape = SubResource("RectangleShape2D_w48qg")
 [node name="Budi_Bed" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBeds"]
 position = Vector2(-26, 477)
 collision_layer = 0
+script = ExtResource("1_w48qg")
+dialog_name = "budi_bed"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBeds/Budi_Bed"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -817,6 +890,8 @@ shape = SubResource("RectangleShape2D_vivmo")
 [node name="Riri_Bed" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBeds"]
 position = Vector2(6, 477)
 collision_layer = 0
+script = ExtResource("1_w48qg")
+dialog_name = "riri_bed"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBeds/Riri_Bed"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -828,6 +903,8 @@ shape = SubResource("RectangleShape2D_2cqfq")
 [node name="Rian_Bed" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBeds"]
 position = Vector2(806, 476)
 collision_layer = 0
+script = ExtResource("1_w48qg")
+dialog_name = "rian_bed"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBeds/Rian_Bed"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -839,6 +916,8 @@ shape = SubResource("RectangleShape2D_yaehf")
 [node name="Melati_Bed" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBeds"]
 position = Vector2(838, 476)
 collision_layer = 0
+script = ExtResource("1_w48qg")
+dialog_name = "melati_bed"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBeds/Melati_Bed"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -850,6 +929,8 @@ shape = SubResource("RectangleShape2D_074og")
 [node name="Yulia_Bed" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBeds"]
 position = Vector2(870, 476)
 collision_layer = 0
+script = ExtResource("1_w48qg")
+dialog_name = "yulia_bed"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBeds/Yulia_Bed"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -861,6 +942,8 @@ shape = SubResource("RectangleShape2D_cegan")
 [node name="Beni_Bed" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBeds"]
 position = Vector2(902, 476)
 collision_layer = 0
+script = ExtResource("1_w48qg")
+dialog_name = "beni_bed"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBeds/Beni_Bed"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -872,6 +955,8 @@ shape = SubResource("RectangleShape2D_82xsv")
 [node name="Sri_Bed" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBeds"]
 position = Vector2(376, 958)
 collision_layer = 0
+script = ExtResource("1_w48qg")
+dialog_name = "sri_bed"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBeds/Sri_Bed"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -883,6 +968,8 @@ shape = SubResource("RectangleShape2D_getpj")
 [node name="Ulka_Bed" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBeds"]
 position = Vector2(440, 946)
 collision_layer = 0
+script = ExtResource("1_w48qg")
+dialog_name = "ulka_bed"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBeds/Ulka_Bed"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -894,6 +981,8 @@ shape = SubResource("RectangleShape2D_ryguw")
 
 [node name="Book 7" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBooks"]
 position = Vector2(408, 1056)
+script = ExtResource("1_w48qg")
+dialog_name = "book_7"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBooks/Book 7"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -903,6 +992,8 @@ shape = SubResource("RectangleShape2D_efxa6")
 
 [node name="Book 6" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBooks"]
 position = Vector2(264, 644)
+script = ExtResource("1_w48qg")
+dialog_name = "book_6"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBooks/Book 6"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -912,6 +1003,8 @@ shape = SubResource("RectangleShape2D_efxa6")
 
 [node name="Book 5" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBooks"]
 position = Vector2(904, 404)
+script = ExtResource("1_w48qg")
+dialog_name = "book_5"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBooks/Book 5"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -921,6 +1014,8 @@ shape = SubResource("RectangleShape2D_efxa6")
 
 [node name="Book 4" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBooks"]
 position = Vector2(504, 372)
+script = ExtResource("1_w48qg")
+dialog_name = "book_4"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBooks/Book 4"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -930,6 +1025,8 @@ shape = SubResource("RectangleShape2D_efxa6")
 
 [node name="Book 3" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBooks"]
 position = Vector2(24, 404)
+script = ExtResource("1_w48qg")
+dialog_name = "book_3"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBooks/Book 3"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -939,6 +1036,8 @@ shape = SubResource("RectangleShape2D_efxa6")
 
 [node name="Book 2" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBooks"]
 position = Vector2(813, 133)
+script = ExtResource("1_w48qg")
+dialog_name = "book_2"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBooks/Book 2"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -948,6 +1047,8 @@ shape = SubResource("RectangleShape2D_efxa6")
 
 [node name="Book 1" type="Area2D" parent="Env/InteractObstaclesObjects/InteractionBooks"]
 position = Vector2(3, 132)
+script = ExtResource("1_w48qg")
+dialog_name = "book_1"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractionBooks/Book 1"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -959,6 +1060,7 @@ shape = SubResource("RectangleShape2D_efxa6")
 
 [node name="Computer 5" type="Area2D" parent="Env/InteractObstaclesObjects/InteractComputers"]
 position = Vector2(574, 959)
+script = ExtResource("1_w48qg")
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractComputers/Computer 5"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -969,6 +1071,7 @@ shape = SubResource("RectangleShape2D_d13ii")
 
 [node name="Computer 4" type="Area2D" parent="Env/InteractObstaclesObjects/InteractComputers"]
 position = Vector2(238, 959)
+script = ExtResource("1_w48qg")
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractComputers/Computer 4"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -979,6 +1082,7 @@ shape = SubResource("RectangleShape2D_d13ii")
 
 [node name="Computer 3" type="Area2D" parent="Env/InteractObstaclesObjects/InteractComputers"]
 position = Vector2(302, 383)
+script = ExtResource("1_w48qg")
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractComputers/Computer 3"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -989,6 +1093,7 @@ shape = SubResource("RectangleShape2D_d13ii")
 
 [node name="Computer 2" type="Area2D" parent="Env/InteractObstaclesObjects/InteractComputers"]
 position = Vector2(862, 143)
+script = ExtResource("1_w48qg")
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractComputers/Computer 2"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -999,6 +1104,7 @@ shape = SubResource("RectangleShape2D_d13ii")
 
 [node name="Computer 1" type="Area2D" parent="Env/InteractObstaclesObjects/InteractComputers"]
 position = Vector2(-51, 137)
+script = ExtResource("1_w48qg")
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractComputers/Computer 1"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -1010,6 +1116,8 @@ shape = SubResource("RectangleShape2D_d13ii")
 
 [node name="Chair 1" type="Area2D" parent="Env/InteractObstaclesObjects/InteractChairs"]
 position = Vector2(88, 400)
+script = ExtResource("1_w48qg")
+dialog_name = "chair"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractChairs/Chair 1"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -1019,6 +1127,8 @@ shape = SubResource("RectangleShape2D_1u8w0")
 
 [node name="Chair 2" type="Area2D" parent="Env/InteractObstaclesObjects/InteractChairs"]
 position = Vector2(232, 383)
+script = ExtResource("1_w48qg")
+dialog_name = "chair"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractChairs/Chair 2"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -1028,6 +1138,8 @@ shape = SubResource("RectangleShape2D_1u8w0")
 
 [node name="Chair 3" type="Area2D" parent="Env/InteractObstaclesObjects/InteractChairs"]
 position = Vector2(728, 401)
+script = ExtResource("1_w48qg")
+dialog_name = "chair"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractChairs/Chair 3"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -1037,6 +1149,8 @@ shape = SubResource("RectangleShape2D_1u8w0")
 
 [node name="Chair 4" type="Area2D" parent="Env/InteractObstaclesObjects/InteractChairs"]
 position = Vector2(-88, 656)
+script = ExtResource("1_w48qg")
+dialog_name = "chair"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractChairs/Chair 4"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -1046,6 +1160,8 @@ shape = SubResource("RectangleShape2D_1u8w0")
 
 [node name="Chair 5" type="Area2D" parent="Env/InteractObstaclesObjects/InteractChairs"]
 position = Vector2(104, 641)
+script = ExtResource("1_w48qg")
+dialog_name = "chair"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractChairs/Chair 5"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -1055,6 +1171,8 @@ shape = SubResource("RectangleShape2D_1u8w0")
 
 [node name="Chair 6" type="Area2D" parent="Env/InteractObstaclesObjects/InteractChairs"]
 position = Vector2(904, 657)
+script = ExtResource("1_w48qg")
+dialog_name = "chair"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractChairs/Chair 6"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -1066,6 +1184,8 @@ shape = SubResource("RectangleShape2D_1u8w0")
 
 [node name="Naughty Cage 1" type="Area2D" parent="Env/InteractObstaclesObjects/InteractNaughtyCages"]
 position = Vector2(-129, 285)
+script = ExtResource("1_w48qg")
+dialog_name = "naughtyCage"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractNaughtyCages/Naughty Cage 1"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -1075,6 +1195,8 @@ shape = SubResource("RectangleShape2D_0odxb")
 
 [node name="Naughty Cage 2" type="Area2D" parent="Env/InteractObstaclesObjects/InteractNaughtyCages"]
 position = Vector2(943, 284)
+script = ExtResource("1_w48qg")
+dialog_name = "naughtyCage"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractNaughtyCages/Naughty Cage 2"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -1084,6 +1206,8 @@ shape = SubResource("RectangleShape2D_0odxb")
 
 [node name="Naughty Cage 3" type="Area2D" parent="Env/InteractObstaclesObjects/InteractNaughtyCages"]
 position = Vector2(145, 638)
+script = ExtResource("1_w48qg")
+dialog_name = "naughtyCage"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractNaughtyCages/Naughty Cage 3"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -1093,6 +1217,8 @@ shape = SubResource("RectangleShape2D_0odxb")
 
 [node name="Naughty Cage 4" type="Area2D" parent="Env/InteractObstaclesObjects/InteractNaughtyCages"]
 position = Vector2(257, 1051)
+script = ExtResource("1_w48qg")
+dialog_name = "naughtyCage"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractNaughtyCages/Naughty Cage 4"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -1102,6 +1228,8 @@ shape = SubResource("RectangleShape2D_0odxb")
 
 [node name="Naughty Cage 5" type="Area2D" parent="Env/InteractObstaclesObjects/InteractNaughtyCages"]
 position = Vector2(561, 1054)
+script = ExtResource("1_w48qg")
+dialog_name = "naughtyCage"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractNaughtyCages/Naughty Cage 5"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -1111,6 +1239,8 @@ shape = SubResource("RectangleShape2D_0odxb")
 
 [node name="Naughty Cage 6" type="Area2D" parent="Env/InteractObstaclesObjects/InteractNaughtyCages"]
 position = Vector2(576, 366)
+script = ExtResource("1_w48qg")
+dialog_name = "naughtyCage"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractNaughtyCages/Naughty Cage 6"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -1122,6 +1252,8 @@ shape = SubResource("RectangleShape2D_0odxb")
 
 [node name="DiningTable 1" type="Area2D" parent="Env/InteractObstaclesObjects/InteractDiningTables"]
 position = Vector2(192, 686)
+script = ExtResource("1_w48qg")
+dialog_name = "diningTable"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractDiningTables/DiningTable 1"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -1131,6 +1263,8 @@ shape = SubResource("RectangleShape2D_lswn8")
 
 [node name="DiningTable 2" type="Area2D" parent="Env/InteractObstaclesObjects/InteractDiningTables"]
 position = Vector2(303, 686)
+script = ExtResource("1_w48qg")
+dialog_name = "diningTable"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractDiningTables/DiningTable 2"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -1140,6 +1274,8 @@ shape = SubResource("RectangleShape2D_lswn8")
 
 [node name="DiningTable 3" type="Area2D" parent="Env/InteractObstaclesObjects/InteractDiningTables"]
 position = Vector2(192, 782)
+script = ExtResource("1_w48qg")
+dialog_name = "diningTable"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractDiningTables/DiningTable 3"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -1149,6 +1285,8 @@ shape = SubResource("RectangleShape2D_lswn8")
 
 [node name="DiningTable 4" type="Area2D" parent="Env/InteractObstaclesObjects/InteractDiningTables"]
 position = Vector2(304, 782)
+script = ExtResource("1_w48qg")
+dialog_name = "diningTable"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractDiningTables/DiningTable 4"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -1160,6 +1298,8 @@ shape = SubResource("RectangleShape2D_lswn8")
 
 [node name="Window 1" type="Area2D" parent="Env/InteractObstaclesObjects/InteractWindows"]
 position = Vector2(-72, 132)
+script = ExtResource("1_w48qg")
+dialog_name = "window"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractWindows/Window 1"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -1169,6 +1309,8 @@ shape = SubResource("RectangleShape2D_xuqvo")
 
 [node name="Window 2" type="Area2D" parent="Env/InteractObstaclesObjects/InteractWindows"]
 position = Vector2(24, 132)
+script = ExtResource("1_w48qg")
+dialog_name = "window"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractWindows/Window 2"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -1178,6 +1320,8 @@ shape = SubResource("RectangleShape2D_xuqvo")
 
 [node name="Window 3" type="Area2D" parent="Env/InteractObstaclesObjects/InteractWindows"]
 position = Vector2(168, 277)
+script = ExtResource("1_w48qg")
+dialog_name = "window"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractWindows/Window 3"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -1187,6 +1331,8 @@ shape = SubResource("RectangleShape2D_xuqvo")
 
 [node name="Window 4" type="Area2D" parent="Env/InteractObstaclesObjects/InteractWindows"]
 position = Vector2(280, 277)
+script = ExtResource("1_w48qg")
+dialog_name = "window"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractWindows/Window 4"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -1196,6 +1342,8 @@ shape = SubResource("RectangleShape2D_xuqvo")
 
 [node name="Window 5" type="Area2D" parent="Env/InteractObstaclesObjects/InteractWindows"]
 position = Vector2(536, 277)
+script = ExtResource("1_w48qg")
+dialog_name = "window"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractWindows/Window 5"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -1205,6 +1353,8 @@ shape = SubResource("RectangleShape2D_xuqvo")
 
 [node name="Window 6" type="Area2D" parent="Env/InteractObstaclesObjects/InteractWindows"]
 position = Vector2(648, 277)
+script = ExtResource("1_w48qg")
+dialog_name = "window"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractWindows/Window 6"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -1214,6 +1364,8 @@ shape = SubResource("RectangleShape2D_xuqvo")
 
 [node name="Window 7" type="Area2D" parent="Env/InteractObstaclesObjects/InteractWindows"]
 position = Vector2(792, 133)
+script = ExtResource("1_w48qg")
+dialog_name = "window"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractWindows/Window 7"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -1223,6 +1375,8 @@ shape = SubResource("RectangleShape2D_xuqvo")
 
 [node name="Window 8" type="Area2D" parent="Env/InteractObstaclesObjects/InteractWindows"]
 position = Vector2(888, 133)
+script = ExtResource("1_w48qg")
+dialog_name = "window"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractWindows/Window 8"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -1232,6 +1386,8 @@ shape = SubResource("RectangleShape2D_xuqvo")
 
 [node name="Window 9" type="Area2D" parent="Env/InteractObstaclesObjects/InteractWindows"]
 position = Vector2(376, 117)
+script = ExtResource("1_w48qg")
+dialog_name = "window"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractWindows/Window 9"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -1241,6 +1397,8 @@ shape = SubResource("RectangleShape2D_xuqvo")
 
 [node name="Window 10" type="Area2D" parent="Env/InteractObstaclesObjects/InteractWindows"]
 position = Vector2(440, 117)
+script = ExtResource("1_w48qg")
+dialog_name = "window"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractWindows/Window 10"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -1252,6 +1410,8 @@ shape = SubResource("RectangleShape2D_xuqvo")
 
 [node name="Fridge 1" type="Area2D" parent="Env/InteractObstaclesObjects/InteractFridges"]
 position = Vector2(456, 659)
+script = ExtResource("1_w48qg")
+dialog_name = "fridge"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractFridges/Fridge 1"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -1261,6 +1421,8 @@ shape = SubResource("RectangleShape2D_qsp4k")
 
 [node name="Fridge 2" type="Area2D" parent="Env/InteractObstaclesObjects/InteractFridges"]
 position = Vector2(472, 659)
+script = ExtResource("1_w48qg")
+dialog_name = "fridge"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractFridges/Fridge 2"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -1270,6 +1432,8 @@ shape = SubResource("RectangleShape2D_qsp4k")
 
 [node name="Fridge 3" type="Area2D" parent="Env/InteractObstaclesObjects/InteractFridges"]
 position = Vector2(488, 659)
+script = ExtResource("1_w48qg")
+dialog_name = "fridge"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractFridges/Fridge 3"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -1279,12 +1443,115 @@ shape = SubResource("RectangleShape2D_qsp4k")
 
 [node name="Fridge 4" type="Area2D" parent="Env/InteractObstaclesObjects/InteractFridges"]
 position = Vector2(504, 659)
+script = ExtResource("1_w48qg")
+dialog_name = "fridge"
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/InteractFridges/Fridge 4"]
 region_rect = Rect2(0, 0, 320, 143)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractFridges/Fridge 4"]
 shape = SubResource("RectangleShape2D_qsp4k")
+
+[node name="Front Door" type="Area2D" parent="Env/InteractObstaclesObjects"]
+position = Vector2(408, 117)
+script = ExtResource("1_w48qg")
+dialog_name = "frontDoor"
+
+[node name="Sprite2D" type="Sprite2D" parent="Env/InteractObstaclesObjects/Front Door"]
+region_rect = Rect2(0, 0, 320, 143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/Front Door"]
+shape = SubResource("RectangleShape2D_kq58d")
+
+[node name="InteractHiddenRoom" type="Node" parent="Env/InteractObstaclesObjects"]
+
+[node name="Hidden Room 1" type="Area2D" parent="Env/InteractObstaclesObjects/InteractHiddenRoom" node_paths=PackedStringArray("door_open_player", "door_close_player")]
+position = Vector2(88, 309)
+script = ExtResource("2_2cqfq")
+dialog_name = "hidden_room"
+door_open_player = NodePath("../DoorOpenPlayer")
+door_close_player = NodePath("../DoorClosePlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractHiddenRoom/Hidden Room 1"]
+shape = SubResource("RectangleShape2D_seu75")
+
+[node name="Hidden Room 2" type="Area2D" parent="Env/InteractObstaclesObjects/InteractHiddenRoom" node_paths=PackedStringArray("door_open_player", "door_close_player")]
+position = Vector2(829, 344)
+script = ExtResource("2_2cqfq")
+dialog_name = "hidden_room"
+door_open_player = NodePath("../DoorOpenPlayer")
+door_close_player = NodePath("../DoorClosePlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractHiddenRoom/Hidden Room 2"]
+shape = SubResource("RectangleShape2D_htxhm")
+
+[node name="Hidden Room 3" type="Area2D" parent="Env/InteractObstaclesObjects/InteractHiddenRoom" node_paths=PackedStringArray("door_open_player", "door_close_player")]
+position = Vector2(98, 518)
+script = ExtResource("2_2cqfq")
+dialog_name = "hidden_room"
+door_open_player = NodePath("../DoorOpenPlayer")
+door_close_player = NodePath("../DoorClosePlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractHiddenRoom/Hidden Room 3"]
+shape = SubResource("RectangleShape2D_jq2sk")
+
+[node name="Hidden Room 4" type="Area2D" parent="Env/InteractObstaclesObjects/InteractHiddenRoom" node_paths=PackedStringArray("door_open_player", "door_close_player")]
+position = Vector2(593, 534)
+script = ExtResource("2_2cqfq")
+dialog_name = "hidden_room"
+door_open_player = NodePath("../DoorOpenPlayer")
+door_close_player = NodePath("../DoorClosePlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractHiddenRoom/Hidden Room 4"]
+shape = SubResource("RectangleShape2D_4k2k6")
+
+[node name="Hidden Room 5" type="Area2D" parent="Env/InteractObstaclesObjects/InteractHiddenRoom" node_paths=PackedStringArray("door_open_player", "door_close_player")]
+position = Vector2(18, 850)
+script = ExtResource("2_2cqfq")
+dialog_name = "hidden_room"
+door_open_player = NodePath("../DoorOpenPlayer")
+door_close_player = NodePath("../DoorClosePlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractHiddenRoom/Hidden Room 5"]
+shape = SubResource("RectangleShape2D_0rl1p")
+
+[node name="Hidden Room 6" type="Area2D" parent="Env/InteractObstaclesObjects/InteractHiddenRoom" node_paths=PackedStringArray("door_open_player", "door_close_player")]
+position = Vector2(408, 940)
+script = ExtResource("2_2cqfq")
+dialog_name = "hidden_room"
+door_open_player = NodePath("../DoorOpenPlayer")
+door_close_player = NodePath("../DoorClosePlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractHiddenRoom/Hidden Room 6"]
+shape = SubResource("RectangleShape2D_ok6jj")
+
+[node name="DoorOpenPlayer" type="AudioStreamPlayer2D" parent="Env/InteractObstaclesObjects/InteractHiddenRoom/Hidden Room 6"]
+stream = ExtResource("3_074og")
+
+[node name="DoorClosePlayer" type="AudioStreamPlayer2D" parent="Env/InteractObstaclesObjects/InteractHiddenRoom/Hidden Room 6"]
+stream = ExtResource("4_cegan")
+
+[node name="Hidden Room 7" type="Area2D" parent="Env/InteractObstaclesObjects/InteractHiddenRoom" node_paths=PackedStringArray("door_open_player", "door_close_player")]
+position = Vector2(760, 893)
+script = ExtResource("2_2cqfq")
+dialog_name = "hidden_room"
+door_open_player = NodePath("../DoorOpenPlayer")
+door_close_player = NodePath("../DoorClosePlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/InteractObstaclesObjects/InteractHiddenRoom/Hidden Room 7"]
+shape = SubResource("RectangleShape2D_facbu")
+
+[node name="DoorOpenPlayer" type="AudioStreamPlayer2D" parent="Env/InteractObstaclesObjects/InteractHiddenRoom/Hidden Room 7"]
+stream = ExtResource("3_074og")
+
+[node name="DoorClosePlayer" type="AudioStreamPlayer2D" parent="Env/InteractObstaclesObjects/InteractHiddenRoom/Hidden Room 7"]
+stream = ExtResource("4_cegan")
+
+[node name="DoorOpenPlayer" type="AudioStreamPlayer2D" parent="Env/InteractObstaclesObjects/InteractHiddenRoom"]
+stream = ExtResource("3_074og")
+
+[node name="DoorClosePlayer" type="AudioStreamPlayer2D" parent="Env/InteractObstaclesObjects/InteractHiddenRoom"]
+stream = ExtResource("4_cegan")
 
 [node name="Objects" type="Node" parent="Env"]
 
@@ -1409,17 +1676,15 @@ stream = ExtResource("9_efxa6")
 
 [node name="caretaker" parent="." groups=["Caretaker"] instance=ExtResource("3_h2yge")]
 y_sort_enabled = true
-position = Vector2(407, 723)
+position = Vector2(948, 945)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.06879826, 0.06879829, 0.068798244, 1)
 
 [node name="QuizUI" parent="." groups=["quiz_popup"] instance=ExtResource("6_7mycd")]
-visible = false
 
 [node name="PauseMenuUI" type="CanvasLayer" parent="."]
 process_mode = 2
-visible = false
 
 [node name="PauseMenu" type="Control" parent="PauseMenuUI"]
 process_mode = 2
@@ -1469,3 +1734,7 @@ text = "Main Menu"
 layout_mode = 2
 theme = ExtResource("13_ycdy4")
 text = "Quit Game"
+
+[node name="GlobalInventory" type="Node" parent="."]
+editor_description = "idk man"
+script = ExtResource("15_vivmo")

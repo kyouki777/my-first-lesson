@@ -1,0 +1,6 @@
+There's a slight gap on the wall.
+Do you want to open it?
+- Yes
+	set {open_room} = true
+- No
+	set {open_room} = false

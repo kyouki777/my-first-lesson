@@ -20,7 +20,7 @@ func _ready():
 func _physics_process(delta):
 	if player_node == null or nav_agent.is_target_reached():
 		velocity = Vector2.ZERO
-		print('hi')
+		#print('hi')
 		move_and_slide()
 		return
 	

@@ -21,9 +21,83 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 
 [dialogic]
 
-directories/dch_directory={}
-directories/dtl_directory={}
-layout/style_directory={}
+directories/dch_directory={
+"Putra": "res://Styles/Putra.dch"
+}
+directories/dtl_directory={
+"StartDialogue": "res://Dialogues/StartDialogue.dtl",
+"balls": "res://Dialogues/balls.dtl",
+"beni_bed": "res://Dialogues/beni_bed.dtl",
+"book_1": "res://Dialogues/book_1.dtl",
+"book_2": "res://Dialogues/book_2.dtl",
+"book_3": "res://Dialogues/book_3.dtl",
+"book_4": "res://Dialogues/book_4.dtl",
+"book_5": "res://Dialogues/book_5.dtl",
+"book_6": "res://Dialogues/book_6.dtl",
+"book_7": "res://Dialogues/book_7.dtl",
+"budi_bed": "res://Dialogues/budi_bed.dtl",
+"chair": "res://Dialogues/chair.dtl",
+"diningTable": "res://Dialogues/diningTable.dtl",
+"fridge": "res://Dialogues/fridge.dtl",
+"frontDoor": "res://Dialogues/frontDoor.dtl",
+"hidden_room": "res://Dialogues/hidden_room.dtl",
+"melati_bed": "res://Dialogues/melati_bed.dtl",
+"naughtyCage": "res://Dialogues/naughtyCage.dtl",
+"putra_bed": "res://Dialogues/putra_bed.dtl",
+"putra_table": "res://Dialogues/putra_table.dtl",
+"rian_bed": "res://Dialogues/rian_bed.dtl",
+"riri_bed": "res://Dialogues/riri_bed.dtl",
+"sri_bed": "res://Dialogues/sri_bed.dtl",
+"theBalls": "res://Assets/Font/theBalls.dtl",
+"ulka_bed": "res://Dialogues/ulka_bed.dtl",
+"william_bed": "res://Dialogues/william_bed.dtl",
+"window": "res://Dialogues/window.dtl",
+"yulia_bed": "res://Dialogues/yulia_bed.dtl"
+}
+layout/style_directory={
+"": "res://Styles/Default Style.tres",
+"Default Style": "res://Styles/Default Style.tres",
+"New_File": "res://Dialogues/New_File.tres"
+}
+layout/style_list=["res://Styles/Default Style.tres", "res://Dialogues/New_File.tres"]
+layout/default_style="res://Styles/Default Style.tres"
+glossary/default_case_sensitive=true
+variables={
+"open_room": false
+}
+extensions_folder="res://addons/dialogic_additions"
+text/letter_speed=0.01
+text/initial_text_reveal_skippable=true
+text/text_reveal_skip_delay=0.1
+text/advance_delay=0.1
+text/autoadvance_per_character_delay=0.1
+text/autoadvance_ignored_characters_enabled=true
+animations/join_default_length=0.5
+animations/join_default_wait=true
+animations/leave_default_length=0.5
+animations/leave_default_wait=true
+animations/cross_fade_default_length=0.5
+choices/autofocus_first=true
+choices/delay=0.2
+choices/reveal_delay=0
+choices/reveal_by_input=false
+save/autosave_delay=60.0
+save/encryption_on_exports_only=true
+text/autopauses={}
+audio/channel_defaults={
+"": {
+"audio_bus": "",
+"fade_length": 0.0,
+"loop": false,
+"volume": 0.0
+},
+"music": {
+"audio_bus": "",
+"fade_length": 0.0,
+"loop": true,
+"volume": 0.0
+}
+}
 
 [display]
 
@@ -42,6 +116,11 @@ dialogic_default_action={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":32,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":88,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":0,"pressure":0.0,"pressed":false,"script":null)
+]
+}
+interact={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":69,"physical_keycode":0,"key_label":0,"unicode":101,"location":0,"echo":false,"script":null)
 ]
 }
 
