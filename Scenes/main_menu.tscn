@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2xil5ftf1wi3"]
+
+[ext_resource type="Texture2D" uid="uid://b52no2g14wdda" path="res://Assets/game background main menu.png" id="1_06t4h"]
+[ext_resource type="Script" uid="uid://ddqen73x1aytt" path="res://Scenes/main_menu.gd" id="1_7vrkn"]
+[ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://Assets/UI/kenneyUI.tres" id="3_fu7sn"]
+[ext_resource type="AudioStream" uid="uid://qb65ufe4oef4" path="res://Assets/sounds/sounds/Emily J. - Untitled Oct 7, 2025, 314 AM 2025-10-07 04_05.mp3" id="4_qe12f"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7vrkn")
+
+[node name="Bg" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_06t4h")
+expand_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 174.0
+offset_top = -73.0
+offset_right = 349.0
+offset_bottom = 80.5
+grow_vertical = 2
+theme = ExtResource("3_fu7sn")
+alignment = 1
+
+[node name="Play" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_fu7sn")
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+text = "Play"
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_fu7sn")
+text = "Quit
+"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_qe12f")
+autoplay = true
+
+[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]

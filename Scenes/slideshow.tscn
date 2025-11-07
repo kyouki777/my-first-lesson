@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://4hm1tcxceum"]
+
+[ext_resource type="Script" uid="uid://0px8m54pkn13" path="res://Scenes/slideshow.gd" id="1_ym11s"]
+[ext_resource type="AudioStream" uid="uid://bc4stuinioiaq" path="res://Assets/sounds/old-broken-music-box-sound-effect-386717.mp3" id="2_5spr4"]
+[ext_resource type="AudioStream" uid="uid://bc2fa70bh2or8" path="res://Assets/sounds/book-opening-345808.mp3" id="2_a1ek4"]
+[ext_resource type="AudioStream" uid="uid://dtkqfk2qen0me" path="res://Assets/sounds/book-closing-48184.mp3" id="3_6822q"]
+[ext_resource type="AudioStream" uid="uid://c1g7bv12td6l6" path="res://Assets/sounds/sounds/pageturn-102978.mp3" id="4_oc8sf"]
+
+[node name="Slideshow" type="Control"]
+texture_filter = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ym11s")
+book_open_sound = ExtResource("2_a1ek4")
+book_close_sound = ExtResource("3_6822q")
+page_flip_sound = ExtResource("4_oc8sf")
+
+[node name="SlideDisplay" type="TextureRect" parent="."]
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 2
+
+[node name="SlideTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="BGMPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_5spr4")
+autoplay = true
+
+[node name="SFXPlayer" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="timeout" from="SlideTimer" to="." method="_on_slide_timer_timeout"]

@@ -1,17 +1,17 @@
 [gd_scene load_steps=52 format=4 uid="uid://bgv3f261vgjjd"]
 
 [ext_resource type="Texture2D" uid="uid://73p0gd6l6qtm" path="res://Assets/Floor_sheet.png" id="1_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://m84r3dm21jgq" path="res://player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://m84r3dm21jgq" path="res://Objects/player.tscn" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://csggriy3nmvva" path="res://Assets/Furnitures_sheet.png" id="2_272bh"]
-[ext_resource type="PackedScene" uid="uid://c4la7kcg2s8dq" path="res://caretaker.tscn" id="3_h2yge"]
-[ext_resource type="Script" uid="uid://dni34tnxfbdho" path="res://pc.gd" id="4_lquwl"]
+[ext_resource type="PackedScene" uid="uid://c4la7kcg2s8dq" path="res://Objects/caretaker.tscn" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://dni34tnxfbdho" path="res://Scripts/pc.gd" id="4_lquwl"]
 [ext_resource type="Texture2D" uid="uid://citgokmdyn5vr" path="res://Assets/Circular 2 - 512x512.png" id="5_5vw27"]
 [ext_resource type="Texture2D" uid="uid://c4viyumhd4c4" path="res://Assets/Items_sheet.png" id="5_7mycd"]
-[ext_resource type="Script" uid="uid://17pwme1hl174" path="res://floor.gd" id="5_kek77"]
-[ext_resource type="PackedScene" uid="uid://chhaw4ayjg0do" path="res://quiz_ui.tscn" id="6_7mycd"]
+[ext_resource type="Script" uid="uid://17pwme1hl174" path="res://Scripts/floor.gd" id="5_kek77"]
+[ext_resource type="PackedScene" uid="uid://chhaw4ayjg0do" path="res://Scenes/quiz_ui.tscn" id="6_7mycd"]
 [ext_resource type="AudioStream" uid="uid://348ylsy7towo" path="res://Assets/sounds/heartbeat-02-225103.mp3" id="8_4c57u"]
 [ext_resource type="AudioStream" uid="uid://cf6aqrhkypacx" path="res://Assets/sounds/sound-effect-707.mp3" id="9_efxa6"]
-[ext_resource type="Script" uid="uid://cxr877fjl6npm" path="res://pause_menu.gd" id="12_dg77c"]
+[ext_resource type="Script" uid="uid://cxr877fjl6npm" path="res://Scripts/pause_menu.gd" id="12_dg77c"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://Assets/UI/kenneyUI.tres" id="13_ycdy4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_efxa6"]
@@ -1415,9 +1415,11 @@ position = Vector2(407, 723)
 color = Color(0.06879826, 0.06879829, 0.068798244, 1)
 
 [node name="QuizUI" parent="." groups=["quiz_popup"] instance=ExtResource("6_7mycd")]
+visible = false
 
 [node name="PauseMenuUI" type="CanvasLayer" parent="."]
 process_mode = 2
+visible = false
 
 [node name="PauseMenu" type="Control" parent="PauseMenuUI"]
 process_mode = 2
