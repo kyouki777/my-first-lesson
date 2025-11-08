@@ -48,7 +48,7 @@ directories/dtl_directory={
 "rian_bed": "res://Dialogues/rian_bed.dtl",
 "riri_bed": "res://Dialogues/riri_bed.dtl",
 "sri_bed": "res://Dialogues/sri_bed.dtl",
-"theBalls": "res://Assets/Font/theBalls.dtl",
+"theBalls": "res://Dialogues/theBalls.dtl",
 "ulka_bed": "res://Dialogues/ulka_bed.dtl",
 "william_bed": "res://Dialogues/william_bed.dtl",
 "window": "res://Dialogues/window.dtl",
@@ -105,7 +105,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/anim_sheet/plugin.cfg", "res://addons/dialogic/plugin.cfg")
+enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/anim_sheet/plugin.cfg", "res://addons/dialogic/plugin.cfg", "res://addons/windows_95_theme/plugin.cfg")
 
 [input]
 

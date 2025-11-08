@@ -1,16 +1,8 @@
-[gd_resource type="Theme" load_steps=34 format=3 uid="uid://6shp5ck1tnja"]
+[gd_resource type="Theme" load_steps=36 format=3 uid="uid://6shp5ck1tnja"]
 
 [ext_resource type="Texture2D" uid="uid://d00ws7wljnit4" path="res://Assets/UI/UIpack_vector.svg" id="1"]
+[ext_resource type="FontFile" uid="uid://k6fx05vf40o8" path="res://Assets/Font/PressStart2P.ttf" id="1_jsvdh"]
 [ext_resource type="FontFile" uid="uid://bt1genp8a8wyb" path="res://Assets/UI/kenvector_future.ttf" id="2"]
-
-[sub_resource type="FontFile" id="31"]
-fallbacks = Array[Font]([ExtResource("2")])
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [sub_resource type="StyleBoxTexture" id="1"]
 texture = ExtResource("1")
@@ -45,6 +37,15 @@ texture_margin_top = 10.0349
 texture_margin_right = 8.78053
 texture_margin_bottom = 14.2161
 region_rect = Rect2(421, 4, 190, 45)
+
+[sub_resource type="FontFile" id="31"]
+fallbacks = Array[Font]([ExtResource("2")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [sub_resource type="AtlasTexture" id="6"]
 atlas = ExtResource("1")
@@ -89,6 +90,10 @@ texture_margin_top = 2.0
 texture_margin_right = 2.0
 texture_margin_bottom = 2.0
 region_rect = Rect2(840, 316, 192, 6)
+
+[sub_resource type="DPITexture" id="DPITexture_dkpe3"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"#fff\" fill-opacity=\".75\" d=\"m1 3 2-2 5 5 5-5 2 2-5 5 5 5-2 2-5-5-5 5-2-2 5-5z\"/></svg>
+"
 
 [sub_resource type="StyleBoxEmpty" id="18"]
 
@@ -180,10 +185,10 @@ region_rect = Rect2(1051, 317, 4, 100)
 [resource]
 default_font = SubResource("31")
 Button/colors/font_color = Color(0, 0, 0, 1)
-Button/colors/font_disabled_color = Color(0.9, 0.9, 0.9, 0.2)
-Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
-Button/colors/font_hover_color = Color(0.34902, 0.34902, 0.34902, 1)
-Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_disabled_color = Color(0, 0, 0, 1)
+Button/colors/font_focus_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 Button/colors/font_outline_color = Color(0, 0, 0, 1)
 Button/colors/font_pressed_color = Color(0.7438932, 0, 0.10630455, 1)
 Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
@@ -197,7 +202,7 @@ Button/constants/h_separation = 2
 Button/constants/icon_max_width = 0
 Button/constants/outline_size = 0
 Button/font_sizes/font_size = 16
-Button/fonts/font = SubResource("31")
+Button/fonts/font = ExtResource("1_jsvdh")
 Button/styles/disabled = SubResource("1")
 Button/styles/focus = SubResource("2")
 Button/styles/hover = SubResource("3")
@@ -246,16 +251,24 @@ HSlider/icons/tick = null
 HSlider/styles/grabber_area = SubResource("17")
 HSlider/styles/grabber_area_highlight = SubResource("17")
 HSlider/styles/slider = SubResource("17")
+LineEdit/colors/caret_color = Color(0.95, 0.95, 0.95, 1)
 LineEdit/colors/clear_button_color = Color(0.88, 0.88, 0.88, 1)
 LineEdit/colors/clear_button_color_pressed = Color(1, 1, 1, 1)
-LineEdit/colors/cursor_color = Color(0.34902, 0.34902, 0.34902, 1)
+LineEdit/colors/cursor_color = Color(0, 0, 0, 1)
 LineEdit/colors/font_color = Color(0, 0, 0, 1)
-LineEdit/colors/font_color_uneditable = Color(0.88, 0.88, 0.88, 0.5)
+LineEdit/colors/font_color_uneditable = Color(0, 0, 0, 1)
+LineEdit/colors/font_outline_color = Color(0, 0, 0, 1)
+LineEdit/colors/font_placeholder_color = Color(0, 0, 0, 1)
 LineEdit/colors/font_selected_color = Color(0.894118, 0.894118, 0.894118, 1)
-LineEdit/colors/selection_color = Color(0.34902, 0.34902, 0.34902, 1)
+LineEdit/colors/font_uneditable_color = Color(0, 0, 0, 1)
+LineEdit/colors/selection_color = Color(0.27022192, 0.27022192, 0.2702219, 1)
+LineEdit/constants/caret_width = 1
+LineEdit/constants/minimum_character_width = 4
 LineEdit/constants/minimum_spaces = 12
-LineEdit/fonts/font = SubResource("31")
-LineEdit/icons/clear = null
+LineEdit/constants/outline_size = 0
+LineEdit/font_sizes/font_size = 16
+LineEdit/fonts/font = ExtResource("1_jsvdh")
+LineEdit/icons/clear = SubResource("DPITexture_dkpe3")
 LineEdit/styles/focus = SubResource("18")
 LineEdit/styles/normal = SubResource("19")
 LineEdit/styles/read_only = SubResource("19")

@@ -1,0 +1,170 @@
+[gd_scene load_steps=10 format=3 uid="uid://v85n262utfoc"]
+
+[ext_resource type="Script" uid="uid://t5lob10cva74" path="res://quiz.gd" id="1_kninm"]
+[ext_resource type="Texture2D" uid="uid://dyrjnge1rlscx" path="res://Assets/image.png" id="2_i0i4q"]
+[ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://Assets/UI/kenneyUI.tres" id="2_k7kv1"]
+[ext_resource type="Script" uid="uid://brwh3gbjogoge" path="res://v_box_container.gd" id="3_p60ki"]
+[ext_resource type="FontFile" uid="uid://k6fx05vf40o8" path="res://Assets/Font/PressStart2P.ttf" id="4_ffm0p"]
+[ext_resource type="AudioStream" uid="uid://dp0l1h0d71ss2" path="res://Assets/sounds/computer-humming-236384.mp3" id="4_hgkws"]
+[ext_resource type="AudioStream" uid="uid://dh5xj503wevkx" path="res://Assets/sounds/sounds/correct-choice-43861.mp3" id="5_6id1c"]
+[ext_resource type="AudioStream" uid="uid://bdr4gwovt7nol" path="res://Assets/sounds/sounds/incorrect-buzzer-374194.mp3" id="6_p60ki"]
+[ext_resource type="AudioStream" uid="uid://bejcvst70nvoy" path="res://Assets/sounds/sounds/Click.mp3" id="7_6id1c"]
+
+[node name="Quiz" type="CanvasLayer"]
+script = ExtResource("1_kninm")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = 63.0
+offset_right = -64.0
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_i0i4q")
+expand_mode = 3
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = 104.0
+offset_top = 104.0
+offset_right = 360.0
+offset_bottom = 127.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_ffm0p")
+theme_override_font_sizes/font_size = 20
+text = "Score: "
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -136.0
+offset_top = -228.0
+offset_right = 120.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+script = ExtResource("3_p60ki")
+
+[node name="QuestionLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_ffm0p")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="AnswerInput" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_k7kv1")
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_k7kv1")
+columns = 3
+
+[node name="1" type="Button" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "1"
+
+[node name="2" type="Button" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "2"
+
+[node name="3" type="Button" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "3"
+
+[node name="4" type="Button" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "4"
+
+[node name="5" type="Button" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "5"
+
+[node name="6" type="Button" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "6"
+
+[node name="7" type="Button" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "7"
+
+[node name="8" type="Button" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "8"
+
+[node name="9" type="Button" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "9"
+
+[node name="C" type="Button" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "C"
+
+[node name="0" type="Button" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="Backspace" type="Button" parent="VBoxContainer/GridContainer"]
+visible = false
+layout_mode = 2
+text = "back"
+
+[node name="SubmitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_k7kv1")
+text = "Next"
+icon_alignment = 1
+vertical_icon_alignment = 2
+
+[node name="FeedbackLabel" type="Label" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="SFX_Hum" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_hgkws")
+volume_db = 6.0
+
+[node name="SFX_Correct" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_6id1c")
+
+[node name="SFX_Wrong" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_p60ki")
+volume_db = 6.0
+
+[node name="SFX_Click" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_6id1c")
