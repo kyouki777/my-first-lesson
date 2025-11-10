@@ -4,8 +4,9 @@ extends CanvasLayer
 @onready var answer_input = $VBoxContainer/AnswerInput
 @onready var submit_button = $VBoxContainer/SubmitButton
 @onready var feedback_label = $VBoxContainer/FeedbackLabel
-@onready var numpad_container = $GridContainer
+@onready var numpad_container = $VBoxContainer/GridContainer
 @onready var score_label = $ScoreLabel
+
 
 @onready var sfx_correct = $SFX_Correct
 @onready var sfx_wrong = $SFX_Wrong
@@ -61,7 +62,7 @@ func _build_numpad():
 		var btn = Button.new()
 		btn.text = lbl
 		btn.focus_mode = Control.FOCUS_NONE
-		btn.custom_minimum_size = Vector2(60, 60)
+		btn.custom_minimum_size = Vector2(100, 60)
 		numpad_container.add_child(btn)
 		btn.pressed.connect(_on_numpad_pressed.bind(lbl))
 

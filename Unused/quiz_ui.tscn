@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://chhaw4ayjg0do"]
 
-[ext_resource type="Script" uid="uid://c21knjpndo4h8" path="res://Scenes/quiz_ui.gd" id="1_ejrqg"]
+[ext_resource type="Script" uid="uid://c21knjpndo4h8" path="res://Unused/quiz_ui.gd" id="1_ejrqg"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://Assets/UI/kenneyUI.tres" id="2_bd40q"]
 
 [node name="QuizUI" type="CanvasLayer"]

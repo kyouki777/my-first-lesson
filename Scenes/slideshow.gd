@@ -18,11 +18,14 @@ extends Control
 @onready var slide_display: TextureRect = $SlideDisplay
 @onready var sfx_player: AudioStreamPlayer2D = $SFXPlayer
 @onready var bgm_player: AudioStreamPlayer2D = $BGMPlayer
+@onready var slide_timer: Timer = $SlideTimer
 
 var current_slide_index: int = 0
 
 func _ready() -> void:
 	show_slide(current_slide_index)
+	slide_timer.start()
+	
 
 	# Play background music if not already playing
 	if bgm_player and not bgm_player.playing:
@@ -43,7 +46,8 @@ func _input(event: InputEvent) -> void:
 		next_slide()
 	
 	# Detect left mouse click (or touchscreen tap)
-	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and not current_slide_index == 5:
+		slide_timer.start()
 		next_slide()
 
 func next_slide() -> void:
@@ -57,13 +61,11 @@ func next_slide() -> void:
 			sfx_player.stream = page_flip_sound
 			sfx_player.play()
 	else:
-		# Play book closing sound
-		if sfx_player and book_close_sound:
-			sfx_player.stream = book_close_sound
-			sfx_player.play()
+		sfx_player.stream = book_close_sound
+		sfx_player.play()
 
 		# Wait a moment before going to next scene
-		await get_tree().create_timer(1.0).timeout
+		await sfx_player.finished
 		go_to_next_scene()
 
 func skip_slideshow() -> void:
@@ -81,3 +83,7 @@ func show_slide(index: int) -> void:
 
 func go_to_next_scene():
 	get_tree().change_scene_to_file(next_scene_path)
+
+
+func _on_slide_timer_timeout() -> void:
+	next_slide()
