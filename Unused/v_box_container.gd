@@ -2,7 +2,7 @@ extends Control
 
 @onready var input_line = $AnswerInput
 @onready var keypad = $GridContainer
-@onready var sfx_click: AudioStreamPlayer = $SFX_Click
+@onready var sfx_click: AudioStreamPlayer2D = $"../SFX_Click"
 
 func _ready():
 	for button in keypad.get_children():

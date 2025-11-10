@@ -8,7 +8,7 @@ extends CharacterBody2D
 @onready var caretaker = get_tree().get_first_node_in_group("Caretaker")
 
 var last_anim_direction: String = "Down"
-
+var last_dir: Vector2
 var max_volume = 0.0
 var min_volume = -30.0
 var max_distance = 500.0
@@ -19,7 +19,13 @@ func _ready():
 		heartbeat.play()
 
 func _physics_process(delta):
+	if GlobalState.is_game_paused:
+		velocity = Vector2.ZERO # Stop all current momentum
+		move_and_slide()        # Apply the stop
+		update_animation(last_dir)
+		return
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	last_dir = direction
 	velocity = direction.normalized() * speed
 	move_and_slide()
 
@@ -35,6 +41,10 @@ func _physics_process(delta):
 func update_animation(direction: Vector2):
 	var anim_to_play: String = ""
 	var new_anim_direction: String = last_anim_direction
+	if GlobalState.is_game_paused:
+		anim_to_play = "Idle_" + last_anim_direction
+		anim_player.play(anim_to_play)
+	
 
 	if direction != Vector2.ZERO:
 		# Determine dominant axis for movement

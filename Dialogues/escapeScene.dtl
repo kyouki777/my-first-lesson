@@ -1,0 +1,11 @@
+You've escaped.
+What will you do now?
+- Go back.
+	Very well, Putra.
+	Until we meet again.
+	[signal arg="main_menu"]
+- Run and never look back.
+	Well done, Putra.
+	I'm proud of you.
+	Let me erase this bad dream, my child.
+	[signal arg="end_game"]

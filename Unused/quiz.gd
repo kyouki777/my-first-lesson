@@ -4,18 +4,19 @@ extends CanvasLayer
 @onready var answer_input = $VBoxContainer/AnswerInput
 @onready var submit_button = $VBoxContainer/SubmitButton
 @onready var feedback_label = $VBoxContainer/FeedbackLabel
-@onready var numpad_container = $GridContainer
+@onready var numpad_container = $VBoxContainer/GridContainer
 @onready var score_label = $ScoreLabel
 
 @onready var sfx_correct = $SFX_Correct
 @onready var sfx_wrong = $SFX_Wrong
 @onready var sfx_click = $SFX_Click
 @onready var sfx_hum = $SFX_Hum
+@onready var sfx_doorUnlocked = $SFX_DoorUnlocked
 
-var tilemap_layer: Node
-var front_door_area: Area2D
+# Tilemap and area references
+var floor_layer: TileMapLayer
+var floor2_layer: TileMapLayer
 var escape_zone_area: Area2D
-
 
 var num1: int
 var num2: int
@@ -25,20 +26,18 @@ var score: int = 0
 const TARGET_SCORE := 3
 
 func _ready():
-	# Get nodes from the root of the current scene safely
 	var root = get_tree().current_scene
-	tilemap_layer = root.get_node_or_null("FrontDoorOpen")
-	front_door_area = root.get_node_or_null("Env/InteractObstaclesObjects/FrontDoor")
-	escape_zone_area = root.get_node_or_null("FrontDoorOpen/EscapeZone")
-	
-	if not tilemap_layer:
-		print("⚠ FrontDoorOpen not found!")
-	if not front_door_area:
-		print("⚠ FrontDoor not found!")
+	floor_layer = root.get_node_or_null("Env/Floor")
+	floor2_layer = root.get_node_or_null("Env/Floor2")
+	escape_zone_area = root.get_node_or_null("Env/Floor2/EscapeZone")
+
+	if not floor_layer:
+		print("⚠ Floor layer not found!")
+	if not floor2_layer:
+		print("⚠ Floor2 layer not found!")
 	if not escape_zone_area:
 		print("⚠ EscapeZone not found!")
 
-	# Continue normal setup
 	randomize()
 	submit_button.pressed.connect(_on_submit_pressed)
 	answer_input.text_submitted.connect(_on_enter_pressed)
@@ -61,7 +60,7 @@ func _build_numpad():
 		var btn = Button.new()
 		btn.text = lbl
 		btn.focus_mode = Control.FOCUS_NONE
-		btn.custom_minimum_size = Vector2(60, 60)
+		btn.custom_minimum_size = Vector2(100, 60)
 		numpad_container.add_child(btn)
 		btn.pressed.connect(_on_numpad_pressed.bind(lbl))
 
@@ -91,7 +90,6 @@ func generate_question():
 		"+":
 			correct_answer = num1 + num2
 		"-":
-			# avoid negative answers
 			if num2 > num1:
 				var temp = num1
 				num1 = num2
@@ -100,7 +98,6 @@ func generate_question():
 		"×":
 			correct_answer = num1 * num2
 		"÷":
-			# ensure divisible numbers
 			correct_answer = randi_range(1, 10)
 			num2 = randi_range(1, 10)
 			num1 = num2 * correct_answer
@@ -150,15 +147,22 @@ func _update_score_label():
 func _check_unlock_condition():
 	if score >= TARGET_SCORE:
 		print("Door unlocked! Score reached: ", score)
-		if tilemap_layer:
-			tilemap_layer.visible = true
-		if front_door_area:
-			front_door_area.monitoring = false
-			front_door_area.visible = false
+		feedback_label.text = "🎉 Door unlocked!"
+
+		if floor_layer:
+			floor_layer.visible = false
+			floor_layer.collision_enabled = false
+			print("Floor 1 fully disabled")
+
+			floor2_layer.visible = true
+			sfx_doorUnlocked.play()
 		if escape_zone_area:
 			escape_zone_area.monitoring = true
 			escape_zone_area.visible = true
-		feedback_label.text = "🎉 Door unlocked!"
+
+
+
+
 
 
 

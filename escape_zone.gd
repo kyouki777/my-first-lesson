@@ -1,6 +1,8 @@
 extends Area2D
 
 @onready var fade_rect: ColorRect = get_tree().current_scene.get_node("WinFadeIn/FadeRect")
+
+
 const WIN_SCENE_PATH = "res://Scenes/WinScene.tscn"
 
 func _ready():
@@ -9,6 +11,10 @@ func _ready():
 func _on_body_entered(body):
 	if body.name == "Player":
 		print("Entered escape zone")
+		
+
+		
+		# (Optional) trigger fade or win scene
 		_trigger_win_sequence()
 
 func _trigger_win_sequence():

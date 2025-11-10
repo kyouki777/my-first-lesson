@@ -9,6 +9,19 @@ extends Control
 @onready var fade_rect: ColorRect = $CanvasLayer/ColorRect
 
 func _ready():
+	
+	# Check if the game was already finished
+	var file = FileAccess.open("user://end_flag.json", FileAccess.READ)
+	if file:
+		var data = JSON.parse_string(file.get_as_text())
+		file.close()
+
+		if data and "game_finished" in data and data["game_finished"] == true:
+			print("Game already finished — loading EmptyScene.")
+			get_tree().change_scene_to_file("res://Scenes/EmptyScene.tscn")
+			return
+
+	print("end_game not found yet")
 	# 1. Create a new Tween
 	# This creates a "sequence" that will run on its own.
 	var tween = get_tree().create_tween()
@@ -43,6 +56,7 @@ func change_scene():
 	
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
-		# If they press skip, stop the timer and go to the next scene immediately.
-		get_tree().change_scene_to_file(next_scene_path)
+	if event.is_action_pressed("ui_accept") or \
+	(event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT):
+			# If they press skip, stop the timer and go to the next scene immediately.
+			get_tree().change_scene_to_file(next_scene_path)
