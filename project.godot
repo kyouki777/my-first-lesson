@@ -26,6 +26,7 @@ directories/dch_directory={
 "Putra": "res://Styles/Putra.dch"
 }
 directories/dtl_directory={
+"EmptyScene": "res://Dialogues/EmptyScene.dtl",
 "StartDialogue": "res://Dialogues/StartDialogue.dtl",
 "balls": "res://Dialogues/balls.dtl",
 "beni_bed": "res://Dialogues/beni_bed.dtl",
@@ -64,6 +65,7 @@ layout/style_list=["res://Styles/Default Style.tres"]
 layout/default_style="res://Styles/Default Style.tres"
 glossary/default_case_sensitive=true
 variables={
+"ending_choice": "",
 "open_room": false
 }
 extensions_folder="res://addons/dialogic_additions"

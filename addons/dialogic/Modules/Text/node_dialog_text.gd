@@ -45,6 +45,8 @@ func _ready() -> void:
 	meta_clicked.connect(_on_meta_clicked)
 	gui_input.connect(on_gui_input)
 	bbcode_enabled = true
+	add_theme_constant_override("line_separation", 12)
+
 	if textbox_root == null:
 		textbox_root = self
 

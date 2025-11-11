@@ -34,6 +34,7 @@ scene = ExtResource("6_oalpb")
 overrides = {
 "bold_font": "\"res://Assets/Font/PressStart2P.ttf\"",
 "bold_italics_font": "\"res://Assets/Font/PressStart2P.ttf\"",
+"box_size": "Vector2(750, 150)",
 "italics_font": "\"res://Assets/Font/PressStart2P.ttf\"",
 "name_label_font": "\"res://Assets/Font/PressStart2P.ttf\"",
 "normal_font": "\"res://Assets/Font/PressStart2P.ttf\""

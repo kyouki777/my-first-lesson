@@ -3,30 +3,39 @@ extends CanvasLayer
 @onready var bgm = $AudioStreamPlayer2D
 
 func _ready() -> void:
-	# Start looping BGM
+	# Play BGM if it exists
 	if bgm:
 		bgm.play()
 
+	# Start the dialogue after a short delay
 	await get_tree().create_timer(5.0).timeout
-
-	# Start the dialogue
 	Dialogic.start("escapeScene")
 
-	# Connect to Dialogic 2 global signal
-	if not Dialogic.is_connected("custom_event", Callable(self, "_on_custom_event")):
-		Dialogic.connect("custom_event", Callable(self, "_on_custom_event"))
+	# Wait for the player to make a choice in the dialogue
+	await _wait_for_ending_choice()
 
+# Poll for the Dialogic variable set by the timeline
+func _wait_for_ending_choice() -> void:
+	while Dialogic.VAR.get("ending_choice") == "":
+		await get_tree().create_timer(0.2).timeout
 
-func _on_custom_event(event_name: String) -> void:
-	print("Custom event received:", event_name)
-	match event_name:
-		"end_game":
+	var choice = Dialogic.VAR.get("ending_choice")
+	print("ENDING CHOICE:", choice)  # Debug log
+
+	# Execute the action based on the choice
+	_execute_end_action(choice)
+
+# Execute the proper action
+func _execute_end_action(choice: String) -> void:
+	match choice:
+		"main_menu":
+			await get_tree().create_timer(1.0).timeout
+			get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+		"quit":
+			# Save the end_flag so next time game opens it shows EmptyScene
 			var file = FileAccess.open("user://end_flag.json", FileAccess.WRITE)
 			if file:
 				file.store_string('{"game_finished": true}')
 				file.close()
-			await get_tree().create_timer(2.0).timeout
-			get_tree().quit()
-		"main_menu":
 			await get_tree().create_timer(1.0).timeout
-			get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+			get_tree().quit()

@@ -1,39 +1,37 @@
 extends Area2D
 
-@onready var fade_rect: ColorRect = get_tree().current_scene.get_node("WinFadeIn/FadeRect")
-
-
+@export var fade_path: NodePath = ^"CanvasLayer/ColorRect" # set this from the editor
 const WIN_SCENE_PATH = "res://Scenes/WinScene.tscn"
 
+@onready var fade_rect: ColorRect = get_node_or_null(fade_path)
+
 func _ready():
-	self.body_entered.connect(_on_body_entered)
+	connect("body_entered", Callable(self, "_on_body_entered"))
 
 func _on_body_entered(body):
 	if body.name == "Player":
 		print("Entered escape zone")
-		
+		_trigger_win_sequence(body)
 
-		
-		# (Optional) trigger fade or win scene
-		_trigger_win_sequence()
-
-func _trigger_win_sequence():
-	# Stop AI and player manually (don't pause tree)
+func _trigger_win_sequence(player):
+	# Stop AI
 	for enemy in get_tree().get_nodes_in_group("Caretaker"):
-		enemy.set_process(false)
-	
-	var player = get_tree().current_scene.get_node("Player")
+		enemy.process_mode = Node.PROCESS_MODE_DISABLED
+
+	# Stop player movement completely
+	player.set_physics_process(false)
 	player.set_process(false)
-	
-	# Fade in
+	player.velocity = Vector2.ZERO
+
+	# Fade in smoothly
 	if fade_rect:
 		fade_rect.visible = true
-		fade_rect.modulate.a = 0
-		var t = fade_rect.create_tween()
-		t.tween_property(fade_rect, "modulate:a", 1.0, 1.5)
-		t.tween_callback(Callable(self, "_load_win_scene"))
-		t.play()
+		fade_rect.modulate.a = 0.0
+		var tween = create_tween()
+		tween.tween_property(fade_rect, "modulate:a", 1.0, 1.5)
+		tween.tween_callback(Callable(self, "_load_win_scene"))
 	else:
+		print("FadeRect not found, skipping fade.")
 		_load_win_scene()
 
 func _load_win_scene():

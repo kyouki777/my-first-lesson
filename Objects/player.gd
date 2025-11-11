@@ -13,17 +13,30 @@ var max_volume = 0.0
 var min_volume = -30.0
 var max_distance = 500.0
 
+#@onready var anim = $AnimationPlayer
+@export var mash_prompt: Node
+
+var is_caught = false
+var mash_count = 0
+var required_mash = 5   # how many presses needed to break free
+var mash_timeout = 0.1   # seconds before mash_count slowly decays
+
+var mash_timer := 0.0
+
 func _ready():
 	print("Player ready")
 	if heartbeat and not heartbeat.playing:
 		heartbeat.play()
+	
+	mash_prompt.visible = false
 
 func _physics_process(delta):
-	if GlobalState.is_game_paused:
-		velocity = Vector2.ZERO # Stop all current momentum
-		move_and_slide()        # Apply the stop
+	if GlobalState.is_game_paused or is_caught:
+		velocity = Vector2.ZERO
+		move_and_slide()
 		update_animation(last_dir)
 		return
+
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	last_dir = direction
 	velocity = direction.normalized() * speed
@@ -37,6 +50,48 @@ func _physics_process(delta):
 		#print("Distance to caretaker:", global_position.distance_to(caretaker.global_position))
 	#else:
 		#print("Caretaker is null!")
+
+func _process(delta: float) -> void:
+	if is_caught:
+		# simply check for success (no decay timer)
+		if mash_count >= required_mash:
+			print("required mash fulfilled")
+			_break_free()
+
+
+func _input(event):
+	if is_caught and event.is_action_pressed("ui_accept"):  # space by default
+		mash_count += 1
+		# no timer used now
+		#anim.play("struggle")  # quick animation while mashing
+		print("Mash count:", mash_count)
+		# optional: update mash prompt text if it's a Label
+		if mash_prompt and mash_prompt is Label:
+			mash_prompt.text = str(mash_count) + " / " + str(required_mash)
+
+
+
+func _on_CatchTrigger_body_entered(body):
+	if body == self:
+		_get_caught()
+
+
+func _get_caught():
+	is_caught = true
+	mash_count = 0
+	mash_prompt.visible = true
+	#anim.play("caught")   # play caught animation
+	velocity = Vector2.ZERO
+
+
+func _break_free():
+	is_caught = false
+	mash_prompt.visible = false
+	#anim.play("escape")   # play breaking free animation
+	print("Player escaped!")
+
+
+
 
 func update_animation(direction: Vector2):
 	var anim_to_play: String = ""
@@ -93,3 +148,24 @@ func update_footsteps(direction: Vector2):
 		# Idle
 		if footsteps.playing:
 			footsteps.stop()
+
+
+func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	if body == self:
+		_get_caught()
+
+func _on_area_2d_2_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	if body == self:
+		_get_caught()
+
+func _on_area_2d_3_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	if body == self:
+		_get_caught()
+		
+func _on_area_2d_4_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	if body == self:
+		_get_caught()
+
+func _on_area_2d_5_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	if body == self:
+		_get_caught()

@@ -9,17 +9,16 @@ extends Control
 @onready var fade_rect: ColorRect = $CanvasLayer/ColorRect
 
 func _ready():
-	
-	# Check if the game was already finished
-	var file = FileAccess.open("user://end_flag.json", FileAccess.READ)
-	if file:
-		var data = JSON.parse_string(file.get_as_text())
+	if FileAccess.file_exists("user://end_flag.json"):
+		var file = FileAccess.open("user://end_flag.json", FileAccess.READ)
+		var data = file.get_as_text()
 		file.close()
-
-		if data and "game_finished" in data and data["game_finished"] == true:
-			print("Game already finished — loading EmptyScene.")
+		if data.contains("true"):
 			get_tree().change_scene_to_file("res://Scenes/EmptyScene.tscn")
-			return
+			return  # Stop the rest of _ready()
+
+
+
 
 	print("end_game not found yet")
 	# 1. Create a new Tween
