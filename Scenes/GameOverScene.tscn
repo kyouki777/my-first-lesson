@@ -30,6 +30,7 @@ animations = [{
 script = ExtResource("1_543kh")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 5
 
 [node name="MC" type="AnimatedSprite2D" parent="CanvasLayer"]
 sprite_frames = SubResource("SpriteFrames_gg0ms")

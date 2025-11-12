@@ -11,7 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://bejcvst70nvoy" path="res://Assets/sounds/sounds/Click.mp3" id="7_6id1c"]
 [ext_resource type="AudioStream" uid="uid://bk2de5in8agjc" path="res://Assets/sounds/sounds/opening-door-411632.mp3" id="10_u2ogy"]
 
-[node name="Quiz" type="CanvasLayer"]
+[node name="unused quiz" type="CanvasLayer"]
 script = ExtResource("1_kninm")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -20,6 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="TextureRect" type="TextureRect" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=4 uid="uid://bgv3f261vgjjd"]
+[gd_scene load_steps=82 format=4 uid="uid://bgv3f261vgjjd"]
 
 [ext_resource type="Texture2D" uid="uid://73p0gd6l6qtm" path="res://Assets/Floor_sheet.png" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://il8sug0nh6ds" path="res://main.gd" id="1_cegan"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://hcek0mkrtd0d" path="res://Unused/hidden_room_dialogue.gd" id="2_2cqfq"]
 [ext_resource type="Texture2D" uid="uid://csggriy3nmvva" path="res://Assets/Furnitures_sheet.png" id="2_272bh"]
 [ext_resource type="AudioStream" uid="uid://ckm2jsxp4rryu" path="res://Assets/sounds/door-opening-397990.mp3" id="3_074og"]
-[ext_resource type="PackedScene" uid="uid://c4la7kcg2s8dq" path="res://Objects/caretaker.tscn" id="3_h2yge"]
 [ext_resource type="AudioStream" uid="uid://b44uel54hoq80" path="res://Assets/sounds/door-slam-172171.mp3" id="4_cegan"]
 [ext_resource type="Script" uid="uid://dni34tnxfbdho" path="res://Scripts/pc.gd" id="4_lquwl"]
 [ext_resource type="Texture2D" uid="uid://citgokmdyn5vr" path="res://Assets/Circular 2 - 512x512.png" id="5_5vw27"]
@@ -20,11 +19,13 @@
 [ext_resource type="Script" uid="uid://cxr877fjl6npm" path="res://Scripts/pause_menu.gd" id="12_dg77c"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://Assets/UI/kenneyUI.tres" id="13_ycdy4"]
 [ext_resource type="Script" uid="uid://ds65fpi23x2ty" path="res://Unused/global_inventory.gd" id="15_vivmo"]
+[ext_resource type="Texture2D" uid="uid://cnk3sxgkffblp" path="res://Assets/kids_stuck_anim.png" id="19_lswn8"]
 [ext_resource type="PackedScene" uid="uid://v85n262utfoc" path="res://Unused/quiz.tscn" id="20_82xsv"]
+[ext_resource type="AudioStream" uid="uid://f31p6told8u6" path="res://Assets/sounds/breathing-fast-247449.mp3" id="20_xuqvo"]
+[ext_resource type="AudioStream" uid="uid://bv57adc0yejs4" path="res://Assets/sounds/wood-crate-destory-2-97263.mp3" id="21_qsp4k"]
 [ext_resource type="Script" uid="uid://dra7npf03fuvq" path="res://escape_zone.gd" id="22_ryguw"]
-[ext_resource type="Texture2D" uid="uid://b2hniwtom2g0j" path="res://Assets/caretaker jumpscare.png" id="23_d13ii"]
-[ext_resource type="AudioStream" uid="uid://cebakduu3fou7" path="res://Assets/sounds/sounds/jumpscare-94984.mp3" id="24_1u8w0"]
 [ext_resource type="FontFile" uid="uid://k6fx05vf40o8" path="res://Assets/Font/PressStart2P.ttf" id="25_0odxb"]
+[ext_resource type="PackedScene" uid="uid://cowngojs4q8sh" path="res://Scenes/REAL_QUIZ_UI.tscn" id="29_qsp4k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_efxa6"]
 size = Vector2(25, 25)
@@ -631,6 +632,29 @@ fill_from = Vector2(0.5046729, 0.5046729)
 fill_to = Vector2(0.24766356, 0.78971964)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h8e4i"]
+size = Vector2(150, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ad8t"]
+atlas = ExtResource("19_lswn8")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x20fu"]
+atlas = ExtResource("19_lswn8")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a6jrf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ad8t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x20fu")
+}],
+"loop": true,
+"name": &"struggle",
+"speed": 6.0
+}]
 
 [node name="main" type="Node2D"]
 y_sort_enabled = true
@@ -1649,13 +1673,16 @@ y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAXADsAAAAHAAoAAAAbADsAAAAHAAoAAAD6/x0AAAAHAAoAAAD6/xwAAAAHAAkAAAD8/x0AAAAHAAoAAAD8/xwAAAAHAAkAAAD+/x0AAAAHAAoAAAD+/xwAAAAHAAkAAAAAAB0AAAAHAAoAAAAAABwAAAAHAAkAAAA4AB0AAAAHAAoAAAA4ABwAAAAHAAkAAAA2AB0AAAAHAAoAAAA2ABwAAAAHAAkAAAA0AB0AAAAHAAoAAAA0ABwAAAAHAAkAAAAyAB0AAAAHAAoAAAAyABwAAAAHAAkAAAD7/xwAAAAIAAkAAAD7/x0AAAAIAAoAAAD9/xwAAAAIAAkAAAD9/x0AAAAIAAoAAAD//xwAAAAIAAkAAAD//x0AAAAIAAoAAAABABwAAAAIAAkAAAABAB0AAAAIAAoAAAAzABwAAAAIAAkAAAAzAB0AAAAIAAoAAAA1ABwAAAAIAAkAAAA1AB0AAAAIAAoAAAA3ABwAAAAIAAkAAAA3AB0AAAAIAAoAAAA5ABwAAAAIAAkAAAA5AB0AAAAIAAoAAAAYADoAAAAIAAkAAAAYADsAAAAIAAoAAAAaADoAAAAIAAkAAAAaADsAAAAIAAoAAAAXADoAAAAHAAkAAAAmACgAAAAJAAwAAAAnACgAAAAKAAwAAAAcACcAAAAGAAsAAAAcACgAAAAGAAwAAAAdACcAAAAGAAsAAAAdACgAAAAGAAwAAAAeACcAAAAGAAsAAAAeACgAAAAGAAwAAAAfACcAAAAGAAsAAAAfACgAAAAGAAwAAAAgACcAAAAHAAsAAAAgACgAAAAHAAwAAAAhACgAAAAIAAwAAAAiACgAAAAJAAwAAAAjACgAAAAKAAwAAAAkACgAAAAJAAwAAAAlACgAAAAKAAwAAAAoACgAAAALAAwAAAApACgAAAAKAAwAAAAsACgAAAANAAwAAAAqACgAAAALAAwAAAArACgAAAAKAAwAAAAKACoAAAAJAAkAAAAKACsAAAAJAAoAAAALACoAAAAKAAkAAAALACsAAAAKAAoAAAAMACoAAAALAAkAAAAMACsAAAALAAoAAAANACoAAAAMAAkAAAANACsAAAAMAAoAAAARACoAAAAJAAkAAAARACsAAAAJAAoAAAASACoAAAAKAAkAAAASACsAAAAKAAoAAAATACoAAAALAAkAAAATACsAAAALAAoAAAAUACoAAAAMAAkAAAAUACsAAAAMAAoAAAAKADAAAAAJAAkAAAAKADEAAAAJAAoAAAALADAAAAAKAAkAAAALADEAAAAKAAoAAAAMADAAAAALAAkAAAAMADEAAAALAAoAAAANADAAAAAMAAkAAAANADEAAAAMAAoAAAARADAAAAAJAAkAAAARADEAAAAJAAoAAAASADAAAAAKAAkAAAASADEAAAAKAAoAAAATADAAAAALAAkAAAATADEAAAALAAoAAAAUADAAAAAMAAkAAAAUADEAAAAMAAoAAAAVADAAAAANAAkAAAAVADEAAAANAAoAAAAVACoAAAANAAkAAAAVACsAAAANAAoAAAAOACoAAAANAAkAAAAOACsAAAANAAoAAAAJACoAAAANAAkAAAAJACsAAAANAAoAAAAJADAAAAANAAkAAAAJADEAAAANAAoAAAAOADAAAAANAAkAAAAOADEAAAANAAoAAAAQADAAAAANAAkAAAAQADEAAAANAAoAAAAQACoAAAANAAkAAAAQACsAAAANAAoAAAASAC8AAAANAAkAAAAMAC8AAAANAAkAAAALACkAAAANAAkAAAAMACkAAAANAAkAAAASACkAAAANAAkAAAALACwAAAANAAkAAAALAC0AAAANAAoAAAAMAC0AAAANAAoAAAASACwAAAANAAkAAAASAC0AAAANAAoAAAATACwAAAANAAkAAAATAC0AAAANAAoAAAAGADMAAAANAAwAAAAGACcAAAANAAkAAAAGACgAAAANAAoAAAAFABgAAAANAAkAAAAFABkAAAANAAoAAAAtABgAAAANAAkAAAAtABkAAAANAAoAAAD3/wcAAAAHAAkAAAD3/wgAAAAHAAoAAAA7AAcAAAAHAAkAAAA7AAgAAAAHAAoAAAD3/yoAAAAOAAgAAAD3/ywAAAAOAAgAAAD3/y4AAAAOAAgAAAD//yoAAAAPAAgAAAD//ywAAAAPAAgAAAA7ACoAAAAPAAgAAAA7ACwAAAAPAAgAAAA7AC4AAAAPAAgAAAD//ygAAAANAAwAAAAzACgAAAANAAwAAAD6/ygAAAANAAkAAAD6/ykAAAANAAoAAAA4ACgAAAANAAkAAAA4ACkAAAANAAoAAAD3/xkAAAANAAgAAAAOABcAAAANAAkAAAAOABgAAAANAAoAAAAzACAAAAANAAgAAAAZAAsAAAANAAgAAAAYABUAAAANAAgAAAAmABEAAAANAAgAAAAeACAAAAANAAgAAAARAB8AAAANAAgAAAD8/y0AAAANAAgAAAAPAC4AAAANAAgAAAAeACwAAAANAAgAAAAmADEAAAANAAgAAAAnACwAAAANAAgAAAA2ACsAAAANAAgAAAAzADkAAAANAAgAAAAnADcAAAANAAgAAAALADoAAAANAAgAAAAZAD0AAAANAAgAAAACADkAAAANAAgAAAD3/yQAAAANAAgAAAAOABEAAAANAAgAAAAFAAgAAAANAAwAAAAtAAgAAAANAAwAAAAkACMAAAANAAwAAAD8/wcAAQACAAAAAAD8/wgAAQACAAEAAAD9/wcAAQADAAAAAAD9/wgAAQADAAEAAAA1AAcAAQACAAAAAAA1AAgAAQACAAEAAAA2AAcAAQADAAAAAAA2AAgAAQADAAEAAAAOADoAAQACAAAAAAAOADsAAQACAAEAAAAPADoAAQADAAAAAAAPADsAAQADAAEAAAAjADoAAQACAAAAAAAjADsAAQACAAEAAAAkADoAAQADAAAAAAAkADsAAQADAAEAAAAQACcAAQAEAAAAAAAQACgAAQAEAAEAAAAAAAcAAQAEAAAAAAAAAAgAAQAEAAEAAAAyAAcAAQAEAAAAAAAyAAgAAQAEAAEAAAAfABYAAQAEAAAAAAAfABcAAQAEAAEAAAABABgAAQAEAAAAAAABABkAAQAEAAEAAAA4ABgAAQAEAAAAAAA4ABkAAQAEAAEAAAAZAEEAAQAEAAAAAAAZAEIAAQAEAAEAAAAjABYAAQAHAAAAAAAjABcAAQAHAAEAAAAkABYAAQAIAAAAAAAkABcAAQAIAAEAAAD3/xEAAQAHAAAAAAD3/xIAAQAHAAEAAAD4/xEAAQAIAAAAAAD4/xIAAQAIAAEAAAA6ABEAAQAHAAAAAAA6ABIAAQAHAAEAAAA7ABEAAQAIAAAAAAA7ABIAAQAIAAEAAAAIACcAAQAHAAAAAAAIACgAAQAHAAEAAAAJACcAAQAIAAAAAAAJACgAAQAIAAEAAAAPAEEAAQAHAAAAAAAPAEIAAQAHAAEAAAAQAEEAAQAIAAAAAAAQAEIAAQAIAAEAAAAiAEEAAQAHAAAAAAAiAEIAAQAHAAEAAAAjAEEAAQAIAAAAAAAjAEIAAQAIAAEAAAATACkAAAANAAkAAAAMACwAAAANAAkAAAALAC8AAAANAAkAAAAzACoAAAAOAAgAAAAzACwAAAAOAAgAAAAbADoAAAAHAAkAAAAYABwAAQAAAAAAAAAYAB0AAQAAAAEAAAAZABwAAQABAAAAAAAZAB0AAQABAAEAAAA=")
 tile_set = SubResource("TileSet_kek77")
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Env"]
+avoidance_enabled = true
+
 [node name="InteractQuiz" type="Node" parent="Env"]
 
 [node name="Computer 5" type="Area2D" parent="Env/InteractQuiz" node_paths=PackedStringArray("quiz_ui")]
 position = Vector2(574, 959)
 script = ExtResource("11_getpj")
 quiz_scene = ExtResource("20_82xsv")
-quiz_ui = NodePath("../../../QuizUI")
+quiz_ui = NodePath("../../../RealQuiz")
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractQuiz/Computer 5"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -1668,7 +1695,7 @@ shape = SubResource("RectangleShape2D_d13ii")
 position = Vector2(238, 959)
 script = ExtResource("11_getpj")
 quiz_scene = ExtResource("20_82xsv")
-quiz_ui = NodePath("../../../QuizUI")
+quiz_ui = NodePath("../../../RealQuiz")
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractQuiz/Computer 4"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -1681,7 +1708,7 @@ shape = SubResource("RectangleShape2D_d13ii")
 position = Vector2(398, 476)
 script = ExtResource("11_getpj")
 quiz_scene = ExtResource("20_82xsv")
-quiz_ui = NodePath("../../../QuizUI")
+quiz_ui = NodePath("../../../RealQuiz")
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractQuiz/Center computer"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -1691,6 +1718,7 @@ position = Vector2(1.75, -9.5)
 shape = SubResource("RectangleShape2D_d13ii")
 
 [node name="DirectionalLight2D" type="PointLight2D" parent="Env/InteractQuiz/Center computer"]
+visible = false
 position = Vector2(-3.0000086, -19.999987)
 scale = Vector2(2, 2)
 energy = 2.0
@@ -1702,7 +1730,7 @@ texture_scale = 0.25
 position = Vector2(862, 143)
 script = ExtResource("11_getpj")
 quiz_scene = ExtResource("20_82xsv")
-quiz_ui = NodePath("../../../QuizUI")
+quiz_ui = NodePath("../../../RealQuiz")
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractQuiz/Computer 2"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -1715,7 +1743,7 @@ shape = SubResource("RectangleShape2D_d13ii")
 position = Vector2(-51, 137)
 script = ExtResource("11_getpj")
 quiz_scene = ExtResource("20_82xsv")
-quiz_ui = NodePath("../../../QuizUI")
+quiz_ui = NodePath("../../../RealQuiz")
 
 [node name="Sprite2D" type="Sprite2D" parent="Env/InteractQuiz/Computer 1"]
 region_rect = Rect2(0, 0, 320, 143)
@@ -1755,11 +1783,18 @@ position = Vector2(416, -1608)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Env/QTEZones/Area2D5"]
 shape = SubResource("RectangleShape2D_h8e4i")
 
-[node name="Player" parent="." node_paths=PackedStringArray("mash_prompt") groups=["player"] instance=ExtResource("1_ig7tw")]
+[node name="CaretakerSpawnPoint" type="Node2D" parent="Env"]
+position = Vector2(416, 824)
+
+[node name="Player" parent="." node_paths=PackedStringArray("qte_anim", "mash_bar", "mash_label", "heavy_breathing", "wood_breaking") groups=["player"] instance=ExtResource("1_ig7tw")]
 z_index = 10
 y_sort_enabled = true
 position = Vector2(408, 132)
-mash_prompt = NodePath("../CanvasLayer2/MashPrompt")
+qte_anim = NodePath("AnimatedSprite2D2")
+mash_bar = NodePath("../CanvasLayer2/MashProgress")
+mash_label = NodePath("../CanvasLayer2/MashLabel")
+heavy_breathing = NodePath("HeavyBreathing")
+wood_breaking = NodePath("WoodBreaking")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(4, 4)
@@ -1779,22 +1814,27 @@ parameters/looping = true
 [node name="Footsteps" type="AudioStreamPlayer2D" parent="Player"]
 stream = ExtResource("9_efxa6")
 
-[node name="caretaker" parent="." node_paths=PackedStringArray("jumpscare_overlay", "jumpscare_sound") groups=["Caretaker"] instance=ExtResource("3_h2yge")]
-z_index = 10
-y_sort_enabled = true
-position = Vector2(1015, 875)
-jumpscare_overlay = NodePath("../CanvasLayer/JumpScare")
-jumpscare_sound = NodePath("../CanvasLayer/JumpScareAudio")
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Player"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_a6jrf")
+animation = &"struggle"
+frame_progress = 0.9641079
+
+[node name="HeavyBreathing" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("20_xuqvo")
+volume_db = 10.0
+parameters/looping = true
+
+[node name="WoodBreaking" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("21_qsp4k")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0.06879826, 0.06879829, 0.068798244, 1)
 
 [node name="GlobalInventory" type="Node" parent="."]
 editor_description = "idk man"
 script = ExtResource("15_vivmo")
-
-[node name="QuizUI" parent="." instance=ExtResource("20_82xsv")]
-visible = false
 
 [node name="PauseMenuUI" type="CanvasLayer" parent="."]
 process_mode = 2
@@ -1862,38 +1902,40 @@ offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="JumpScareAudio" type="AudioStreamPlayer2D" parent="CanvasLayer"]
-position = Vector2(-960, -540)
-stream = ExtResource("24_1u8w0")
-
-[node name="JumpScare" type="TextureRect" parent="CanvasLayer"]
-visible = false
-top_level = true
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -384.0
-offset_top = -216.0
-offset_right = 384.0
-offset_bottom = 216.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("23_d13ii")
-
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 
-[node name="MashPrompt" type="Label" parent="CanvasLayer2"]
+[node name="MashLabel" type="Label" parent="CanvasLayer2"]
 visible = false
-offset_left = 338.0
-offset_top = 251.0
-offset_right = 738.0
-offset_bottom = 274.0
+modulate = Color(1, 1, 1, 0)
+offset_left = 376.0
+offset_top = 184.0
+offset_right = 776.0
+offset_bottom = 207.0
 theme_override_fonts/font = ExtResource("25_0odxb")
+theme_override_font_sizes/font_size = 16
 text = "Mash SPACE to break free!"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="MashProgress" type="ProgressBar" parent="CanvasLayer2"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -212.0
+offset_right = 51.0
+offset_bottom = -185.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("13_ycdy4")
+theme_override_fonts/font = ExtResource("25_0odxb")
+max_value = 5.0
+
+[node name="RealQuiz" parent="." instance=ExtResource("29_qsp4k")]
+visible = false
 
 [connection signal="body_shape_entered" from="Env/QTEZones/Area2D" to="Player" method="_on_area_2d_body_shape_entered"]
 [connection signal="body_shape_entered" from="Env/QTEZones/Area2D2" to="Player" method="_on_area_2d_2_body_shape_entered"]

@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://c4la7kcg2s8dq"]
+[gd_scene load_steps=10 format=3 uid="uid://c4la7kcg2s8dq"]
 
 [ext_resource type="Script" uid="uid://beg6whu8kdaq5" path="res://Objects/caretaker.gd" id="1_cgjin"]
 [ext_resource type="Texture2D" uid="uid://dencco77q5ify" path="res://Assets/caretaker_animation.png" id="1_iy8re"]
+[ext_resource type="AudioStream" uid="uid://cebakduu3fou7" path="res://Assets/sounds/sounds/jumpscare-94984.mp3" id="3_p52ut"]
+[ext_resource type="Texture2D" uid="uid://b2hniwtom2g0j" path="res://Assets/caretaker jumpscare.png" id="4_fo50v"]
 
 [sub_resource type="Animation" id="Animation_cgjin"]
 resource_name = "Left"
@@ -47,9 +49,13 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cgjin"]
 size = Vector2(13, 5)
 
-[node name="caretaker" type="CharacterBody2D"]
+[node name="caretaker" type="CharacterBody2D" node_paths=PackedStringArray("jumpscare_overlay", "jumpscare_sound") groups=["Caretaker"]]
+z_index = 10
+y_sort_enabled = true
 script = ExtResource("1_cgjin")
-speed = 100.0
+speed = 80.0
+jumpscare_overlay = NodePath("CanvasLayer/JumpScare")
+jumpscare_sound = NodePath("JumpScareAudio")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1, -13)
@@ -71,3 +77,26 @@ shape = SubResource("RectangleShape2D_cgjin")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_postprocessing = 1
+avoidance_enabled = true
+debug_enabled = true
+debug_path_custom_color = Color(1, 0.08627451, 1, 1)
+
+[node name="JumpScareAudio" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-960, -540)
+stream = ExtResource("3_p52ut")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="JumpScare" type="TextureRect" parent="CanvasLayer"]
+visible = false
+top_level = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -384.0
+offset_top = -216.0
+offset_right = 384.0
+offset_bottom = 216.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_fo50v")

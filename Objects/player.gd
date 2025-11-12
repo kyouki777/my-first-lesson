@@ -5,7 +5,19 @@ extends CharacterBody2D
 @onready var anim_player: AnimationPlayer = $sprite2/AnimationPlayer
 @onready var heartbeat: AudioStreamPlayer2D = $Heartbeat
 @onready var footsteps: AudioStreamPlayer2D = $Footsteps
-@onready var caretaker = get_tree().get_first_node_in_group("Caretaker")
+var caretaker: Node = null
+#@onready var qte_sprite: Sprite2D = $QTE_Animation   # your separate QTE sprite
+@export var qte_anim: AnimatedSprite2D
+@onready var player_sprite: Sprite2D = $sprite2      # your normal walking sprite
+
+#@export var mash_prompt: Node
+@export var mash_bar: ProgressBar
+@export var mash_label: Label
+
+@export var heavy_breathing : AudioStreamPlayer2D
+@export var wood_breaking : AudioStreamPlayer2D
+
+
 
 var last_anim_direction: String = "Down"
 var last_dir: Vector2
@@ -13,8 +25,6 @@ var max_volume = 0.0
 var min_volume = -30.0
 var max_distance = 500.0
 
-#@onready var anim = $AnimationPlayer
-@export var mash_prompt: Node
 
 var is_caught = false
 var mash_count = 0
@@ -28,7 +38,12 @@ func _ready():
 	if heartbeat and not heartbeat.playing:
 		heartbeat.play()
 	
-	mash_prompt.visible = false
+	# hide mash UI and QTE animation
+	mash_label.visible = false
+	mash_bar.value = 0
+	#mash_label.text = ""
+	if qte_anim:
+		qte_anim.visible = false
 
 func _physics_process(delta):
 	if GlobalState.is_game_paused or is_caught:
@@ -42,10 +57,34 @@ func _physics_process(delta):
 	velocity = direction.normalized() * speed
 	move_and_slide()
 
+	# Ensure caretaker reference is always valid
+	if not is_instance_valid(caretaker):
+		caretaker = get_tree().get_first_node_in_group("Caretaker")
+
+	# Only update heartbeat if caretaker actually exists and is valid
+	if is_instance_valid(caretaker):
+		update_heartbeat()
+	else:
+		# If caretaker doesn't exist, stop the heartbeat
+		if heartbeat.playing:
+			heartbeat.stop()
+
 	update_animation(direction)
-	update_heartbeat()
 	update_footsteps(direction)
 
+	if is_caught:
+		# update progress bar
+		if mash_bar:
+			mash_bar.value = mash_count / float(required_mash) * 100
+
+		if mash_label:
+			mash_label.visible = int(Time.get_ticks_msec() / 200) % 2 == 0
+			#mash_label.text = str(mash_count) + " / " + str(required_mash)
+
+
+		# check completion
+		if mash_count >= required_mash:
+			_break_free()
 	#if caretaker:
 		#print("Distance to caretaker:", global_position.distance_to(caretaker.global_position))
 	#else:
@@ -60,15 +99,40 @@ func _process(delta: float) -> void:
 
 
 func _input(event):
-	if is_caught and event.is_action_pressed("ui_accept"):  # space by default
+	if is_caught and event.is_action_pressed("ui_accept"):
 		mash_count += 1
-		# no timer used now
-		#anim.play("struggle")  # quick animation while mashing
 		print("Mash count:", mash_count)
-		# optional: update mash prompt text if it's a Label
-		if mash_prompt and mash_prompt is Label:
-			mash_prompt.text = str(mash_count) + " / " + str(required_mash)
 
+		# Update progress bar
+		if mash_bar:
+			mash_bar.value = mash_count
+
+		# Optional: flash the text
+
+
+var mash_label_tween: Tween = null
+
+func _start_label_flash():
+	if not mash_label:
+		return
+
+	# Stop previous tween if any
+	if mash_label_tween and mash_label_tween.is_valid():
+		mash_label_tween.kill()
+
+	# Make a new tween that loops
+	var c = mash_label.modulate
+	mash_label_tween = mash_label.create_tween()
+	mash_label_tween.tween_property(mash_label, "modulate", Color(c.r, c.g, c.b, 0.2), 0.3)
+	mash_label_tween.tween_property(mash_label, "modulate", Color(c.r, c.g, c.b, 1.0), 0.3)
+	mash_label_tween.set_loops()  # infinite loop
+	mash_label_tween.play()
+
+
+func _stop_label_flash():
+	if mash_label_tween and mash_label_tween.is_valid():
+		mash_label_tween.kill()
+	mash_label.modulate.a = 1.0  # restore full alpha
 
 
 func _on_CatchTrigger_body_entered(body):
@@ -76,18 +140,51 @@ func _on_CatchTrigger_body_entered(body):
 		_get_caught()
 
 
+
 func _get_caught():
 	is_caught = true
 	mash_count = 0
-	mash_prompt.visible = true
-	#anim.play("caught")   # play caught animation
+
+# show QTE animation
+	if qte_anim:
+		qte_anim.visible = true
+		qte_anim.play("struggle")
+
+# show mash UI
+	mash_label.visible = true
+	mash_bar.visible = true
+	mash_bar.value = 0
+#mash_label.text = "0 / " + str(required_mash)
+	player_sprite.visible = false
+# stop player
 	velocity = Vector2.ZERO
+	heavy_breathing.play()
+	wood_breaking.play()
+	
+	_start_label_flash()
+
+
 
 
 func _break_free():
 	is_caught = false
-	mash_prompt.visible = false
-	#anim.play("escape")   # play breaking free animation
+
+	
+
+	# hide QTE animation
+	if qte_anim:
+		qte_anim.stop()
+		qte_anim.visible = false
+
+	# hide mash UI
+	mash_label.visible = false
+	mash_bar.visible = false
+	mash_bar.value = 0
+	#mash_label.text = ""
+	
+	player_sprite.visible = true
+	heavy_breathing.stop()
+	_stop_label_flash()
 	print("Player escaped!")
 
 
@@ -125,16 +222,35 @@ func update_animation(direction: Vector2):
 func update_heartbeat():
 	if not heartbeat:
 		return
-	if not caretaker:
-		heartbeat.volume_db = min_volume
+
+	# Find any active caretaker in the scene tree
+	var caretakers = get_tree().get_nodes_in_group("Caretaker")
+
+	if caretakers.size() == 0:
+		# No caretaker at all → stop heartbeat completely
+		if heartbeat.playing:
+			heartbeat.stop()
 		return
 
+	var caretaker = caretakers[0]
 	var distance = global_position.distance_to(caretaker.global_position)
-	var t = clamp(distance / max_distance, 0.0, 1.0)
+	var max_distance = 500.0
 
-	# Louder and faster when closer
-	heartbeat.volume_db = lerp(min_volume, max_volume, 1.0 - t)
-	heartbeat.pitch_scale = lerp(1.0, 1.5, 1.0 - t)
+	# When caretaker is within detection range
+	if distance <= max_distance:
+		# Start heartbeat if not already playing
+		if not heartbeat.playing:
+			heartbeat.play()
+
+		# Adjust volume and pitch dynamically
+		var t = clamp(distance / max_distance, 0.0, 1.0)
+		heartbeat.volume_db = lerp(-30.0, 0.0, 1.0 - t)
+		heartbeat.pitch_scale = lerp(1.0, 1.5, 1.0 - t)
+	else:
+		# Too far → fade out and stop
+		if heartbeat.playing:
+			heartbeat.stop()
+
 
 func update_footsteps(direction: Vector2):
 	if not footsteps:

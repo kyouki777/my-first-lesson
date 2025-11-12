@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://m84r3dm21jgq"]
+[gd_scene load_steps=15 format=3 uid="uid://m84r3dm21jgq"]
 
 [ext_resource type="Texture2D" uid="uid://d4nb5adyd25vg" path="res://Assets/kidblue_animation_sheet.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://kajug0tbsfe6" path="res://Objects/player.gd" id="1_onrkg"]
@@ -150,6 +150,9 @@ tracks/0/keys = {
 "values": [Vector2i(1, 3), Vector2i(2, 3)]
 }
 
+[sub_resource type="Animation" id="Animation_slvmq"]
+resource_name = "struggle"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1jxqw"]
 _data = {
 &"Down": SubResource("Animation_sweqy"),
@@ -160,7 +163,8 @@ _data = {
 &"Left": SubResource("Animation_i3pqv"),
 &"RESET": SubResource("Animation_dw050"),
 &"Right": SubResource("Animation_onrkg"),
-&"Up": SubResource("Animation_hqtel")
+&"Up": SubResource("Animation_hqtel"),
+&"struggle": SubResource("Animation_slvmq")
 }
 
 [node name="Player" type="CharacterBody2D"]
