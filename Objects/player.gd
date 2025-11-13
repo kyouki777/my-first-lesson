@@ -28,7 +28,7 @@ var max_distance = 500.0
 
 var is_caught = false
 var mash_count = 0
-var required_mash = 5   # how many presses needed to break free
+var required_mash = 10   # how many presses needed to break free
 var mash_timeout = 0.1   # seconds before mash_count slowly decays
 
 var mash_timer := 0.0

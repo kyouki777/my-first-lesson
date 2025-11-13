@@ -74,11 +74,11 @@ autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_cgjin")
+disabled = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_postprocessing = 1
 avoidance_enabled = true
-debug_enabled = true
 debug_path_custom_color = Color(1, 0.08627451, 1, 1)
 
 [node name="JumpScareAudio" type="AudioStreamPlayer2D" parent="."]

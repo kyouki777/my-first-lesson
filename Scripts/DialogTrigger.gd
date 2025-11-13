@@ -20,6 +20,8 @@ func _on_body_entered(body):
 func _on_body_exited(body):
 	if body.name == "Player":
 		player_in_area = false
+	Dialogic.end_timeline()
+	Dialogic.clear()
 
 func _unhandled_input(event):
 	# We only check for interaction if:
@@ -33,7 +35,7 @@ func _unhandled_input(event):
 func start_my_dialog():
 	# 1. "FREEZE" THE GAME
 	# Set the global pause flag to true.
-	GlobalState.is_game_paused = true
+	#GlobalState.is_game_paused = true
 	
 	# 2. START THE DIALOG
 	# This function will pause *itself* until the dialog is over.
@@ -41,4 +43,4 @@ func start_my_dialog():
 	await Dialogic.timeline_ended
 	# 3. "UNFREEZE" THE GAME
 	# Now that the dialog is over, set the flag back to false.
-	GlobalState.is_game_paused = false
+	#GlobalState.is_game_paused = false

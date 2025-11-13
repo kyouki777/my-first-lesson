@@ -39,6 +39,7 @@ autoplay = true
 [node name="SFXPlayer" type="AudioStreamPlayer2D" parent="."]
 
 [node name="Label" type="Label" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.09803922)
 layout_mode = 0
 offset_right = 156.0

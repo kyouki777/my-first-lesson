@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="my-first-lesson"
+config/name="My First Lesson"
 run/main_scene="uid://b7rfq14kadqc3"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="uid://cwwvsd2t3ko03"
@@ -51,6 +51,7 @@ directories/dtl_directory={
 "rian_bed": "res://Dialogues/rian_bed.dtl",
 "riri_bed": "res://Dialogues/riri_bed.dtl",
 "sri_bed": "res://Dialogues/sri_bed.dtl",
+"test": "res://Dialogues/test.dtl",
 "theBalls": "res://Dialogues/theBalls.dtl",
 "ulka_bed": "res://Dialogues/ulka_bed.dtl",
 "william_bed": "res://Dialogues/william_bed.dtl",

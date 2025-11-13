@@ -49,6 +49,17 @@ theme_override_fonts/font = ExtResource("3_mmjuh")
 theme_override_font_sizes/font_size = 20
 text = "Score: "
 
+[node name="ScoreLabel2" type="Label" parent="."]
+offset_left = 104.0
+offset_top = 104.0
+offset_right = 384.0
+offset_bottom = 127.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_mmjuh")
+theme_override_font_sizes/font_size = 20
+text = "/100"
+horizontal_alignment = 2
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
@@ -174,6 +185,7 @@ vertical_alignment = 2
 [node name="SFX_Hum" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_tsvcg")
 volume_db = 6.0
+parameters/looping = true
 
 [node name="SFX_Correct" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_vnlvy")
@@ -196,7 +208,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 64.0
-offset_top = 64.0
+offset_top = 63.0
 offset_right = -64.0
 offset_bottom = -72.0
 grow_horizontal = 2
