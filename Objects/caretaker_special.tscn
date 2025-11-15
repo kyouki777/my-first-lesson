@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://dowu0ljijfalf"]
+
+[ext_resource type="Script" uid="uid://d1t715joqbskv" path="res://Objects/caretaker_special.gd" id="1_or844"]
+[ext_resource type="Texture2D" uid="uid://dencco77q5ify" path="res://Assets/caretaker_animation.png" id="1_wbued"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_or844"]
+atlas = ExtResource("1_wbued")
+region = Rect2(0, 30, 16, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k74ix"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_or844")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_or844"]
+
+[node name="caretaker_special" type="CharacterBody2D"]
+script = ExtResource("1_or844")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_k74ix")
+frame_progress = 0.507838
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_or844")
+disabled = true

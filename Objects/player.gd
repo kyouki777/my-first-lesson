@@ -46,7 +46,7 @@ func _ready():
 		qte_anim.visible = false
 
 func _physics_process(delta):
-	if GlobalState.is_game_paused or is_caught:
+	if GlobalState.is_game_paused or is_caught or GlobalState.is_in_minigame:
 		velocity = Vector2.ZERO
 		move_and_slide()
 		update_animation(last_dir)

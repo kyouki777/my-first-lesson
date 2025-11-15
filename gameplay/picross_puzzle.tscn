@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyiqivcbecjts"]
+
+[ext_resource type="Script" uid="uid://d4e2yfa5ea4be" path="res://gameplay/picross_puzzle.gd" id="1_2kxey"]
+[ext_resource type="PackedScene" uid="uid://n1o023pklak6" path="res://gameplay/picross_cell.tscn" id="2_u00mf"]
+
+[node name="PicrossPuzzle" type="CanvasLayer"]
+script = ExtResource("1_2kxey")
+cell_scene = ExtResource("2_u00mf")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LeftCluesGrid" type="GridContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Container" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="TopCluesGrid" type="GridContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+columns = 5
+
+[node name="PuzzleGrid" type="GridContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+columns = 5
+
+[node name="ModeButton" type="Button" parent="."]
+offset_left = 346.0
+offset_top = 5.0
+offset_right = 429.0
+offset_bottom = 36.0
+text = "Mode: Fill"
+
+[node name="QuitButton" type="Button" parent="."]
+offset_left = 352.0
+offset_top = 55.0
+offset_right = 394.0
+offset_bottom = 86.0
+text = "Quit"

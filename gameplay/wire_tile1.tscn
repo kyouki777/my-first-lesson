@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dke7puuixdikp"]
+
+[ext_resource type="Script" uid="uid://61gji4nhtpy0" path="res://gameplay/wire_tile.gd" id="1_eabos"]
+[ext_resource type="Texture2D" uid="uid://dj8fdvygl4fww" path="res://Assets/tile1.png" id="2_8law1"]
+
+[node name="straightwiretile" type="Button"]
+custom_minimum_size = Vector2(16, 16)
+offset_right = 16.0
+offset_bottom = 16.0
+pivot_offset = Vector2(8, 8)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_eabos")
+connections = Array[bool]([true, false, true, false])
+
+[node name="WireTexture" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_8law1")

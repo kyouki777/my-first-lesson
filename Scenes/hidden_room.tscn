@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://csggriy3nmvva" path="res://Assets/Furnitures_sheet.png" id="2_eimoa"]
 [ext_resource type="Texture2D" uid="uid://b6vpjou76o7nf" path="res://Assets/furnitures_hidden_room.png" id="3_867jr"]
 [ext_resource type="Texture2D" uid="uid://d0uvbs8lchkjn" path="res://Assets/background_hidden_room.png" id="4_5kuqg"]
-[ext_resource type="PackedScene" uid="uid://dowu0ljijfalf" path="res://Scenes/caretaker_special.tscn" id="6_867jr"]
-[ext_resource type="Script" uid="uid://hcek0mkrtd0d" path="res://Unused/hidden_room_dialogue.gd" id="7_sv46g"]
+[ext_resource type="PackedScene" uid="uid://dowu0ljijfalf" path="res://Objects/caretaker_special.tscn" id="6_867jr"]
+[ext_resource type="Script" uid="uid://hcek0mkrtd0d" path="res://Scenes/hidden_room_dialogue.gd" id="7_sv46g"]
 [ext_resource type="AudioStream" uid="uid://ckm2jsxp4rryu" path="res://Assets/sounds/door-opening-397990.mp3" id="8_thu7x"]
 [ext_resource type="AudioStream" uid="uid://b44uel54hoq80" path="res://Assets/sounds/door-slam-172171.mp3" id="9_o0bes"]
 

@@ -1,0 +1,234 @@
+[gd_scene load_steps=3 format=3 uid="uid://dup05p764bbqf"]
+
+[ext_resource type="Script" uid="uid://63si76j7pbwj" path="res://gameplay/wordle.gd" id="1_16pdj"]
+[ext_resource type="FontFile" uid="uid://k6fx05vf40o8" path="res://Assets/Font/PressStart2P.ttf" id="2_efsu0"]
+
+[node name="newwordle" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.9, 0.9)
+script = ExtResource("1_16pdj")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -320.0
+offset_right = 320.0
+offset_bottom = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 5
+
+[node name="Button" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("2_efsu0")
+theme_override_font_sizes/font_size = 72
+text = "x"
+
+[node name="Button2" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("2_efsu0")
+theme_override_font_sizes/font_size = 72
+text = "x"
+
+[node name="Button3" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("2_efsu0")
+theme_override_font_sizes/font_size = 72
+text = "x"
+
+[node name="Button4" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("2_efsu0")
+theme_override_font_sizes/font_size = 72
+text = "x"
+
+[node name="Button5" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("2_efsu0")
+theme_override_font_sizes/font_size = 72
+text = "x"
+
+[node name="Button6" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("2_efsu0")
+theme_override_font_sizes/font_size = 72
+text = "x"
+
+[node name="Button7" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("2_efsu0")
+theme_override_font_sizes/font_size = 72
+text = "x"
+
+[node name="Button8" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("2_efsu0")
+theme_override_font_sizes/font_size = 72
+text = "x"
+
+[node name="Button9" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("2_efsu0")
+theme_override_font_sizes/font_size = 72
+text = "x"
+
+[node name="Button10" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("2_efsu0")
+theme_override_font_sizes/font_size = 72
+text = "x"
+
+[node name="Button11" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("2_efsu0")
+theme_override_font_sizes/font_size = 72
+text = "x"
+
+[node name="Button12" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("2_efsu0")
+theme_override_font_sizes/font_size = 72
+text = "x"
+
+[node name="Button13" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("2_efsu0")
+theme_override_font_sizes/font_size = 72
+text = "x"
+
+[node name="Button14" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("2_efsu0")
+theme_override_font_sizes/font_size = 72
+text = "x"
+
+[node name="Button15" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("2_efsu0")
+theme_override_font_sizes/font_size = 72
+text = "x"
+
+[node name="Button16" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("2_efsu0")
+theme_override_font_sizes/font_size = 72
+text = "x"
+
+[node name="Button17" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("2_efsu0")
+theme_override_font_sizes/font_size = 72
+text = "x"
+
+[node name="Button18" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("2_efsu0")
+theme_override_font_sizes/font_size = 72
+text = "x"
+
+[node name="Button19" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("2_efsu0")
+theme_override_font_sizes/font_size = 72
+text = "x"
+
+[node name="Button20" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("2_efsu0")
+theme_override_font_sizes/font_size = 72
+text = "x"
+
+[node name="Button21" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("2_efsu0")
+theme_override_font_sizes/font_size = 72
+text = "x"
+
+[node name="Button22" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("2_efsu0")
+theme_override_font_sizes/font_size = 72
+text = "x"
+
+[node name="Button23" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("2_efsu0")
+theme_override_font_sizes/font_size = 72
+text = "x"
+
+[node name="Button24" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("2_efsu0")
+theme_override_font_sizes/font_size = 72
+text = "x"
+
+[node name="Button25" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("2_efsu0")
+theme_override_font_sizes/font_size = 72
+text = "x"

@@ -1,9 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://cowngojs4q8sh"]
+[gd_scene load_steps=15 format=3 uid="uid://cowngojs4q8sh"]
 
-[ext_resource type="Script" uid="uid://drdacs4lsq4bq" path="res://Unused/REAL_QUIZ.gd" id="1_vjqhs"]
+[ext_resource type="Script" uid="uid://drdacs4lsq4bq" path="res://Scenes/REAL_QUIZ.gd" id="1_vjqhs"]
 [ext_resource type="Texture2D" uid="uid://dyrjnge1rlscx" path="res://Assets/image.png" id="2_cpgde"]
 [ext_resource type="FontFile" uid="uid://k6fx05vf40o8" path="res://Assets/Font/PressStart2P.ttf" id="3_mmjuh"]
-[ext_resource type="Script" uid="uid://brwh3gbjogoge" path="res://Unused/v_box_container.gd" id="4_1256r"]
+[ext_resource type="Script" uid="uid://brwh3gbjogoge" path="res://Scenes/v_box_container.gd" id="4_1256r"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://Assets/UI/kenneyUI.tres" id="5_1gw2o"]
 [ext_resource type="AudioStream" uid="uid://dp0l1h0d71ss2" path="res://Assets/sounds/computer-humming-236384.mp3" id="6_tsvcg"]
 [ext_resource type="AudioStream" uid="uid://dh5xj503wevkx" path="res://Assets/sounds/sounds/correct-choice-43861.mp3" id="7_vnlvy"]
@@ -13,6 +13,9 @@
 [ext_resource type="AudioStream" uid="uid://bqbrrsqidc2m" path="res://Assets/sounds/spacebar-click-keyboard-199448.mp3" id="11_1256r"]
 [ext_resource type="Script" uid="uid://bktawl7w5tldb" path="res://Scenes/password_screen.gd" id="11_mmjuh"]
 [ext_resource type="PackedScene" uid="uid://c4la7kcg2s8dq" path="res://Objects/caretaker.tscn" id="13_1gw2o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1gw2o"]
+bg_color = Color(1, 1, 1, 0)
 
 [node name="Quiz" type="CanvasLayer" node_paths=PackedStringArray("sfx_doorUnlocked")]
 script = ExtResource("1_vjqhs")
@@ -256,3 +259,25 @@ offset_right = 656.0
 offset_bottom = 103.0
 theme_override_fonts/font = ExtResource("3_mmjuh")
 text = "Password incorrect"
+
+[node name="FORGOT" type="Button" parent="PasswordScreen"]
+layout_mode = 0
+offset_left = 386.0
+offset_top = 287.0
+offset_right = 650.0
+offset_bottom = 311.0
+theme_override_fonts/font = ExtResource("3_mmjuh")
+theme_override_styles/normal = SubResource("StyleBoxFlat_1gw2o")
+text = "Forgot Password?"
+
+[node name="CLUE" type="Label" parent="PasswordScreen"]
+visible = false
+layout_mode = 0
+offset_left = 211.0
+offset_top = 466.0
+offset_right = 819.0
+offset_bottom = 489.0
+theme_override_fonts/font = ExtResource("3_mmjuh")
+text = "The safe, the diary, and the computer."
+
+[connection signal="pressed" from="PasswordScreen/FORGOT" to="PasswordScreen" method="_on_forgot_pressed"]

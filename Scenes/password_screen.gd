@@ -7,7 +7,6 @@ extends ColorRect
 
 @export var caretaker_scene: PackedScene
 @export var spawn_point_name: String = "CaretakerSpawn"
-@onready var sound_player: AudioStreamPlayer = $SuccessSound
 
 var typing := false
 var caretaker_spawned := false
@@ -48,7 +47,7 @@ func _on_text_submitted(new_text: String) -> void:
 		line_edit.release_focus()
 
 		if not caretaker_spawned:
-			var delay = randf_range(180.0, 480.0)
+			var delay = randf_range(6.0, 10.0)
 			print("Caretaker will spawn in ", delay, " seconds...")
 			_start_caretaker_timer(delay)
 			caretaker_spawned = true
@@ -85,8 +84,6 @@ func _spawn_caretaker() -> void:
 
 	get_tree().current_scene.add_child(caretaker_instance)
 
-	if sound_player:
-		sound_player.play()
 
 
 func _show_incorrect_message() -> void:
@@ -104,3 +101,7 @@ func _on_focus_entered() -> void:
 
 func _on_focus_exited() -> void:
 	typing = false
+
+
+func _on_forgot_pressed() -> void:
+	$CLUE.visible = true

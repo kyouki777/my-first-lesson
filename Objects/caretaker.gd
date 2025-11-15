@@ -34,10 +34,11 @@ func _physics_process(delta):
 		return
 	
 	# Path Following
-	var next_path_pos = nav_agent.get_next_path_position()
-	var direction = global_position.direction_to(next_path_pos)
-	velocity = direction * speed
-	move_and_slide()
+	if not GlobalState.is_game_paused:
+		var next_path_pos = nav_agent.get_next_path_position()
+		var direction = global_position.direction_to(next_path_pos)
+		velocity = direction * speed
+		move_and_slide()
 	
 	# Check collision with player
 	if not jumpscare_triggered and player_node.global_position.distance_to(global_position) < 16:

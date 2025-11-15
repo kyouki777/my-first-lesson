@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://n1o023pklak6"]
+
+[ext_resource type="Script" uid="uid://cnsw3nan4aml" path="res://gameplay/picross_cell.gd" id="1_8v7u6"]
+
+[node name="PicrossCell" type="Button"]
+custom_minimum_size = Vector2(30, 30)
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_8v7u6")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

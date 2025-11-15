@@ -1,0 +1,151 @@
+[gd_scene load_steps=9 format=3 uid="uid://dhdy40fgvaktv"]
+
+[ext_resource type="Script" uid="uid://cwkfmqhwm1pqp" path="res://Scenes/game_1.gd" id="1_hujpt"]
+[ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://Assets/UI/kenneyUI.tres" id="2_v60vq"]
+[ext_resource type="FontFile" uid="uid://k6fx05vf40o8" path="res://Assets/Font/PressStart2P.ttf" id="3_1kr6r"]
+[ext_resource type="AudioStream" uid="uid://dp0l1h0d71ss2" path="res://Assets/sounds/computer-humming-236384.mp3" id="4_mrlrv"]
+[ext_resource type="AudioStream" uid="uid://bejcvst70nvoy" path="res://Assets/sounds/sounds/Click.mp3" id="5_3ypmj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4qfr"]
+bg_color = Color(0.46135, 0.212246, 0.00836753, 1)
+expand_margin_left = 20.0
+expand_margin_right = 20.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_paq0f"]
+bg_color = Color(0.713972, 0.343464, 0.0243649, 1)
+border_width_bottom = 10
+border_color = Color(0.292122, 0.0616881, 0.0192693, 1)
+expand_margin_left = 20.0
+expand_margin_right = 20.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tih7w"]
+
+[node name="TEMPLATE" type="CanvasLayer" node_paths=PackedStringArray("minigame")]
+script = ExtResource("1_hujpt")
+minigame = NodePath("template")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="play" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Button" type="Button" parent="play"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.25
+offset_top = -46.5
+offset_right = 90.25
+offset_bottom = 46.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_v60vq")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/pressed = SubResource("StyleBoxFlat_y4qfr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_paq0f")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tih7w")
+text = "PLAY?"
+
+[node name="Label" type="Label" parent="play"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -181.5
+offset_top = 125.0
+offset_right = 181.5
+offset_bottom = 236.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_1kr6r")
+theme_override_font_sizes/font_size = 60
+text = "Wordle"
+horizontal_alignment = 1
+
+[node name="SFX_Hum" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_mrlrv")
+volume_db = 6.0
+parameters/looping = true
+
+[node name="SFX_Click" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_3ypmj")
+
+[node name="win" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ResultLabel" type="Label" parent="win"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 76.0
+offset_top = -6.0
+offset_right = 1036.0
+offset_bottom = 118.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_1kr6r")
+theme_override_font_sizes/font_size = 80
+text = "HI CARETAKER"
+horizontal_alignment = 1
+
+[node name="WordLabel" type="Label" parent="win"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 151.0
+offset_top = 115.0
+offset_right = 961.0
+offset_bottom = 239.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_1kr6r")
+theme_override_font_sizes/font_size = 30
+text = "PASSWORD: 1 1 _ _ _ _ _ _ _ _"
+horizontal_alignment = 1
+
+[node name="template" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.9, 0.9)
+
+[node name="EXIT" type="Button" parent="."]
+offset_right = 48.0
+offset_bottom = 48.0
+theme_override_fonts/font = ExtResource("3_1kr6r")
+theme_override_font_sizes/font_size = 40
+text = "X"
+
+[connection signal="pressed" from="play/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="EXIT" to="." method="_on_exit_pressed"]
