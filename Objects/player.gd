@@ -11,7 +11,7 @@ var caretaker: Node = null
 @onready var player_sprite: Sprite2D = $sprite2      # your normal walking sprite
 
 #@export var mash_prompt: Node
-@export var mash_bar: ProgressBar
+#@export var mash_bar: ProgressBar
 @export var mash_label: Label
 
 @export var heavy_breathing : AudioStreamPlayer2D
@@ -40,7 +40,7 @@ func _ready():
 	
 	# hide mash UI and QTE animation
 	mash_label.visible = false
-	mash_bar.value = 0
+	#mash_bar.value = 0
 	#mash_label.text = ""
 	if qte_anim:
 		qte_anim.visible = false
@@ -74,8 +74,8 @@ func _physics_process(delta):
 
 	if is_caught:
 		# update progress bar
-		if mash_bar:
-			mash_bar.value = mash_count / float(required_mash) * 100
+		#if mash_bar:
+			#mash_bar.value = mash_count / float(required_mash) * 100
 
 		if mash_label:
 			mash_label.visible = int(Time.get_ticks_msec() / 200) % 2 == 0
@@ -104,8 +104,8 @@ func _input(event):
 		print("Mash count:", mash_count)
 
 		# Update progress bar
-		if mash_bar:
-			mash_bar.value = mash_count
+		#if mash_bar:
+			#mash_bar.value = mash_count
 
 		# Optional: flash the text
 
@@ -152,8 +152,8 @@ func _get_caught():
 
 # show mash UI
 	mash_label.visible = true
-	mash_bar.visible = true
-	mash_bar.value = 0
+	#mash_bar.visible = true
+	#mash_bar.value = 0
 #mash_label.text = "0 / " + str(required_mash)
 	player_sprite.visible = false
 # stop player
@@ -178,8 +178,8 @@ func _break_free():
 
 	# hide mash UI
 	mash_label.visible = false
-	mash_bar.visible = false
-	mash_bar.value = 0
+	#mash_bar.visible = false
+	#mash_bar.value = 0
 	#mash_label.text = ""
 	
 	player_sprite.visible = true
@@ -256,7 +256,7 @@ func update_footsteps(direction: Vector2):
 	if not footsteps:
 		return
 
-	if direction != Vector2.ZERO:
+	if direction != Vector2.ZERO or GlobalState.is_game_paused == true:
 		# Walking
 		if not footsteps.playing:
 			footsteps.play()

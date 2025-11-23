@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=4 uid="uid://bgv3f261vgjjd"]
+[gd_scene load_steps=105 format=4 uid="uid://bgv3f261vgjjd"]
 
 [ext_resource type="Texture2D" uid="uid://73p0gd6l6qtm" path="res://Assets/Floor_sheet.png" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://il8sug0nh6ds" path="res://main.gd" id="1_cegan"]
@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://348ylsy7towo" path="res://Assets/sounds/heartbeat-02-225103.mp3" id="8_4c57u"]
 [ext_resource type="AudioStream" uid="uid://cf6aqrhkypacx" path="res://Assets/sounds/sound-effect-707.mp3" id="9_efxa6"]
 [ext_resource type="Texture2D" uid="uid://bgnhoc64ysp2a" path="res://Assets/kid_crying_anim.png" id="10_1u8w0"]
+[ext_resource type="Script" uid="uid://dbygpa7ydsn0a" path="res://puzzle_3.gd" id="10_facbu"]
 [ext_resource type="Script" uid="uid://daq5ptu2kh6wj" path="res://Scripts/quiz_zone.gd" id="11_getpj"]
 [ext_resource type="Script" uid="uid://c4uemdcgpw32s" path="res://puzzle_1.gd" id="12_4k2k6"]
 [ext_resource type="Script" uid="uid://cxr877fjl6npm" path="res://Scripts/pause_menu.gd" id="12_dg77c"]
@@ -23,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://dv2weqgbjob0t" path="res://gameplay/sudoku.tscn" id="14_0rl1p"]
 [ext_resource type="Script" uid="uid://cxdhncu8n8fvu" path="res://Scripts/caretaker_spawn_point.gd" id="15_a6jrf"]
 [ext_resource type="Texture2D" uid="uid://ch68vvx06jufi" path="res://Assets/book.png" id="15_seu75"]
+[ext_resource type="Script" uid="uid://cwkfmqhwm1pqp" path="res://Scenes/game_1.gd" id="16_facbu"]
 [ext_resource type="Texture2D" uid="uid://ckkwd3q8ubvks" path="res://Assets/111.png" id="16_htxhm"]
 [ext_resource type="Texture2D" uid="uid://cnk3sxgkffblp" path="res://Assets/kids_stuck_anim.png" id="19_lswn8"]
 [ext_resource type="AudioStream" uid="uid://f31p6told8u6" path="res://Assets/sounds/breathing-fast-247449.mp3" id="20_xuqvo"]
@@ -30,7 +32,6 @@
 [ext_resource type="Script" uid="uid://dra7npf03fuvq" path="res://Scripts/escape_zone.gd" id="22_ryguw"]
 [ext_resource type="FontFile" uid="uid://k6fx05vf40o8" path="res://Assets/Font/PressStart2P.ttf" id="25_0odxb"]
 [ext_resource type="Texture2D" uid="uid://f8808rm2lmnm" path="res://Assets/safe.png" id="27_ok6jj"]
-[ext_resource type="PackedScene" uid="uid://dhdy40fgvaktv" path="res://gameplay/templateminigame.tscn" id="27_qsp4k"]
 [ext_resource type="PackedScene" uid="uid://cowngojs4q8sh" path="res://Scenes/REAL_QUIZ_UI.tscn" id="29_qsp4k"]
 [ext_resource type="PackedScene" uid="uid://dup05p764bbqf" path="res://gameplay/newwordle.tscn" id="29_seu75"]
 [ext_resource type="AudioStream" uid="uid://dp0l1h0d71ss2" path="res://Assets/sounds/computer-humming-236384.mp3" id="35_b1qrp"]
@@ -67,18 +68,30 @@ size = Vector2(28, 47)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d2t1y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4qfr"]
-bg_color = Color(0.46135, 0.212246, 0.00836753, 1)
 expand_margin_left = 20.0
 expand_margin_right = 20.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_paq0f"]
+border_width_bottom = 10
+border_color = Color(0.08468992, 0.08468994, 0.08468986, 1)
+expand_margin_left = 20.0
+expand_margin_right = 20.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tih7w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b1qrp"]
+bg_color = Color(0.46135, 0.212246, 0.00836753, 1)
+expand_margin_left = 20.0
+expand_margin_right = 20.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_come4"]
 bg_color = Color(0.713972, 0.343464, 0.0243649, 1)
 border_width_bottom = 10
 border_color = Color(0.292122, 0.0616881, 0.0192693, 1)
 expand_margin_left = 20.0
 expand_margin_right = 20.0
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tih7w"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h8e4i"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5vw27"]
 closed = false
@@ -608,6 +621,7 @@ texture = ExtResource("16_htxhm")
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gngh3"]
 texture = ExtResource("27_ok6jj")
 0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_kek77"]
 physics_layer_0/collision_layer = 1
@@ -710,12 +724,11 @@ y_sort_enabled = true
 script = ExtResource("1_cegan")
 start_dialog_name = "StartDialogue"
 
-[node name="Player" parent="." node_paths=PackedStringArray("qte_anim", "mash_bar", "mash_label", "heavy_breathing", "wood_breaking") groups=["player"] instance=ExtResource("1_ig7tw")]
+[node name="Player" parent="." node_paths=PackedStringArray("qte_anim", "mash_label", "heavy_breathing", "wood_breaking") groups=["player"] instance=ExtResource("1_ig7tw")]
 z_index = 10
 y_sort_enabled = true
 position = Vector2(408, 132)
 qte_anim = NodePath("AnimatedSprite2D2")
-mash_bar = NodePath("../Node/CanvasLayer2/MashProgress")
 mash_label = NodePath("../Node/CanvasLayer2/MashLabel")
 heavy_breathing = NodePath("HeavyBreathing")
 wood_breaking = NodePath("WoodBreaking")
@@ -760,7 +773,6 @@ y_sort_enabled = true
 [node name="POWER" type="Area2D" parent="Env/MINIGAME" node_paths=PackedStringArray("puzzle_ui")]
 script = ExtResource("2_jq2sk")
 dialog_name = "power"
-donedialog = "-"
 puzzle_ui = NodePath("../../../puzzle1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Env/MINIGAME/POWER"]
@@ -768,10 +780,9 @@ position = Vector2(664, 933.5)
 shape = SubResource("RectangleShape2D_4lmeg")
 
 [node name="DIARY" type="Area2D" parent="Env/MINIGAME" node_paths=PackedStringArray("puzzle_ui")]
-position = Vector2(-135, 248)
+position = Vector2(-135, 233)
 script = ExtResource("2_jq2sk")
 dialog_name = "diary"
-donedialog = "-"
 puzzle_ui = NodePath("../../../puzzle2")
 metadata/_edit_group_ = true
 
@@ -782,7 +793,6 @@ shape = SubResource("RectangleShape2D_0cp0l")
 position = Vector2(935, 138)
 script = ExtResource("2_jq2sk")
 dialog_name = "safe"
-donedialog = "-"
 puzzle_ui = NodePath("../../../puzzle3")
 metadata/_edit_group_ = true
 
@@ -791,8 +801,8 @@ shape = SubResource("RectangleShape2D_d2t1y")
 
 [node name="puzzle3" type="CanvasLayer" parent="." node_paths=PackedStringArray("minigame")]
 visible = false
-script = ExtResource("12_4k2k6")
-minigame = NodePath("")
+script = ExtResource("10_facbu")
+minigame = NodePath("sudoku")
 
 [node name="ColorRect" type="ColorRect" parent="puzzle3"]
 anchors_preset = 15
@@ -832,6 +842,21 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_paq0f")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tih7w")
 text = "X"
 
+[node name="Label" type="Label" parent="puzzle3/play"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -181.5
+offset_top = 125.0
+offset_right = 181.5
+offset_bottom = 236.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("25_0odxb")
+theme_override_font_sizes/font_size = 60
+text = "Sudoku"
+horizontal_alignment = 1
+
 [node name="SFX_Hum" type="AudioStreamPlayer2D" parent="puzzle3"]
 stream = ExtResource("35_b1qrp")
 volume_db = 6.0
@@ -840,7 +865,134 @@ parameters/looping = true
 [node name="SFX_Click" type="AudioStreamPlayer2D" parent="puzzle3"]
 stream = ExtResource("36_come4")
 
-[node name="template" type="Control" parent="puzzle3"]
+[node name="sudoku" parent="puzzle3" instance=ExtResource("14_0rl1p")]
+visible = false
+
+[node name="EXIT" type="Button" parent="puzzle3"]
+offset_right = 48.0
+offset_bottom = 48.0
+theme_override_fonts/font = ExtResource("25_0odxb")
+theme_override_font_sizes/font_size = 40
+text = "X"
+
+[node name="win" type="Control" parent="puzzle3"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="WordLabel" type="Label" parent="puzzle3/win"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 151.0
+offset_top = 115.0
+offset_right = 961.0
+offset_bottom = 239.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("25_0odxb")
+theme_override_font_sizes/font_size = 30
+text = "PASSWORD: _ _ _ _ _ 8 1 1 3"
+horizontal_alignment = 1
+
+[node name="puzzle2" type="CanvasLayer" parent="." node_paths=PackedStringArray("minigame")]
+visible = false
+script = ExtResource("16_facbu")
+label_text = "WORDLE"
+minigame = NodePath("newwordle")
+
+[node name="ColorRect" type="ColorRect" parent="puzzle2"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.15686275, 0.15686275, 0.15686275, 1)
+
+[node name="play" type="Control" parent="puzzle2"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Button" type="Button" parent="puzzle2/play"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.25
+offset_top = -46.5
+offset_right = 90.25
+offset_bottom = 46.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("13_ycdy4")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/pressed = SubResource("StyleBoxFlat_b1qrp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_come4")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_h8e4i")
+text = "PLAY?"
+
+[node name="Label" type="Label" parent="puzzle2/play"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -181.5
+offset_top = 125.0
+offset_right = 181.5
+offset_bottom = 236.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("25_0odxb")
+theme_override_font_sizes/font_size = 60
+text = "Wordle"
+horizontal_alignment = 1
+
+[node name="SFX_Hum" type="AudioStreamPlayer2D" parent="puzzle2"]
+stream = ExtResource("35_b1qrp")
+volume_db = 6.0
+parameters/looping = true
+
+[node name="SFX_Click" type="AudioStreamPlayer2D" parent="puzzle2"]
+stream = ExtResource("36_come4")
+
+[node name="win" type="Control" parent="puzzle2"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="WordLabel" type="Label" parent="puzzle2/win"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 151.0
+offset_top = 115.0
+offset_right = 961.0
+offset_bottom = 239.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("25_0odxb")
+theme_override_font_sizes/font_size = 30
+text = "PASSWORD: 1 2 1 8 1 _ _ _ _"
+horizontal_alignment = 1
+
+[node name="template" type="Control" parent="puzzle2"]
 visible = false
 layout_mode = 3
 anchors_preset = 8
@@ -852,15 +1004,12 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.9, 0.9)
 
-[node name="sudoku" parent="puzzle3" instance=ExtResource("14_0rl1p")]
-offset_left = 656.1818
-offset_top = 354.72726
-offset_right = 656.1819
-offset_bottom = 354.7273
-
-[node name="puzzle2" parent="." node_paths=PackedStringArray("minigame") instance=ExtResource("27_qsp4k")]
-label_text = "WORDLE"
-minigame = NodePath("newwordle")
+[node name="EXIT" type="Button" parent="puzzle2"]
+offset_right = 48.0
+offset_bottom = 48.0
+theme_override_fonts/font = ExtResource("25_0odxb")
+theme_override_font_sizes/font_size = 40
+text = "X"
 
 [node name="newwordle" parent="puzzle2" instance=ExtResource("29_seu75")]
 
@@ -930,6 +1079,13 @@ scale = Vector2(0.9, 0.9)
 [node name="WirePuzzle" parent="puzzle1" instance=ExtResource("37_facbu")]
 visible = false
 
+[node name="EXIT" type="Button" parent="puzzle1"]
+offset_right = 48.0
+offset_bottom = 48.0
+theme_override_fonts/font = ExtResource("25_0odxb")
+theme_override_font_sizes/font_size = 40
+text = "X"
+
 [node name="Node" type="Node2D" parent="."]
 
 [node name="Occluders" type="Node" parent="Node"]
@@ -991,7 +1147,7 @@ shape = SubResource("RectangleShape2D_come4")
 [node name="ObstacleObjects" type="TileMapLayer" parent="Node"]
 z_index = 10
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAXADsAAAAHAAoAAAAbADsAAAAHAAoAAAD6/x0AAAAHAAoAAAD6/xwAAAAHAAkAAAD8/x0AAAAHAAoAAAD8/xwAAAAHAAkAAAD+/x0AAAAHAAoAAAD+/xwAAAAHAAkAAAAAAB0AAAAHAAoAAAAAABwAAAAHAAkAAAA4AB0AAAAHAAoAAAA4ABwAAAAHAAkAAAA2AB0AAAAHAAoAAAA2ABwAAAAHAAkAAAA0AB0AAAAHAAoAAAA0ABwAAAAHAAkAAAAyAB0AAAAHAAoAAAAyABwAAAAHAAkAAAD7/xwAAAAIAAkAAAD7/x0AAAAIAAoAAAD9/xwAAAAIAAkAAAD9/x0AAAAIAAoAAAD//xwAAAAIAAkAAAD//x0AAAAIAAoAAAABABwAAAAIAAkAAAABAB0AAAAIAAoAAAAzABwAAAAIAAkAAAAzAB0AAAAIAAoAAAA1ABwAAAAIAAkAAAA1AB0AAAAIAAoAAAA3ABwAAAAIAAkAAAA3AB0AAAAIAAoAAAA5ABwAAAAIAAkAAAA5AB0AAAAIAAoAAAAYADoAAAAIAAkAAAAYADsAAAAIAAoAAAAaADoAAAAIAAkAAAAaADsAAAAIAAoAAAAXADoAAAAHAAkAAAAmACgAAAAJAAwAAAAnACgAAAAKAAwAAAAcACcAAAAGAAsAAAAcACgAAAAGAAwAAAAdACcAAAAGAAsAAAAdACgAAAAGAAwAAAAeACcAAAAGAAsAAAAeACgAAAAGAAwAAAAfACcAAAAGAAsAAAAfACgAAAAGAAwAAAAgACcAAAAHAAsAAAAgACgAAAAHAAwAAAAhACgAAAAIAAwAAAAiACgAAAAJAAwAAAAjACgAAAAKAAwAAAAkACgAAAAJAAwAAAAlACgAAAAKAAwAAAAoACgAAAALAAwAAAApACgAAAAKAAwAAAAqACgAAAALAAwAAAArACgAAAAKAAwAAAAKACoAAAAJAAkAAAAKACsAAAAJAAoAAAALACoAAAAKAAkAAAALACsAAAAKAAoAAAAMACoAAAALAAkAAAAMACsAAAALAAoAAAANACoAAAAMAAkAAAANACsAAAAMAAoAAAARACoAAAAJAAkAAAARACsAAAAJAAoAAAASACoAAAAKAAkAAAASACsAAAAKAAoAAAATACoAAAALAAkAAAATACsAAAALAAoAAAAUACoAAAAMAAkAAAAUACsAAAAMAAoAAAAKADAAAAAJAAkAAAAKADEAAAAJAAoAAAALADAAAAAKAAkAAAALADEAAAAKAAoAAAAMADAAAAALAAkAAAAMADEAAAALAAoAAAANADAAAAAMAAkAAAANADEAAAAMAAoAAAARADAAAAAJAAkAAAARADEAAAAJAAoAAAASADAAAAAKAAkAAAASADEAAAAKAAoAAAATADAAAAALAAkAAAATADEAAAALAAoAAAAUADAAAAAMAAkAAAAUADEAAAAMAAoAAAAVADAAAAANAAkAAAAVADEAAAANAAoAAAAVACoAAAANAAkAAAAVACsAAAANAAoAAAAOACoAAAANAAkAAAAOACsAAAANAAoAAAAJACoAAAANAAkAAAAJACsAAAANAAoAAAAJADAAAAANAAkAAAAJADEAAAANAAoAAAAOADAAAAANAAkAAAAOADEAAAANAAoAAAAQADAAAAANAAkAAAAQADEAAAANAAoAAAAQACoAAAANAAkAAAAQACsAAAANAAoAAAASAC8AAAANAAkAAAAMAC8AAAANAAkAAAALACkAAAANAAkAAAAMACkAAAANAAkAAAASACkAAAANAAkAAAALACwAAAANAAkAAAALAC0AAAANAAoAAAAMAC0AAAANAAoAAAASACwAAAANAAkAAAASAC0AAAANAAoAAAATACwAAAANAAkAAAATAC0AAAANAAoAAAAGADMAAAANAAwAAAAGACcAAAANAAkAAAAGACgAAAANAAoAAAAFABgAAAANAAkAAAAFABkAAAANAAoAAAAtABgAAAANAAkAAAAtABkAAAANAAoAAAD3/wcAAAAHAAkAAAD3/wgAAAAHAAoAAAA7AAcAAAAHAAkAAAA7AAgAAAAHAAoAAAD3/yoAAAAOAAgAAAD3/ywAAAAOAAgAAAD3/y4AAAAOAAgAAAD//yoAAAAPAAgAAAD//ywAAAAPAAgAAAA7ACoAAAAPAAgAAAA7ACwAAAAPAAgAAAA7AC4AAAAPAAgAAAD//ygAAAANAAwAAAAzACgAAAANAAwAAAD6/ygAAAANAAkAAAD6/ykAAAANAAoAAAA4ACgAAAANAAkAAAA4ACkAAAANAAoAAAD3/xkAAAANAAgAAAAOABcAAAANAAkAAAAOABgAAAANAAoAAAAzACAAAAANAAgAAAAZAAsAAAANAAgAAAAYABUAAAANAAgAAAAmABEAAAANAAgAAAAeACAAAAANAAgAAAARAB8AAAANAAgAAAD8/y0AAAANAAgAAAAPAC4AAAANAAgAAAAeACwAAAANAAgAAAAmADEAAAANAAgAAAA2ACsAAAANAAgAAAAzADkAAAANAAgAAAAnADcAAAANAAgAAAALADoAAAANAAgAAAAZAD0AAAANAAgAAAACADkAAAANAAgAAAD3/yQAAAANAAgAAAAOABEAAAANAAgAAAAFAAgAAAANAAwAAAAtAAgAAAANAAwAAAAkACMAAAANAAwAAAD8/wcAAQAAAAAAAAD8/wgAAQAAAAEAAAD9/wcAAQABAAAAAAD9/wgAAQABAAEAAAA1AAcAAQAAAAAAAAA1AAgAAQAAAAEAAAA2AAcAAQABAAAAAAA2AAgAAQABAAEAAAAOADoAAQAAAAAAAAAOADsAAQAAAAEAAAAPADoAAQABAAAAAAAPADsAAQABAAEAAAAjADoAAQAAAAAAAAAjADsAAQAAAAEAAAAkADoAAQABAAAAAAAkADsAAQABAAEAAAAQACcAAQAEAAAAAAAQACgAAQAEAAEAAAAAAAcAAQAEAAAAAAAAAAgAAQAEAAEAAAAyAAcAAQAEAAAAAAAyAAgAAQAEAAEAAAAfABYAAQAEAAAAAAAfABcAAQAEAAEAAAABABgAAQAEAAAAAAABABkAAQAEAAEAAAA4ABgAAQAEAAAAAAA4ABkAAQAEAAEAAAAZAEEAAQAEAAAAAAAZAEIAAQAEAAEAAAAjABYAAQAHAAAAAAAjABcAAQAHAAEAAAAkABYAAQAIAAAAAAAkABcAAQAIAAEAAAD3/xEAAQAHAAAAAAD3/xIAAQAHAAEAAAD4/xEAAQAIAAAAAAD4/xIAAQAIAAEAAAA6ABEAAQAHAAAAAAA6ABIAAQAHAAEAAAA7ABEAAQAIAAAAAAA7ABIAAQAIAAEAAAAIACcAAQAHAAAAAAAIACgAAQAHAAEAAAAJACcAAQAIAAAAAAAJACgAAQAIAAEAAAAPAEEAAQAHAAAAAAAPAEIAAQAHAAEAAAAQAEEAAQAIAAAAAAAQAEIAAQAIAAEAAAAiAEEAAQAHAAAAAAAiAEIAAQAHAAEAAAAjAEEAAQAIAAAAAAAjAEIAAQAIAAEAAAATACkAAAANAAkAAAAMACwAAAANAAkAAAALAC8AAAANAAkAAAAzACoAAAAOAAgAAAAzACwAAAAOAAgAAAAbADoAAAAHAAkAAAAYABwAAQAAAAAAAAAYAB0AAQAAAAEAAAAZABwAAQABAAAAAAAZAB0AAQABAAEAAAAsACgAAAANAAwAAAAQABYAAQACAAAAAAAQABcAAQACAAEAAAARABYAAQADAAAAAAARABcAAQADAAEAAAApADkABAAAAAAAAAD3/w8AAwAAAAAAAAA6AAgABgAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAXADsAAAAHAAoAAAAbADsAAAAHAAoAAAD6/x0AAAAHAAoAAAD6/xwAAAAHAAkAAAD8/x0AAAAHAAoAAAD8/xwAAAAHAAkAAAD+/x0AAAAHAAoAAAD+/xwAAAAHAAkAAAAAAB0AAAAHAAoAAAAAABwAAAAHAAkAAAA4AB0AAAAHAAoAAAA4ABwAAAAHAAkAAAA2AB0AAAAHAAoAAAA2ABwAAAAHAAkAAAA0AB0AAAAHAAoAAAA0ABwAAAAHAAkAAAAyAB0AAAAHAAoAAAAyABwAAAAHAAkAAAD7/xwAAAAIAAkAAAD7/x0AAAAIAAoAAAD9/xwAAAAIAAkAAAD9/x0AAAAIAAoAAAD//xwAAAAIAAkAAAD//x0AAAAIAAoAAAABABwAAAAIAAkAAAABAB0AAAAIAAoAAAAzABwAAAAIAAkAAAAzAB0AAAAIAAoAAAA1ABwAAAAIAAkAAAA1AB0AAAAIAAoAAAA3ABwAAAAIAAkAAAA3AB0AAAAIAAoAAAA5ABwAAAAIAAkAAAA5AB0AAAAIAAoAAAAYADoAAAAIAAkAAAAYADsAAAAIAAoAAAAaADoAAAAIAAkAAAAaADsAAAAIAAoAAAAXADoAAAAHAAkAAAAmACgAAAAJAAwAAAAnACgAAAAKAAwAAAAcACcAAAAGAAsAAAAcACgAAAAGAAwAAAAdACcAAAAGAAsAAAAdACgAAAAGAAwAAAAeACcAAAAGAAsAAAAeACgAAAAGAAwAAAAfACcAAAAGAAsAAAAfACgAAAAGAAwAAAAgACcAAAAHAAsAAAAgACgAAAAHAAwAAAAhACgAAAAIAAwAAAAiACgAAAAJAAwAAAAjACgAAAAKAAwAAAAkACgAAAAJAAwAAAAlACgAAAAKAAwAAAAoACgAAAALAAwAAAApACgAAAAKAAwAAAAqACgAAAALAAwAAAArACgAAAAKAAwAAAAKACoAAAAJAAkAAAAKACsAAAAJAAoAAAALACoAAAAKAAkAAAALACsAAAAKAAoAAAAMACoAAAALAAkAAAAMACsAAAALAAoAAAANACoAAAAMAAkAAAANACsAAAAMAAoAAAARACoAAAAJAAkAAAARACsAAAAJAAoAAAASACoAAAAKAAkAAAASACsAAAAKAAoAAAATACoAAAALAAkAAAATACsAAAALAAoAAAAUACoAAAAMAAkAAAAUACsAAAAMAAoAAAAKADAAAAAJAAkAAAAKADEAAAAJAAoAAAALADAAAAAKAAkAAAALADEAAAAKAAoAAAAMADAAAAALAAkAAAAMADEAAAALAAoAAAANADAAAAAMAAkAAAANADEAAAAMAAoAAAARADAAAAAJAAkAAAARADEAAAAJAAoAAAASADAAAAAKAAkAAAASADEAAAAKAAoAAAATADAAAAALAAkAAAATADEAAAALAAoAAAAUADAAAAAMAAkAAAAUADEAAAAMAAoAAAAVADAAAAANAAkAAAAVADEAAAANAAoAAAAVACoAAAANAAkAAAAVACsAAAANAAoAAAAOACoAAAANAAkAAAAOACsAAAANAAoAAAAJACoAAAANAAkAAAAJACsAAAANAAoAAAAJADAAAAANAAkAAAAJADEAAAANAAoAAAAOADAAAAANAAkAAAAOADEAAAANAAoAAAAQADAAAAANAAkAAAAQADEAAAANAAoAAAAQACoAAAANAAkAAAAQACsAAAANAAoAAAASAC8AAAANAAkAAAAMAC8AAAANAAkAAAALACkAAAANAAkAAAAMACkAAAANAAkAAAASACkAAAANAAkAAAALACwAAAANAAkAAAALAC0AAAANAAoAAAAMAC0AAAANAAoAAAASACwAAAANAAkAAAASAC0AAAANAAoAAAATACwAAAANAAkAAAATAC0AAAANAAoAAAAGADMAAAANAAwAAAAGACcAAAANAAkAAAAGACgAAAANAAoAAAAFABgAAAANAAkAAAAFABkAAAANAAoAAAAtABgAAAANAAkAAAAtABkAAAANAAoAAAD3/wcAAAAHAAkAAAD3/wgAAAAHAAoAAAA7AAcAAAAHAAkAAAA7AAgAAAAHAAoAAAD3/yoAAAAOAAgAAAD3/ywAAAAOAAgAAAD3/y4AAAAOAAgAAAD//yoAAAAPAAgAAAD//ywAAAAPAAgAAAA7ACoAAAAPAAgAAAA7ACwAAAAPAAgAAAA7AC4AAAAPAAgAAAD//ygAAAANAAwAAAAzACgAAAANAAwAAAD6/ygAAAANAAkAAAD6/ykAAAANAAoAAAA4ACgAAAANAAkAAAA4ACkAAAANAAoAAAD3/xkAAAANAAgAAAAOABcAAAANAAkAAAAOABgAAAANAAoAAAAzACAAAAANAAgAAAAZAAsAAAANAAgAAAAYABUAAAANAAgAAAAmABEAAAANAAgAAAAeACAAAAANAAgAAAARAB8AAAANAAgAAAD8/y0AAAANAAgAAAAPAC4AAAANAAgAAAAeACwAAAANAAgAAAAmADEAAAANAAgAAAA2ACsAAAANAAgAAAAzADkAAAANAAgAAAAnADcAAAANAAgAAAALADoAAAANAAgAAAAZAD0AAAANAAgAAAACADkAAAANAAgAAAD3/yQAAAANAAgAAAAOABEAAAANAAgAAAAFAAgAAAANAAwAAAAtAAgAAAANAAwAAAAkACMAAAANAAwAAAD8/wcAAQAAAAAAAAD8/wgAAQAAAAEAAAD9/wcAAQABAAAAAAD9/wgAAQABAAEAAAA1AAcAAQAAAAAAAAA1AAgAAQAAAAEAAAA2AAcAAQABAAAAAAA2AAgAAQABAAEAAAAOADoAAQAAAAAAAAAOADsAAQAAAAEAAAAPADoAAQABAAAAAAAPADsAAQABAAEAAAAjADoAAQAAAAAAAAAjADsAAQAAAAEAAAAkADoAAQABAAAAAAAkADsAAQABAAEAAAAQACcAAQAEAAAAAAAQACgAAQAEAAEAAAAAAAcAAQAEAAAAAAAAAAgAAQAEAAEAAAAyAAcAAQAEAAAAAAAyAAgAAQAEAAEAAAAfABYAAQAEAAAAAAAfABcAAQAEAAEAAAABABgAAQAEAAAAAAABABkAAQAEAAEAAAA4ABgAAQAEAAAAAAA4ABkAAQAEAAEAAAAZAEEAAQAEAAAAAAAZAEIAAQAEAAEAAAAjABYAAQAHAAAAAAAjABcAAQAHAAEAAAAkABYAAQAIAAAAAAAkABcAAQAIAAEAAAD3/xEAAQAHAAAAAAD3/xIAAQAHAAEAAAD4/xEAAQAIAAAAAAD4/xIAAQAIAAEAAAA6ABEAAQAHAAAAAAA6ABIAAQAHAAEAAAA7ABEAAQAIAAAAAAA7ABIAAQAIAAEAAAAIACcAAQAHAAAAAAAIACgAAQAHAAEAAAAJACcAAQAIAAAAAAAJACgAAQAIAAEAAAAPAEEAAQAHAAAAAAAPAEIAAQAHAAEAAAAQAEEAAQAIAAAAAAAQAEIAAQAIAAEAAAAiAEEAAQAHAAAAAAAiAEIAAQAHAAEAAAAjAEEAAQAIAAAAAAAjAEIAAQAIAAEAAAATACkAAAANAAkAAAAMACwAAAANAAkAAAALAC8AAAANAAkAAAAzACoAAAAOAAgAAAAzACwAAAAOAAgAAAAbADoAAAAHAAkAAAAYABwAAQAAAAAAAAAYAB0AAQAAAAEAAAAZABwAAQABAAAAAAAZAB0AAQABAAEAAAAsACgAAAANAAwAAAApADkABAAAAAAAAAA6AAgABgAAAAAAAAD3/w4AAwAAAAAAAAA=")
 tile_set = SubResource("TileSet_kek77")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="Node"]
@@ -1002,7 +1158,6 @@ position = Vector2(416, 824)
 script = ExtResource("15_a6jrf")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Node"]
-visible = false
 color = Color(0.06879826, 0.06879829, 0.068798244, 1)
 
 [node name="PauseMenuUI" type="CanvasLayer" parent="Node"]
@@ -1073,41 +1228,22 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="Node"]
-visible = false
 
 [node name="MashLabel" type="Label" parent="Node/CanvasLayer2"]
-anchors_preset = 1
-anchor_left = 1.0
+anchors_preset = 15
 anchor_right = 1.0
-offset_left = -709.0
-offset_top = 166.0
-offset_right = -309.0
-offset_bottom = 189.0
-grow_horizontal = 0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = 88.0
+offset_right = -10.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("25_0odxb")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 8
 text = "Mash SPACE to break free!"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="MashProgress" type="ProgressBar" parent="Node/CanvasLayer2"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 274.0
-offset_top = -84.0
-offset_right = 373.0
-offset_bottom = -57.0
-grow_horizontal = 2
-grow_vertical = 2
-rotation = -1.5707964
-theme = ExtResource("13_ycdy4")
-theme_override_fonts/font = ExtResource("25_0odxb")
-max_value = 10.0
-value = 2.0
-show_percentage = false
 
 [node name="RealQuiz" parent="Node" instance=ExtResource("29_qsp4k")]
 visible = false
@@ -2117,9 +2253,11 @@ stream = ExtResource("3_074og")
 stream = ExtResource("4_cegan")
 
 [connection signal="pressed" from="puzzle3/play/Button" to="puzzle3" method="_on_button_pressed"]
+[connection signal="pressed" from="puzzle3/EXIT" to="puzzle3" method="_on_exit_pressed"]
+[connection signal="pressed" from="puzzle2/play/Button" to="puzzle2" method="_on_button_pressed"]
+[connection signal="pressed" from="puzzle2/EXIT" to="puzzle2" method="_on_exit_pressed"]
 [connection signal="pressed" from="puzzle1/play/Button" to="puzzle1" method="_on_button_pressed"]
+[connection signal="pressed" from="puzzle1/EXIT" to="puzzle1" method="_on_exit_pressed"]
 [connection signal="body_shape_entered" from="Node/QTEZones/Area2D" to="Player" method="_on_area_2d_body_shape_entered"]
 [connection signal="body_shape_entered" from="Node/QTEZones/Area2D2" to="Player" method="_on_area_2d_2_body_shape_entered"]
 [connection signal="body_shape_entered" from="Node/QTEZones/Area2D5" to="Player" method="_on_area_2d_5_body_shape_entered"]
-
-[editable path="puzzle2"]

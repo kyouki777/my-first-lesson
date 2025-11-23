@@ -4,7 +4,7 @@ extends ColorRect
 @onready var submit_button: Button = $SubmitButton
 @onready var incorrect_label: Label = $IncorrectLabel
 @onready var player: Node = null
-
+@onready var incoming: Label = $"../INCOMING"
 @export var caretaker_scene: PackedScene
 @export var spawn_point_name: String = "CaretakerSpawn"
 
@@ -47,7 +47,7 @@ func _on_text_submitted(new_text: String) -> void:
 		line_edit.release_focus()
 
 		if not caretaker_spawned:
-			var delay = randf_range(6.0, 10.0)
+			var delay = randf_range(5.0, 15.0)
 			print("Caretaker will spawn in ", delay, " seconds...")
 			_start_caretaker_timer(delay)
 			caretaker_spawned = true
@@ -83,6 +83,8 @@ func _spawn_caretaker() -> void:
 		caretaker_instance.global_position = Vector2.ZERO
 
 	get_tree().current_scene.add_child(caretaker_instance)
+	incoming.visible = true
+
 
 
 

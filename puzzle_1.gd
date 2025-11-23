@@ -3,7 +3,7 @@ extends CanvasLayer
 @onready var color_rect: ColorRect = $ColorRect
 
 @export var minigame: Control
-	
+
 # targetobject.connect("theirsignal", our method)
 func _on_button_pressed() -> void:
 	play.visible = false
@@ -15,5 +15,10 @@ func _on_button_pressed() -> void:
 func togglewin():
 	minigame.visible = false
 	color_rect.visible = false
-	AudioManager.play_sfx("clicksfx")
+	AudioManager.play_sfx("power")
 	GlobalState.puzzle_1 = true
+
+func _on_exit_pressed() -> void:
+	# for Canvas UI parent to dissapear on use
+	print("dosomething")
+	self.visible = false

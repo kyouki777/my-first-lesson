@@ -2,7 +2,9 @@ extends Control
 
 @onready var grid:GridContainer = $GridContainer
 
-var DIFFICULTY = 2
+signal winsignal
+
+var DIFFICULTY = 3
 
 # Suggest whether to show user hint on their selection
 var SHOW_HINTS = true
@@ -22,10 +24,6 @@ const GRID_SIZE = 9
 func _ready():
 	bind_selectgrid_button_actions()
 	init_game()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 func init_game():
 	_create_empty_grid()
@@ -70,23 +68,35 @@ func bind_selectgrid_button_actions():
 
 func _on_selectgrid_button_pressed(number_pressed):
 	if selected_button != Vector2i(-1, -1):
-		var grid_selected_button = game_grid[selected_button[0]][selected_button[1]]
-		grid_selected_button.text = str(number_pressed)
 		
-		# To make it easy for beginners, we could provide hints to show whether their answer is right or wrong.
-		if SHOW_HINTS:
-			var result_match = (number_pressed == select_button_answer)
+		var row = selected_button[0]
+		var col = selected_button[1]
+		
+		# --- ADD THIS CHECK ---
+		# Only allow input on cells that are NOT part of the initial puzzle
+		# (where puzzle[row][col] is 0)
+		if puzzle[row][col] == 0:
 			
-			var btn = game_grid[selected_button[0]][selected_button[1]] as Button
+			var grid_selected_button = game_grid[row][col]
+			grid_selected_button.text = str(number_pressed)
 			
-			var stylebox:StyleBoxFlat = btn.get_theme_stylebox("normal").duplicate(true)
-			if result_match == true:
-				stylebox.bg_color = Color.SEA_GREEN
-			else:
-				stylebox.bg_color = Color.DARK_RED
-			btn.add_theme_stylebox_override("normal", stylebox)
-	
-
+			# To make it easy for beginners, we could provide hints...
+			if SHOW_HINTS:
+				var result_match = (number_pressed == select_button_answer)
+				
+				var btn = grid_selected_button as Button
+				
+				var stylebox:StyleBoxFlat = btn.get_theme_stylebox("normal").duplicate(true)
+				if result_match == true:
+					stylebox.bg_color = Color.SEA_GREEN
+				else:
+					stylebox.bg_color = Color.DARK_RED
+				btn.add_theme_stylebox_override("normal", stylebox)
+			
+			# --- ADD THIS CALL ---
+			# After making a move, check if the game is won
+			check_for_win()
+			
 # Generating Valid Sudoku grid
 # Recursively validate a position entry and generates a solution grid
 func _fill_grid(grid_obj):
@@ -186,3 +196,25 @@ func try_to_solve_grid(puzzle_grid):
 	solution_count += 1
 	if solution_count > 1:
 		return
+
+func check_for_win():
+	# Loop through all 9 rows and columns
+	for i in range(GRID_SIZE):
+		for j in range(GRID_SIZE):
+			
+			# Get the button at this position
+			var button = game_grid[i][j] as Button
+			
+			# Get the player's answer and the correct answer
+			var player_answer = button.text
+			var correct_answer = str(solution_grid[i][j])
+			
+			# If we find any cell that is empty or wrong,
+			# the puzzle isn't solved. Stop checking.
+			if player_answer == "" or player_answer != correct_answer:
+				return # Exit the function, no win yet
+
+	# If the loop finishes without ever returning,
+	# it means every single cell is correct.
+	print("PUZZLE SOLVED!")
+	winsignal.emit()

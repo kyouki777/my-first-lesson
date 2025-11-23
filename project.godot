@@ -56,8 +56,10 @@ directories/dtl_directory={
 "power": "res://Dialogues/power.dtl",
 "putra_bed": "res://Dialogues/putra_bed.dtl",
 "putra_table": "res://Dialogues/putra_table.dtl",
+"puzzle2": "res://puzzle2.dtl",
 "rian_bed": "res://Dialogues/rian_bed.dtl",
 "riri_bed": "res://Dialogues/riri_bed.dtl",
+"safe": "res://safe.dtl",
 "sri_bed": "res://Dialogues/sri_bed.dtl",
 "test": "res://Dialogues/test.dtl",
 "theBalls": "res://Dialogues/theBalls.dtl",
@@ -193,6 +195,7 @@ back={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
 environment/main_scene="uid://b7rfq14kadqc3"
 environment/icon="uid://cwwvsd2t3ko03"
 environment/name="my-first-lesson"

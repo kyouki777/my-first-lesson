@@ -1,6 +1,5 @@
 extends Area2D
 @export var dialog_name: String = "" 
-@export var donedialog: String = "" 
 # 1. Define the states your object can be in
 enum {
 	STATE_DIALOG, # Start: We need to show the dialog
@@ -47,7 +46,6 @@ func _process(_delta):
 				
 				# 2. Show the "power" dialog
 				Dialogic.start(dialog_name)
-				
 				# 3. Wait for the dialog to finish
 				await Dialogic.timeline_ended
 				
@@ -63,14 +61,8 @@ func _process(_delta):
 				_toggle_puzzle_ui()
 				
 				# 3. Change state to "DONE"
-				current_state = STATE_DONE
-				print("Object state is now DONE")
-
-			STATE_DONE:
-				# The puzzle is already solved.
-				# You can play a simple "it's fixed" dialog
-				Dialogic.start(donedialog)
-				# No need to await, just let it play
+				#current_state = STATE_DONE
+				#print("Object state is now DONE")
 
 func _toggle_puzzle_ui():
 	puzzle_ui.visible = !puzzle_ui.visible

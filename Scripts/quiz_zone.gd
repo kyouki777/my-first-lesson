@@ -22,6 +22,6 @@ func _process(_delta):
 	
 	if player_in_zone and Input.is_action_just_pressed("interact") and GlobalState.puzzle_1 == false:
 		Dialogic.start("notyet")
-	
+
 func _toggle_quiz_ui():
 	quiz_ui.visible = !quiz_ui.visible

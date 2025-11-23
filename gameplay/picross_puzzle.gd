@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 signal puzzle_solved
 
@@ -9,7 +9,7 @@ signal puzzle_solved
 @onready var mode_button: Button = $ModeButton
 @onready var top_clues_grid: GridContainer = $HBoxContainer/VBoxContainer/TopCluesGrid
 @onready var left_clues_grid: GridContainer = $HBoxContainer/LeftCluesGrid
-
+const PRESS_START_2P = preload("res://Assets/Font/PressStart2P.ttf")
 # 1=Filled, 0=Empty. This is the "answer key".
 var solution: Array[int] = [
 	0, 1, 1, 1, 0,

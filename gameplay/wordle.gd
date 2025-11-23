@@ -37,11 +37,14 @@ func _input(event):
 			buttons[index].text = ""
 			row_filled = false
 	if Input.is_action_pressed("enter"):
-		# Only check win when an entire row is filled
+		# Only check win when an entire row is filledsa
 		if row_filled:
 			check_win()
 			latest_row_index = index
 			row_filled = false
+		if index >=25:
+			reset_game()
+			
 
 func reset_game():
 	index = 0

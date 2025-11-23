@@ -1,13 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://cyiqivcbecjts"]
+[gd_scene load_steps=4 format=3 uid="uid://cyiqivcbecjts"]
 
 [ext_resource type="Script" uid="uid://d4e2yfa5ea4be" path="res://gameplay/picross_puzzle.gd" id="1_2kxey"]
 [ext_resource type="PackedScene" uid="uid://n1o023pklak6" path="res://gameplay/picross_cell.tscn" id="2_u00mf"]
+[ext_resource type="FontFile" uid="uid://k6fx05vf40o8" path="res://Assets/Font/PressStart2P.ttf" id="3_8yhnm"]
 
-[node name="PicrossPuzzle" type="CanvasLayer"]
+[node name="PicrossPuzzle" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_2kxey")
 cell_scene = ExtResource("2_u00mf")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -15,6 +19,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
@@ -37,15 +42,19 @@ layout_mode = 2
 columns = 5
 
 [node name="ModeButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 346.0
 offset_top = 5.0
 offset_right = 429.0
 offset_bottom = 36.0
+theme_override_fonts/font = ExtResource("3_8yhnm")
 text = "Mode: Fill"
 
 [node name="QuitButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 352.0
 offset_top = 55.0
 offset_right = 394.0
 offset_bottom = 86.0
+theme_override_fonts/font = ExtResource("3_8yhnm")
 text = "Quit"

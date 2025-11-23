@@ -6,7 +6,8 @@ extends Node2D
 # AudioManager.play_sfx("button_click")
 @export var sfx_library: Dictionary[String, AudioStream] = {
 	"clicksfx": preload("res://Assets/sounds/sounds/Click.mp3"),
-	"lol":preload("uid://qb65ufe4oef4")
+	"lol":preload("uid://qb65ufe4oef4"),
+	"power":preload("res://Assets/output.mp3")
 }
 
 # This will hold all our AudioStreamPlayer nodes

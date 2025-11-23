@@ -16,24 +16,20 @@ extends CanvasLayer
 # REMOVED: other_ui
 # @export var other_ui: LineEdit   ← deleted
 
-var floor_layer: TileMapLayer
-var floor2_layer: TileMapLayer
-var escape_zone_area: Area2D
+@onready var floor_layer: TileMapLayer = $"../Floor"
+@onready var floor2_layer: TileMapLayer = $"../Floor2"
+@onready var escape_zone_area: Area2D = $"../Floor2/EscapeZone"
+
 
 var num1: int
 var num2: int
 var correct_answer: int
 var operator: String
 var score: int = 0
-const TARGET_SCORE := 1
+const TARGET_SCORE := 10
 
 
 func _ready():
-	var root = get_tree().current_scene
-	floor_layer = root.get_node_or_null("Env/Floor")
-	floor2_layer = root.get_node_or_null("Env/Floor2")
-	escape_zone_area = root.get_node_or_null("Env/Floor2/EscapeZone")
-
 	randomize()
 	submit_button.pressed.connect(_on_submit_pressed)
 	answer_input.text_submitted.connect(_on_enter_pressed)
@@ -149,7 +145,6 @@ func _check_unlock_condition():
 		if floor_layer:
 			floor_layer.visible = false
 			floor_layer.collision_enabled = false
-
 		if floor2_layer:
 			floor2_layer.visible = true
 			sfx_doorUnlocked.play()

@@ -60,7 +60,7 @@ offset_bottom = 127.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_mmjuh")
 theme_override_font_sizes/font_size = 20
-text = "/100"
+text = "/10"
 horizontal_alignment = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -278,6 +278,19 @@ offset_top = 466.0
 offset_right = 819.0
 offset_bottom = 489.0
 theme_override_fonts/font = ExtResource("3_mmjuh")
-text = "The safe, the diary, and the computer."
+text = "The safe, and the diary."
+horizontal_alignment = 1
+
+[node name="INCOMING" type="Label" parent="."]
+visible = false
+offset_left = 76.0
+offset_top = 548.0
+offset_right = 676.0
+offset_bottom = 571.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_mmjuh")
+theme_override_font_sizes/font_size = 20
+text = "Caretaker has been notified..."
+horizontal_alignment = 2
 
 [connection signal="pressed" from="PasswordScreen/FORGOT" to="PasswordScreen" method="_on_forgot_pressed"]

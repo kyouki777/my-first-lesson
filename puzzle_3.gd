@@ -1,13 +1,8 @@
 extends CanvasLayer
 @onready var play: Control = $play
-
-@export var label_text: String = "Default Value"
-@onready var label: Label = $play/Label
-@export var minigame: Control
+@onready var color_rect: ColorRect = $ColorRect
 @onready var win: Control = $win
-func _ready() -> void:
-	if label:
-		label.text = label_text
+@export var minigame: Control
 	
 # targetobject.connect("theirsignal", our method)
 func _on_button_pressed() -> void:
@@ -21,6 +16,8 @@ func togglewin():
 	minigame.visible = false
 	win.visible = true
 	AudioManager.play_sfx("clicksfx")
+	GlobalState.puzzle_1 = true
+	
 
 func _on_exit_pressed() -> void:
 	# for Canvas UI parent to dissapear on use
