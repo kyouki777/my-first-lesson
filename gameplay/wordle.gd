@@ -74,7 +74,7 @@ func update_button_style(button:Button, bg_color:Color):
 
 func get_random_wordle():
 	var file = FileAccess.open("res://gameplay/wordle-list.txt", FileAccess.READ)
-	var content = file.get_as_text(true)
+	var content = file.get_as_text()
 	var lines = content.split("\n")
 	var new_lines = []
 	for line in lines:
