@@ -28,6 +28,7 @@ buses/default_bus_layout="res://Scripts/default_bus_layout.tres"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 GlobalState="*res://Scripts/GlobalState.gd"
 AudioManager="*res://Scripts/audio_manager.tscn"
+GameManager="*uid://dlcj1ad3nl4mo"
 
 [dialogic]
 
