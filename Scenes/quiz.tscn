@@ -1,20 +1,20 @@
-[gd_scene load_steps=11 format=3 uid="uid://v85n262utfoc"]
+[gd_scene format=3 uid="uid://v85n262utfoc"]
 
 [ext_resource type="Script" uid="uid://t5lob10cva74" path="res://Scenes/quiz.gd" id="1_kninm"]
 [ext_resource type="Texture2D" uid="uid://dyrjnge1rlscx" path="res://Assets/image.png" id="2_i0i4q"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://Assets/UI/kenneyUI.tres" id="2_k7kv1"]
 [ext_resource type="Script" uid="uid://brwh3gbjogoge" path="res://Scenes/v_box_container.gd" id="3_p60ki"]
 [ext_resource type="FontFile" uid="uid://k6fx05vf40o8" path="res://Assets/Font/PressStart2P.ttf" id="4_ffm0p"]
-[ext_resource type="AudioStream" uid="uid://dp0l1h0d71ss2" path="res://Assets/sounds/computer-humming-236384.mp3" id="4_hgkws"]
-[ext_resource type="AudioStream" uid="uid://dh5xj503wevkx" path="res://Assets/sounds/sounds/correct-choice-43861.mp3" id="5_6id1c"]
-[ext_resource type="AudioStream" uid="uid://bdr4gwovt7nol" path="res://Assets/sounds/sounds/incorrect-buzzer-374194.mp3" id="6_p60ki"]
-[ext_resource type="AudioStream" uid="uid://bejcvst70nvoy" path="res://Assets/sounds/sounds/Click.mp3" id="7_6id1c"]
-[ext_resource type="AudioStream" uid="uid://bk2de5in8agjc" path="res://Assets/sounds/sounds/opening-door-411632.mp3" id="10_u2ogy"]
+[ext_resource type="AudioStream" uid="uid://dp0l1h0d71ss2" path="res://Assets/sounds/ComputerHumming_SFX.mp3" id="4_hgkws"]
+[ext_resource type="AudioStream" uid="uid://dh5xj503wevkx" path="res://Assets/sounds/sounds/CorrectChoice_SFX.mp3" id="5_6id1c"]
+[ext_resource type="AudioStream" uid="uid://bdr4gwovt7nol" path="res://Assets/sounds/sounds/IncorrectChoice_SFX.mp3" id="6_p60ki"]
+[ext_resource type="AudioStream" uid="uid://bejcvst70nvoy" path="res://Assets/sounds/sounds/Click_SFX.mp3" id="7_6id1c"]
+[ext_resource type="AudioStream" uid="uid://bk2de5in8agjc" path="res://Assets/sounds/sounds/FrontDoorOpen_SFX.mp3" id="10_u2ogy"]
 
-[node name="unused quiz" type="CanvasLayer"]
+[node name="unused quiz" type="CanvasLayer" unique_id=1800601137]
 script = ExtResource("1_kninm")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1580669606]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -23,7 +23,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1190773528]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -36,7 +36,7 @@ grow_vertical = 2
 texture = ExtResource("2_i0i4q")
 expand_mode = 3
 
-[node name="ScoreLabel" type="Label" parent="."]
+[node name="ScoreLabel" type="Label" parent="." unique_id=1070934667]
 offset_left = 104.0
 offset_top = 104.0
 offset_right = 360.0
@@ -46,7 +46,7 @@ theme_override_fonts/font = ExtResource("4_ffm0p")
 theme_override_font_sizes/font_size = 20
 text = "Score: "
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1414470263]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -61,54 +61,54 @@ grow_vertical = 2
 alignment = 1
 script = ExtResource("3_p60ki")
 
-[node name="QuestionLabel" type="Label" parent="VBoxContainer"]
+[node name="QuestionLabel" type="Label" parent="VBoxContainer" unique_id=431140528]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_ffm0p")
 theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 
-[node name="AnswerInput" type="LineEdit" parent="VBoxContainer"]
+[node name="AnswerInput" type="LineEdit" parent="VBoxContainer" unique_id=1275437294]
 layout_mode = 2
 theme = ExtResource("2_k7kv1")
 
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer" unique_id=1306776674]
 layout_mode = 2
 theme = ExtResource("2_k7kv1")
 columns = 3
 
-[node name="Backspace" type="Button" parent="VBoxContainer/GridContainer"]
+[node name="Backspace" type="Button" parent="VBoxContainer/GridContainer" unique_id=877660506]
 visible = false
 layout_mode = 2
 text = "back"
 
-[node name="SubmitButton" type="Button" parent="VBoxContainer"]
+[node name="SubmitButton" type="Button" parent="VBoxContainer" unique_id=1147605452]
 layout_mode = 2
 theme = ExtResource("2_k7kv1")
 text = "Next"
 icon_alignment = 1
 vertical_icon_alignment = 2
 
-[node name="FeedbackLabel" type="Label" parent="VBoxContainer"]
+[node name="FeedbackLabel" type="Label" parent="VBoxContainer" unique_id=541716967]
 visible = false
 layout_mode = 2
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="SFX_Hum" type="AudioStreamPlayer2D" parent="."]
+[node name="SFX_Hum" type="AudioStreamPlayer2D" parent="." unique_id=834752815]
 stream = ExtResource("4_hgkws")
 volume_db = 6.0
 parameters/looping = true
 
-[node name="SFX_Correct" type="AudioStreamPlayer2D" parent="."]
+[node name="SFX_Correct" type="AudioStreamPlayer2D" parent="." unique_id=1953597084]
 stream = ExtResource("5_6id1c")
 
-[node name="SFX_Wrong" type="AudioStreamPlayer2D" parent="."]
+[node name="SFX_Wrong" type="AudioStreamPlayer2D" parent="." unique_id=2090591459]
 stream = ExtResource("6_p60ki")
 volume_db = 6.0
 
-[node name="SFX_Click" type="AudioStreamPlayer2D" parent="."]
+[node name="SFX_Click" type="AudioStreamPlayer2D" parent="." unique_id=273705111]
 stream = ExtResource("7_6id1c")
 
-[node name="SFX_DoorUnlocked" type="AudioStreamPlayer2D" parent="."]
+[node name="SFX_DoorUnlocked" type="AudioStreamPlayer2D" parent="." unique_id=2072024053]
 stream = ExtResource("10_u2ogy")

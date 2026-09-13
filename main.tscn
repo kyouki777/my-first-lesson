@@ -7,9 +7,9 @@
 [ext_resource type="Script" uid="uid://hcek0mkrtd0d" path="res://Scenes/hidden_room_dialogue.gd" id="2_2cqfq"]
 [ext_resource type="Texture2D" uid="uid://csggriy3nmvva" path="res://Assets/Furnitures_sheet.png" id="2_272bh"]
 [ext_resource type="Script" uid="uid://cgi46kww0k8yg" path="res://gameplay/puzzle.gd" id="2_jq2sk"]
-[ext_resource type="AudioStream" uid="uid://ckm2jsxp4rryu" path="res://Assets/sounds/door-opening-397990.mp3" id="3_074og"]
+[ext_resource type="AudioStream" uid="uid://ckm2jsxp4rryu" path="res://Assets/sounds/RedRoomDoorOpening_SFX.mp3" id="3_074og"]
 [ext_resource type="Texture2D" uid="uid://c6lkwnwb08p4q" path="res://Assets/Sprite-0001.png" id="3_kq58d"]
-[ext_resource type="AudioStream" uid="uid://b44uel54hoq80" path="res://Assets/sounds/door-slam-172171.mp3" id="4_cegan"]
+[ext_resource type="AudioStream" uid="uid://b44uel54hoq80" path="res://Assets/sounds/RedRoomDoorSlam_SFX.mp3" id="4_cegan"]
 [ext_resource type="Texture2D" uid="uid://citgokmdyn5vr" path="res://Assets/Circular 2 - 512x512.png" id="5_5vw27"]
 [ext_resource type="Texture2D" uid="uid://c4viyumhd4c4" path="res://Assets/Items_sheet.png" id="5_7mycd"]
 [ext_resource type="Script" uid="uid://17pwme1hl174" path="res://Scripts/floor.gd" id="5_kek77"]
@@ -27,15 +27,15 @@
 [ext_resource type="Script" uid="uid://cwkfmqhwm1pqp" path="res://Scenes/game_1.gd" id="16_facbu"]
 [ext_resource type="Texture2D" uid="uid://ckkwd3q8ubvks" path="res://Assets/111.png" id="16_htxhm"]
 [ext_resource type="Texture2D" uid="uid://cnk3sxgkffblp" path="res://Assets/kids_stuck_anim.png" id="19_lswn8"]
-[ext_resource type="AudioStream" uid="uid://f31p6told8u6" path="res://Assets/sounds/breathing-fast-247449.mp3" id="20_xuqvo"]
-[ext_resource type="AudioStream" uid="uid://bv57adc0yejs4" path="res://Assets/sounds/wood-crate-destory-2-97263.mp3" id="21_qsp4k"]
+[ext_resource type="AudioStream" uid="uid://f31p6told8u6" path="res://Assets/sounds/HeavyBreathing_SFX.mp3" id="20_xuqvo"]
+[ext_resource type="AudioStream" uid="uid://bv57adc0yejs4" path="res://Assets/sounds/WoodMash_SFX.mp3" id="21_qsp4k"]
 [ext_resource type="Script" uid="uid://dra7npf03fuvq" path="res://Scripts/escape_zone.gd" id="22_ryguw"]
 [ext_resource type="FontFile" uid="uid://k6fx05vf40o8" path="res://Assets/Font/PressStart2P.ttf" id="25_0odxb"]
 [ext_resource type="Texture2D" uid="uid://f8808rm2lmnm" path="res://Assets/safe.png" id="27_ok6jj"]
 [ext_resource type="PackedScene" uid="uid://cowngojs4q8sh" path="res://Scenes/REAL_QUIZ_UI.tscn" id="29_qsp4k"]
 [ext_resource type="PackedScene" uid="uid://dup05p764bbqf" path="res://gameplay/newwordle.tscn" id="29_seu75"]
-[ext_resource type="AudioStream" uid="uid://dp0l1h0d71ss2" path="res://Assets/sounds/computer-humming-236384.mp3" id="35_b1qrp"]
-[ext_resource type="AudioStream" uid="uid://bejcvst70nvoy" path="res://Assets/sounds/sounds/Click.mp3" id="36_come4"]
+[ext_resource type="AudioStream" uid="uid://dp0l1h0d71ss2" path="res://Assets/sounds/ComputerHumming_SFX.mp3" id="35_b1qrp"]
+[ext_resource type="AudioStream" uid="uid://bejcvst70nvoy" path="res://Assets/sounds/sounds/Click_SFX.mp3" id="36_come4"]
 [ext_resource type="PackedScene" uid="uid://b6drncpp7rq8v" path="res://gameplay/wire_puzzle.tscn" id="37_facbu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ad8t"]
@@ -724,14 +724,10 @@ y_sort_enabled = true
 script = ExtResource("1_cegan")
 start_dialog_name = "StartDialogue"
 
-[node name="Player" parent="." unique_id=2112036365 node_paths=PackedStringArray("qte_anim", "mash_label", "heavy_breathing", "wood_breaking") groups=["player"] instance=ExtResource("1_ig7tw")]
+[node name="Player" parent="." unique_id=2112036365 groups=["player"] instance=ExtResource("1_ig7tw")]
 z_index = 10
 y_sort_enabled = true
 position = Vector2(408, 132)
-qte_anim = NodePath("AnimatedSprite2D2")
-mash_label = NodePath("../Node/CanvasLayer2/MashLabel")
-heavy_breathing = NodePath("HeavyBreathing")
-wood_breaking = NodePath("WoodBreaking")
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=406496084]
 zoom = Vector2(4, 4)
@@ -1158,7 +1154,6 @@ position = Vector2(416, 824)
 script = ExtResource("15_a6jrf")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Node" unique_id=1163160696]
-visible = false
 color = Color(0.06879826, 0.06879829, 0.068798244, 1)
 
 [node name="PauseMenuUI" type="CanvasLayer" parent="Node" unique_id=1749005147]

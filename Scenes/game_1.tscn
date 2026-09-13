@@ -1,9 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dv4hvsy7qf3lt"]
+[gd_scene format=3 uid="uid://dv4hvsy7qf3lt"]
 
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://Assets/UI/kenneyUI.tres" id="1_t3b1j"]
 [ext_resource type="Script" uid="uid://cwkfmqhwm1pqp" path="res://Scenes/game_1.gd" id="1_ydm4t"]
-[ext_resource type="AudioStream" uid="uid://dp0l1h0d71ss2" path="res://Assets/sounds/computer-humming-236384.mp3" id="2_ydm4t"]
-[ext_resource type="AudioStream" uid="uid://bejcvst70nvoy" path="res://Assets/sounds/sounds/Click.mp3" id="3_3v1qc"]
+[ext_resource type="AudioStream" uid="uid://dp0l1h0d71ss2" path="res://Assets/sounds/ComputerHumming_SFX.mp3" id="2_ydm4t"]
+[ext_resource type="AudioStream" uid="uid://bejcvst70nvoy" path="res://Assets/sounds/sounds/Click_SFX.mp3" id="3_3v1qc"]
 [ext_resource type="FontFile" uid="uid://k6fx05vf40o8" path="res://Assets/Font/PressStart2P.ttf" id="4_apllh"]
 [ext_resource type="PackedScene" uid="uid://dup05p764bbqf" path="res://gameplay/newwordle.tscn" id="6_ydm4t"]
 

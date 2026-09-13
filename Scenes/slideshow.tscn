@@ -1,12 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://4hm1tcxceum"]
+[gd_scene format=3 uid="uid://4hm1tcxceum"]
 
 [ext_resource type="Script" uid="uid://0px8m54pkn13" path="res://Scenes/slideshow.gd" id="1_ym11s"]
-[ext_resource type="AudioStream" uid="uid://bc4stuinioiaq" path="res://Assets/sounds/old-broken-music-box-sound-effect-386717.mp3" id="2_5spr4"]
-[ext_resource type="AudioStream" uid="uid://bc2fa70bh2or8" path="res://Assets/sounds/book-opening-345808.mp3" id="2_a1ek4"]
-[ext_resource type="AudioStream" uid="uid://dtkqfk2qen0me" path="res://Assets/sounds/book-closing-48184.mp3" id="3_6822q"]
-[ext_resource type="AudioStream" uid="uid://c1g7bv12td6l6" path="res://Assets/sounds/sounds/pageturn-102978.mp3" id="4_oc8sf"]
+[ext_resource type="AudioStream" uid="uid://bpxclffgjtql6" path="res://Assets/sounds/sounds/BookOpening_SFX.mp3" id="2_p6yss"]
+[ext_resource type="AudioStream" uid="uid://c0dy1deui1ql8" path="res://Assets/sounds/sounds/BookClosing_SFX.mp3" id="3_ornk3"]
+[ext_resource type="AudioStream" uid="uid://c1g7bv12td6l6" path="res://Assets/sounds/sounds/PageTurn_SFX.mp3" id="4_oc8sf"]
+[ext_resource type="AudioStream" uid="uid://6or35jvw5t5b" path="res://Assets/sounds/sounds/MusicBoxIntro_SFX.mp3" id="5_p6yss"]
 
-[node name="Slideshow" type="Control"]
+[node name="Slideshow" type="Control" unique_id=1266559878]
 texture_filter = 2
 layout_mode = 3
 anchors_preset = 15
@@ -15,11 +15,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ym11s")
-book_open_sound = ExtResource("2_a1ek4")
-book_close_sound = ExtResource("3_6822q")
+book_open_sound = ExtResource("2_p6yss")
+book_close_sound = ExtResource("3_ornk3")
 page_flip_sound = ExtResource("4_oc8sf")
 
-[node name="SlideDisplay" type="TextureRect" parent="."]
+[node name="SlideDisplay" type="TextureRect" parent="." unique_id=412720599]
 texture_filter = 2
 layout_mode = 1
 anchors_preset = 15
@@ -29,16 +29,16 @@ grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 2
 
-[node name="SlideTimer" type="Timer" parent="."]
+[node name="SlideTimer" type="Timer" parent="." unique_id=1048339376]
 wait_time = 5.0
 
-[node name="BGMPlayer" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_5spr4")
+[node name="BGMPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1482537288]
+stream = ExtResource("5_p6yss")
 autoplay = true
 
-[node name="SFXPlayer" type="AudioStreamPlayer2D" parent="."]
+[node name="SFXPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1615319445]
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=518943607]
 visible = false
 modulate = Color(1, 1, 1, 0.09803922)
 layout_mode = 0

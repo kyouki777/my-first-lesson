@@ -1,10 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dhdy40fgvaktv"]
+[gd_scene format=3 uid="uid://dhdy40fgvaktv"]
 
 [ext_resource type="Script" uid="uid://cwkfmqhwm1pqp" path="res://Scenes/game_1.gd" id="1_hujpt"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://Assets/UI/kenneyUI.tres" id="2_v60vq"]
 [ext_resource type="FontFile" uid="uid://k6fx05vf40o8" path="res://Assets/Font/PressStart2P.ttf" id="3_1kr6r"]
-[ext_resource type="AudioStream" uid="uid://dp0l1h0d71ss2" path="res://Assets/sounds/computer-humming-236384.mp3" id="4_mrlrv"]
-[ext_resource type="AudioStream" uid="uid://bejcvst70nvoy" path="res://Assets/sounds/sounds/Click.mp3" id="5_3ypmj"]
+[ext_resource type="AudioStream" uid="uid://dp0l1h0d71ss2" path="res://Assets/sounds/ComputerHumming_SFX.mp3" id="4_mrlrv"]
+[ext_resource type="AudioStream" uid="uid://bejcvst70nvoy" path="res://Assets/sounds/sounds/Click_SFX.mp3" id="5_3ypmj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4qfr"]
 bg_color = Color(0.46135, 0.212246, 0.00836753, 1)

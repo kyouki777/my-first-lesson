@@ -1,7 +1,8 @@
-[gd_scene format=3 uid="uid://m84r3dm21jgq"]
+[gd_scene format=3 uid="uid://bkabj2tej57g3"]
 
-[ext_resource type="Script" uid="uid://bln86pchg6umf" path="res://Objects/player2.gd" id="1_3y5cq"]
-[ext_resource type="Texture2D" uid="uid://d4nb5adyd25vg" path="res://Assets/kidblue_animation_sheet.png" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://kajug0tbsfe6" path="res://Objects/player.gd" id="1_pf0b3"]
+[ext_resource type="Texture2D" uid="uid://d4nb5adyd25vg" path="res://Assets/kidblue_animation_sheet.png" id="2_x0muf"]
+[ext_resource type="Texture2D" uid="uid://cnk3sxgkffblp" path="res://Assets/kids_stuck_anim.png" id="4_i0f2a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(12, 13)
@@ -167,18 +168,45 @@ _data = {
 &"struggle": SubResource("Animation_slvmq")
 }
 
-[node name="Player" type="CharacterBody2D" unique_id=2030732309]
-script = ExtResource("1_3y5cq")
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ad8t"]
+atlas = ExtResource("4_i0f2a")
+region = Rect2(0, 0, 16, 16)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1192412562]
+[sub_resource type="AtlasTexture" id="AtlasTexture_x20fu"]
+atlas = ExtResource("4_i0f2a")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nqlj7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ad8t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x20fu")
+}],
+"loop": 1,
+"name": &"struggle",
+"speed": 6.0
+}]
+
+[node name="Player" type="CharacterBody2D" unique_id=365455782]
+script = ExtResource("1_pf0b3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1848424595]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_onrkg")
 
-[node name="sprite2" type="Sprite2D" parent="." unique_id=1206618948]
+[node name="sprite2" type="Sprite2D" parent="." unique_id=987183954]
 texture_filter = 1
-texture = ExtResource("1_4flbx")
+texture = ExtResource("2_x0muf")
 hframes = 3
 vframes = 4
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="sprite2" unique_id=129955713]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="sprite2" unique_id=1411418098]
 libraries/ = SubResource("AnimationLibrary_1jxqw")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=1200919554]
+visible = false
+sprite_frames = SubResource("SpriteFrames_nqlj7")
+animation = &"struggle"

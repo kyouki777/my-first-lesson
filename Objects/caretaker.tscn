@@ -1,8 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://c4la7kcg2s8dq"]
+[gd_scene format=3 uid="uid://c4la7kcg2s8dq"]
 
 [ext_resource type="Script" uid="uid://beg6whu8kdaq5" path="res://Objects/caretaker.gd" id="1_cgjin"]
 [ext_resource type="Texture2D" uid="uid://dencco77q5ify" path="res://Assets/caretaker_animation.png" id="1_iy8re"]
-[ext_resource type="AudioStream" uid="uid://cebakduu3fou7" path="res://Assets/sounds/sounds/jumpscare-94984.mp3" id="3_p52ut"]
+[ext_resource type="AudioStream" uid="uid://cebakduu3fou7" path="res://Assets/sounds/sounds/Jumpscare_SFX.mp3" id="3_p52ut"]
 [ext_resource type="Texture2D" uid="uid://b2hniwtom2g0j" path="res://Assets/caretaker jumpscare.png" id="4_fo50v"]
 
 [sub_resource type="Animation" id="Animation_cgjin"]
@@ -49,7 +49,7 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cgjin"]
 size = Vector2(13, 5)
 
-[node name="caretaker" type="CharacterBody2D" node_paths=PackedStringArray("jumpscare_overlay", "jumpscare_sound") groups=["Caretaker"]]
+[node name="caretaker" type="CharacterBody2D" unique_id=806091147 node_paths=PackedStringArray("jumpscare_overlay", "jumpscare_sound") groups=["Caretaker"]]
 z_index = 10
 y_sort_enabled = true
 script = ExtResource("1_cgjin")
@@ -57,37 +57,35 @@ speed = 80.0
 jumpscare_overlay = NodePath("CanvasLayer/JumpScare")
 jumpscare_sound = NodePath("JumpScareAudio")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1781419360]
 position = Vector2(-1, -13)
 texture = ExtResource("1_iy8re")
 region_enabled = true
 region_rect = Rect2(2, 0, 12, 27)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
-libraries = {
-&"": SubResource("AnimationLibrary_l3gkw")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" unique_id=1916235280]
+libraries/ = SubResource("AnimationLibrary_l3gkw")
 
-[node name="PathUpdateTimer" type="Timer" parent="."]
+[node name="PathUpdateTimer" type="Timer" parent="." unique_id=521627695]
 wait_time = 0.2
 autostart = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1287499083]
 shape = SubResource("RectangleShape2D_cgjin")
 disabled = true
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=737033097]
 path_postprocessing = 1
 avoidance_enabled = true
 debug_path_custom_color = Color(1, 0.08627451, 1, 1)
 
-[node name="JumpScareAudio" type="AudioStreamPlayer2D" parent="."]
+[node name="JumpScareAudio" type="AudioStreamPlayer2D" parent="." unique_id=60276743]
 position = Vector2(-960, -540)
 stream = ExtResource("3_p52ut")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=759619428]
 
-[node name="JumpScare" type="TextureRect" parent="CanvasLayer"]
+[node name="JumpScare" type="TextureRect" parent="CanvasLayer" unique_id=1129984370]
 visible = false
 top_level = true
 anchors_preset = 15

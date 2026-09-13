@@ -6,11 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://csggriy3nmvva" path="res://Assets/Furnitures_sheet.png" id="3_yj1jp"]
 [ext_resource type="Texture2D" uid="uid://bgnhoc64ysp2a" path="res://Assets/kid_crying_anim.png" id="4_0hs65"]
 [ext_resource type="Texture2D" uid="uid://citgokmdyn5vr" path="res://Assets/Circular 2 - 512x512.png" id="6_jbscp"]
-[ext_resource type="AudioStream" uid="uid://cf6aqrhkypacx" path="res://Assets/sounds/Footsteps_SFX.mp3" id="6_yj1jp"]
-[ext_resource type="AudioStream" uid="uid://348ylsy7towo" path="res://Assets/sounds/Heartbeat_SFX.mp3" id="7_0hs65"]
-[ext_resource type="Texture2D" uid="uid://cnk3sxgkffblp" path="res://Assets/kids_stuck_anim.png" id="9_ifr6l"]
-[ext_resource type="AudioStream" uid="uid://f31p6told8u6" path="res://Assets/sounds/breathing-fast-247449.mp3" id="10_qsrum"]
-[ext_resource type="AudioStream" uid="uid://bv57adc0yejs4" path="res://Assets/sounds/wood-crate-destory-2-97263.mp3" id="11_kax65"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1bvp3"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -108,129 +103,169 @@ texture = ExtResource("2_8433p")
 6:8/0 = 0
 6:8/0/probability = 0.5
 6:8/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+6:8/0/custom_data_0 = "Wood"
 7:8/0 = 0
 7:8/0/probability = 0.5
 7:8/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+7:8/0/custom_data_0 = "Wood"
 8:8/0 = 0
 8:8/0/probability = 0.5
 8:8/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+8:8/0/custom_data_0 = "Wood"
 9:8/0 = 0
 9:8/0/probability = 0.5
 9:8/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+9:8/0/custom_data_0 = "Wood"
 10:8/0 = 0
 10:8/0/probability = 0.5
 10:8/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+10:8/0/custom_data_0 = "Wood"
 11:8/0 = 0
 11:8/0/probability = 0.5
 11:8/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+11:8/0/custom_data_0 = "Wood"
 12:8/0 = 0
 12:8/0/probability = 0.5
 12:8/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+12:8/0/custom_data_0 = "Wood"
 13:8/0 = 0
 13:8/0/probability = 0.5
 13:8/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+13:8/0/custom_data_0 = "Wood"
 14:8/0 = 0
 14:8/0/probability = 0.5
 14:8/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+14:8/0/custom_data_0 = "Wood"
 15:8/0 = 0
 15:8/0/probability = 0.5
 15:8/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+15:8/0/custom_data_0 = "Wood"
 16:8/0 = 0
 16:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 6:9/0 = 0
 6:9/0/probability = 0.5
 6:9/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+6:9/0/custom_data_0 = "Wood"
 7:9/0 = 0
 7:9/0/probability = 0.5
 7:9/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+7:9/0/custom_data_0 = "Wood"
 8:9/0 = 0
 8:9/0/probability = 0.5
 8:9/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+8:9/0/custom_data_0 = "Wood"
 9:9/0 = 0
 9:9/0/probability = 0.5
 9:9/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+9:9/0/custom_data_0 = "Wood"
 10:9/0 = 0
 10:9/0/probability = 0.5
 10:9/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+10:9/0/custom_data_0 = "Wood"
 11:9/0 = 0
 11:9/0/probability = 0.5
 11:9/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+11:9/0/custom_data_0 = "Wood"
 12:9/0 = 0
 12:9/0/probability = 0.5
 12:9/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+12:9/0/custom_data_0 = "Wood"
 13:9/0 = 0
 13:9/0/probability = 0.5
 13:9/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+13:9/0/custom_data_0 = "Wood"
 14:9/0 = 0
 14:9/0/probability = 0.5
 14:9/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+14:9/0/custom_data_0 = "Wood"
 15:9/0 = 0
 15:9/0/probability = 0.5
 15:9/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+15:9/0/custom_data_0 = "Wood"
 16:9/0 = 0
 6:10/0 = 0
 6:10/0/probability = 0.5
 6:10/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+6:10/0/custom_data_0 = "Wood"
 7:10/0 = 0
 7:10/0/probability = 0.5
 7:10/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+7:10/0/custom_data_0 = "Wood"
 8:10/0 = 0
 8:10/0/probability = 0.5
 8:10/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+8:10/0/custom_data_0 = "Wood"
 9:10/0 = 0
 9:10/0/probability = 0.5
 9:10/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+9:10/0/custom_data_0 = "Wood"
 10:10/0 = 0
 10:10/0/probability = 0.5
 10:10/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+10:10/0/custom_data_0 = "Wood"
 11:10/0 = 0
 11:10/0/probability = 0.5
 11:10/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+11:10/0/custom_data_0 = "Wood"
 12:10/0 = 0
 12:10/0/probability = 0.5
 12:10/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+12:10/0/custom_data_0 = "Wood"
 13:10/0 = 0
 13:10/0/probability = 0.5
 13:10/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+13:10/0/custom_data_0 = "Wood"
 14:10/0 = 0
 14:10/0/probability = 0.5
 14:10/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+14:10/0/custom_data_0 = "Wood"
 15:10/0 = 0
 15:10/0/probability = 0.5
 15:10/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+15:10/0/custom_data_0 = "Wood"
 16:10/0 = 0
 5:11/0 = 0
 5:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 6:11/0 = 0
 6:11/0/probability = 0.5
 6:11/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+6:11/0/custom_data_0 = "Wood"
 7:11/0 = 0
 7:11/0/probability = 0.5
 7:11/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+7:11/0/custom_data_0 = "Wood"
 8:11/0 = 0
 8:11/0/probability = 0.5
 8:11/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+8:11/0/custom_data_0 = "Wood"
 9:11/0 = 0
 9:11/0/probability = 0.5
 9:11/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+9:11/0/custom_data_0 = "Wood"
 10:11/0 = 0
 10:11/0/probability = 0.5
 10:11/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+10:11/0/custom_data_0 = "Wood"
 11:11/0 = 0
 11:11/0/probability = 0.5
 11:11/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+11:11/0/custom_data_0 = "Wood"
 12:11/0 = 0
 12:11/0/probability = 0.5
 12:11/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+12:11/0/custom_data_0 = "Wood"
 13:11/0 = 0
 13:11/0/probability = 0.5
 13:11/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+13:11/0/custom_data_0 = "Wood"
 14:11/0 = 0
 14:11/0/probability = 0.5
 14:11/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+14:11/0/custom_data_0 = "Wood"
 15:11/0 = 0
 15:11/0/probability = 0.5
 15:11/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
+15:11/0/custom_data_0 = "Wood"
 16:11/0 = 0
 16:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 5:12/0 = 0
@@ -238,33 +273,43 @@ texture = ExtResource("2_8433p")
 6:12/0 = 0
 6:12/0/probability = 0.5
 6:12/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_272bh")
+6:12/0/custom_data_0 = "Wood"
 7:12/0 = 0
 7:12/0/probability = 0.5
 7:12/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_272bh")
+7:12/0/custom_data_0 = "Wood"
 8:12/0 = 0
 8:12/0/probability = 0.5
 8:12/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_272bh")
+8:12/0/custom_data_0 = "Wood"
 9:12/0 = 0
 9:12/0/probability = 0.5
 9:12/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_272bh")
+9:12/0/custom_data_0 = "Wood"
 10:12/0 = 0
 10:12/0/probability = 0.5
 10:12/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_lquwl")
+10:12/0/custom_data_0 = "Wood"
 11:12/0 = 0
 11:12/0/probability = 0.5
 11:12/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_lquwl")
+11:12/0/custom_data_0 = "Wood"
 12:12/0 = 0
 12:12/0/probability = 0.5
 12:12/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_lquwl")
+12:12/0/custom_data_0 = "Wood"
 13:12/0 = 0
 13:12/0/probability = 0.5
 13:12/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_lquwl")
+13:12/0/custom_data_0 = "Wood"
 14:12/0 = 0
 14:12/0/probability = 0.5
 14:12/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_lquwl")
+14:12/0/custom_data_0 = "Wood"
 15:12/0 = 0
 15:12/0/probability = 0.5
 15:12/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_lquwl")
+15:12/0/custom_data_0 = "Wood"
 16:12/0 = 0
 16:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 5:13/0 = 0
@@ -272,58 +317,77 @@ texture = ExtResource("2_8433p")
 6:13/0 = 0
 6:13/0/probability = 0.5
 6:13/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_lquwl")
+6:13/0/custom_data_0 = "Wood"
 7:13/0 = 0
 7:13/0/probability = 0.5
 7:13/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_lquwl")
+7:13/0/custom_data_0 = "Wood"
 8:13/0 = 0
 8:13/0/probability = 0.5
 8:13/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_lquwl")
+8:13/0/custom_data_0 = "Wood"
 9:13/0 = 0
 9:13/0/probability = 0.5
 9:13/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_lquwl")
+9:13/0/custom_data_0 = "Wood"
 10:13/0 = 0
 10:13/0/probability = 0.5
 10:13/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_lquwl")
+10:13/0/custom_data_0 = "Wood"
 11:13/0 = 0
 11:13/0/probability = 0.5
 11:13/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_lquwl")
+11:13/0/custom_data_0 = "Wood"
 12:13/0 = 0
 12:13/0/probability = 0.5
 12:13/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_lquwl")
+12:13/0/custom_data_0 = "Wood"
 13:13/0 = 0
 13:13/0/probability = 0.5
 13:13/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_lquwl")
+13:13/0/custom_data_0 = "Wood"
 14:13/0 = 0
 14:13/0/probability = 0.5
 14:13/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_lquwl")
+14:13/0/custom_data_0 = "Wood"
 15:13/0 = 0
 15:13/0/probability = 0.5
 15:13/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_lquwl")
+15:13/0/custom_data_0 = "Wood"
 16:13/0 = 0
 16:13/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 5:14/0 = 0
 5:14/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 6:14/0 = 0
 6:14/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:14/0/custom_data_0 = "Wood"
 7:14/0 = 0
 7:14/0/probability = 0.5
 7:14/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_5vw27")
+7:14/0/custom_data_0 = "Wood"
 8:14/0 = 0
 8:14/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:14/0/custom_data_0 = "Wood"
 9:14/0 = 0
 9:14/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:14/0/custom_data_0 = "Wood"
 10:14/0 = 0
 10:14/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+10:14/0/custom_data_0 = "Wood"
 11:14/0 = 0
 11:14/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+11:14/0/custom_data_0 = "Wood"
 12:14/0 = 0
 12:14/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+12:14/0/custom_data_0 = "Wood"
 15:14/0 = 0
 15:14/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+15:14/0/custom_data_0 = "Wood"
 16:14/0 = 0
 16:14/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 10:15/size_in_atlas = Vector2i(2, 2)
 10:15/0 = 0
+10:15/0/custom_data_0 = "Wood"
 12:6/0 = 0
 12:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 12:7/0 = 0
@@ -398,31 +462,11 @@ texture = ExtResource("4_0hs65")
 [sub_resource type="TileSet" id="TileSet_qsrum"]
 physics_layer_0/collision_layer = 1
 navigation_layer_0/layers = 1
+custom_data_layer_0/name = "footstep_type"
+custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_jxgft")
 sources/1 = SubResource("TileSetAtlasSource_jbscp")
 sources/2 = SubResource("TileSetAtlasSource_ifr6l")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0ad8t"]
-atlas = ExtResource("9_ifr6l")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_x20fu"]
-atlas = ExtResource("9_ifr6l")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_pc7jo"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0ad8t")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_x20fu")
-}],
-"loop": 1,
-"name": &"struggle",
-"speed": 6.0
-}]
 
 [node name="Main2" type="Node2D" unique_id=2000308086]
 script = ExtResource("1_skmaw")
@@ -434,19 +478,15 @@ tile_set = SubResource("TileSet_qsrum")
 
 [node name="Environment" type="Node" parent="." unique_id=623270888]
 
-[node name="Player2" parent="." unique_id=1255776962 node_paths=PackedStringArray("qte_anim", "mash_label", "heavy_breathing", "wood_breaking") groups=["player"] instance=ExtResource("2_3lg8p")]
+[node name="Player2" parent="." unique_id=1255776962 groups=["player"] instance=ExtResource("2_3lg8p")]
 z_index = 10
 y_sort_enabled = true
 position = Vector2(408, 132)
-qte_anim = NodePath("AnimatedSprite2D2")
-mash_label = NodePath("../Label")
-heavy_breathing = NodePath("HeavyBreathing")
-wood_breaking = NodePath("WoodBreaking")
 
-[node name="Camera2D" type="Camera2D" parent="Player2" unique_id=1512379727]
+[node name="Camera2D" type="Camera2D" parent="Player2" unique_id=2130973521]
 zoom = Vector2(4, 4)
 
-[node name="PointLight2D" type="PointLight2D" parent="Player2" unique_id=1460801903]
+[node name="PointLight2D" type="PointLight2D" parent="Player2" unique_id=924556534]
 scale = Vector2(10, 10)
 color = Color(1.2103415, 1.0436434, 0.98809123, 1)
 shadow_enabled = true
@@ -454,36 +494,8 @@ shadow_filter = 1
 texture = ExtResource("6_jbscp")
 texture_scale = 0.03
 
-[node name="Heartbeat" type="AudioStreamPlayer2D" parent="Player2" unique_id=761407055]
-stream = ExtResource("7_0hs65")
-parameters/looping = true
-
-[node name="Footsteps" type="AudioStreamPlayer2D" parent="Player2" unique_id=553747755]
-stream = ExtResource("6_yj1jp")
-
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Player2" unique_id=1384341216]
-visible = false
-sprite_frames = SubResource("SpriteFrames_pc7jo")
-animation = &"struggle"
-
-[node name="HeavyBreathing" type="AudioStreamPlayer2D" parent="Player2" unique_id=965413114]
-stream = ExtResource("10_qsrum")
-volume_db = 10.0
-parameters/looping = true
-
-[node name="WoodBreaking" type="AudioStreamPlayer2D" parent="Player2" unique_id=799165933]
-stream = ExtResource("11_kax65")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1740972329]
 
 [node name="Label" type="Label" parent="." unique_id=1728408580]
 offset_right = 40.0
 offset_bottom = 23.0
-
-[node name="Audio" type="Node" parent="." unique_id=1838475046]
-
-[node name="Footsteps" type="AudioStreamPlayer2D" parent="Audio" unique_id=134655198]
-stream = ExtResource("6_yj1jp")
-
-[node name="Heartbeat" type="AudioStreamPlayer2D" parent="Audio" unique_id=1964880757]
-stream = ExtResource("7_0hs65")
