@@ -11,6 +11,8 @@ var last_dir: Vector2
 var is_walking : bool = false
 var current_surface: String = "wood"
 
+var last_surface : String = ""
+
 func _ready() -> void:
 	pass
 func _physics_process(delta):
@@ -35,6 +37,12 @@ func _physics_process(delta):
 	is_walking = direction != Vector2.ZERO
 	
 	if is_walking:
+		update_surface()
+		
+		if current_surface != last_surface:
+			AudioManager.play_footsteps(current_surface)
+			last_surface = current_surface
+			
 		if not AudioManager.footsteps_audio.playing:
 			AudioManager.play_footsteps(current_surface)
 	else:
@@ -45,7 +53,6 @@ func update_animation(direction: Vector2):
 	var new_anim_direction: String = last_anim_direction
 
 	if direction != Vector2.ZERO:
-		update_surface()
 		# Determine whether the player is moving
 		# horizontally or vertically
 		if abs(direction.x) > abs(direction.y):
