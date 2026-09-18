@@ -1,12 +1,14 @@
 [gd_scene format=4 uid="uid://crwbprtqjuch4"]
 
 [ext_resource type="Script" uid="uid://cue7a4thp827s" path="res://Scenes/Chapter2_Scenes/main_2.gd" id="1_skmaw"]
-[ext_resource type="PackedScene" uid="uid://m84r3dm21jgq" path="res://Objects/player.tscn" id="2_3lg8p"]
+[ext_resource type="PackedScene" uid="uid://m84r3dm21jgq" path="res://Objects/player2.tscn" id="2_3lg8p"]
 [ext_resource type="Texture2D" uid="uid://73p0gd6l6qtm" path="res://Assets/Floor_sheet.png" id="2_8433p"]
 [ext_resource type="Texture2D" uid="uid://csggriy3nmvva" path="res://Assets/Furnitures_sheet.png" id="3_yj1jp"]
 [ext_resource type="Texture2D" uid="uid://bgnhoc64ysp2a" path="res://Assets/kid_crying_anim.png" id="4_0hs65"]
 [ext_resource type="Texture2D" uid="uid://giml5pvf6tet" path="res://Assets/Sprites/Set 1.png" id="5_yj1jp"]
 [ext_resource type="Texture2D" uid="uid://citgokmdyn5vr" path="res://Assets/Circular 2 - 512x512.png" id="6_jbscp"]
+[ext_resource type="PackedScene" uid="uid://cx5nmfls3kr0v" path="res://Objects/inventory.tscn" id="8_0hs65"]
+[ext_resource type="Resource" uid="uid://6lyradus1gj0" path="res://inventory/playerInv.tres" id="8_jxgft"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1bvp3"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -824,6 +826,7 @@ tile_set = SubResource("TileSet_qsrum")
 z_index = 10
 y_sort_enabled = true
 position = Vector2(408, 132)
+inv = ExtResource("8_jxgft")
 
 [node name="Camera2D" type="Camera2D" parent="Player2" unique_id=2130973521]
 zoom = Vector2(4, 4)
@@ -841,3 +844,17 @@ texture_scale = 0.03
 [node name="Label" type="Label" parent="." unique_id=1728408580]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=333044628]
+
+[node name="Inventory" parent="UI" unique_id=2132308845 instance=ExtResource("8_0hs65")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -74.0
+offset_bottom = -74.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)

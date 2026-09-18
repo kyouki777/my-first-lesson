@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@export var inv:Inv
 @export var walk_speed: float = 100.0
 @onready var floor: TileMapLayer = $"../Floor"
 

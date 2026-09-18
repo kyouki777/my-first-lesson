@@ -2,12 +2,13 @@
 
 [ext_resource type="Texture2D" uid="uid://73p0gd6l6qtm" path="res://Assets/Floor_sheet.png" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://il8sug0nh6ds" path="res://main.gd" id="1_cegan"]
-[ext_resource type="PackedScene" uid="uid://m84r3dm21jgq" path="res://Objects/player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://m84r3dm21jgq" path="res://Objects/player2.tscn" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://c86laoldengdf" path="res://Scripts/DialogTrigger.gd" id="1_w48qg"]
 [ext_resource type="Script" uid="uid://hcek0mkrtd0d" path="res://Scenes/hidden_room_dialogue.gd" id="2_2cqfq"]
 [ext_resource type="Texture2D" uid="uid://csggriy3nmvva" path="res://Assets/Furnitures_sheet.png" id="2_272bh"]
 [ext_resource type="Script" uid="uid://cgi46kww0k8yg" path="res://gameplay/puzzle.gd" id="2_jq2sk"]
 [ext_resource type="AudioStream" uid="uid://ckm2jsxp4rryu" path="res://Assets/sounds/RedRoomDoorOpening_SFX.mp3" id="3_074og"]
+[ext_resource type="Script" uid="uid://kajug0tbsfe6" path="res://Objects/player.gd" id="3_facbu"]
 [ext_resource type="Texture2D" uid="uid://c6lkwnwb08p4q" path="res://Assets/Sprite-0001.png" id="3_kq58d"]
 [ext_resource type="AudioStream" uid="uid://b44uel54hoq80" path="res://Assets/sounds/RedRoomDoorSlam_SFX.mp3" id="4_cegan"]
 [ext_resource type="Texture2D" uid="uid://citgokmdyn5vr" path="res://Assets/Circular 2 - 512x512.png" id="5_5vw27"]
@@ -19,7 +20,6 @@
 [ext_resource type="Script" uid="uid://dbygpa7ydsn0a" path="res://puzzle_3.gd" id="10_facbu"]
 [ext_resource type="Script" uid="uid://daq5ptu2kh6wj" path="res://Scripts/quiz_zone.gd" id="11_getpj"]
 [ext_resource type="Script" uid="uid://c4uemdcgpw32s" path="res://puzzle_1.gd" id="12_4k2k6"]
-[ext_resource type="Script" uid="uid://cxr877fjl6npm" path="res://Scripts/pause_menu.gd" id="12_dg77c"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://Assets/UI/kenneyUI.tres" id="13_ycdy4"]
 [ext_resource type="PackedScene" uid="uid://dv2weqgbjob0t" path="res://gameplay/sudoku.tscn" id="14_0rl1p"]
 [ext_resource type="Script" uid="uid://cxdhncu8n8fvu" path="res://Scripts/caretaker_spawn_point.gd" id="15_a6jrf"]
@@ -728,6 +728,8 @@ start_dialog_name = "StartDialogue"
 z_index = 10
 y_sort_enabled = true
 position = Vector2(408, 132)
+script = ExtResource("3_facbu")
+speed = 150.0
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=406496084]
 zoom = Vector2(4, 4)
@@ -1155,60 +1157,6 @@ script = ExtResource("15_a6jrf")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Node" unique_id=1163160696]
 color = Color(0.06879826, 0.06879829, 0.068798244, 1)
-
-[node name="PauseMenuUI" type="CanvasLayer" parent="Node" unique_id=1749005147]
-process_mode = 2
-layer = 2
-visible = false
-
-[node name="PauseMenu" type="Control" parent="Node/PauseMenuUI" unique_id=1798444585]
-process_mode = 2
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("12_dg77c")
-
-[node name="ColorRect" type="ColorRect" parent="Node/PauseMenuUI/PauseMenu" unique_id=1969229695]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.6862745)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Node/PauseMenuUI/PauseMenu" unique_id=1579802220]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -66.0
-offset_top = -67.0
-offset_right = 66.0
-offset_bottom = 67.0
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-
-[node name="ResumeButton" type="Button" parent="Node/PauseMenuUI/PauseMenu/VBoxContainer" unique_id=877634841]
-layout_mode = 2
-theme = ExtResource("13_ycdy4")
-text = "Resume"
-
-[node name="MainMenuButton" type="Button" parent="Node/PauseMenuUI/PauseMenu/VBoxContainer" unique_id=1174546180]
-layout_mode = 2
-theme = ExtResource("13_ycdy4")
-text = "Main Menu"
-
-[node name="QuitGameButton" type="Button" parent="Node/PauseMenuUI/PauseMenu/VBoxContainer" unique_id=219055492]
-layout_mode = 2
-theme = ExtResource("13_ycdy4")
-text = "Quit Game"
 
 [node name="WinFadeIn" type="CanvasLayer" parent="Node" unique_id=85433304]
 visible = false
