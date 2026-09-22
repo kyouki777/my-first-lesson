@@ -26,10 +26,8 @@ func _ready():
 		if child is AudioStreamPlayer2D:
 			sfx_players.append(child)
 
-
 func _process(delta):
 	pass
-
 
 ## 🎵 This is the only function you'll ever need to call from other scripts.
 func play_sfx(sound_name: String):
@@ -56,7 +54,7 @@ func play_footsteps(surface: String):
 	footsteps_audio["parameters/switch_to_clip"] = current_surface_footsteps
 	if not footsteps_audio.playing:
 		footsteps_audio.play()
-	print("audiomanager:" + current_surface_footsteps)
+	#print("audiomanager:" + current_surface_footsteps)
 	
 func stop_footsteps():
 	if footsteps_audio.playing:

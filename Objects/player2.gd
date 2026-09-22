@@ -85,4 +85,8 @@ func update_surface():
 		current_surface = tile_data.get_custom_data("footstep_type")
 		#print("current surface: " + current_surface)
 	
-	
+func player():
+	pass
+		
+func collect(item):
+	inv.insert(item)

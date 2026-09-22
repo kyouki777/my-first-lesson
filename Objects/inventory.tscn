@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://wu5vro64bohy" path="res://Assets/Sprites/inventory-background.png" id="2_33ull"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://Assets/UI/kenneyUI.tres" id="3_30xvo"]
 [ext_resource type="PackedScene" uid="uid://2ctxju0dnbue" path="res://Objects/inventory_slot.tscn" id="3_ogkbk"]
-[ext_resource type="FontFile" uid="uid://k6fx05vf40o8" path="res://Assets/Font/PressStart2P.ttf" id="4_uj6eu"]
 
 [node name="Inventory" type="Control" unique_id=1116658984]
 layout_mode = 3
@@ -50,7 +49,6 @@ offset_bottom = 45.0
 layout_mode = 2
 theme = ExtResource("3_30xvo")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_uj6eu")
 theme_override_font_sizes/font_size = 5
 text = "item"
 
@@ -58,7 +56,6 @@ text = "item"
 layout_mode = 2
 theme = ExtResource("3_30xvo")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_uj6eu")
 theme_override_font_sizes/font_size = 4
 text = "item description"
 

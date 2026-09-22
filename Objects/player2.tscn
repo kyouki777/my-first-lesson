@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bln86pchg6umf" path="res://Objects/player2.gd" id="1_3y5cq"]
 [ext_resource type="Texture2D" uid="uid://d4nb5adyd25vg" path="res://Assets/kidblue_animation_sheet.png" id="1_4flbx"]
+[ext_resource type="Resource" uid="uid://6lyradus1gj0" path="res://inventory/playerInv.tres" id="2_x0muf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(12, 13)
@@ -169,6 +170,7 @@ _data = {
 
 [node name="Player2" type="CharacterBody2D" unique_id=2030732309]
 script = ExtResource("1_3y5cq")
+inv = ExtResource("2_x0muf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1192412562]
 position = Vector2(0, 0.5)

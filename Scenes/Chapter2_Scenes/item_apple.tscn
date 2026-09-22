@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://525xuphg8rkb"]
+
+[ext_resource type="Script" uid="uid://5k17vb1mkj4g" path="res://inventory/pickup_collectable.gd" id="1_yd3kv"]
+[ext_resource type="Resource" uid="uid://ceoscbcdoe2bo" path="res://inventory/items/apple.tres" id="2_34t1c"]
+[ext_resource type="Texture2D" uid="uid://daxjd2puwtbjq" path="res://Assets/Sprites/apple-icon.png" id="3_cjee5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ik31s"]
+
+[node name="Apple" type="StaticBody2D" unique_id=933918415]
+script = ExtResource("1_yd3kv")
+item = ExtResource("2_34t1c")
+
+[node name="Apple" type="Sprite2D" parent="." unique_id=1486339520]
+position = Vector2(363, 141)
+texture = ExtResource("3_cjee5")
+
+[node name="interactable_area" type="Area2D" parent="." unique_id=76768971]
+position = Vector2(363, 141)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interactable_area" unique_id=1536100017]
+shape = SubResource("CircleShape2D_ik31s")
+
+[connection signal="body_entered" from="interactable_area" to="." method="_on_interactable_area_body_entered"]

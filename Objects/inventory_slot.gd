@@ -1,11 +1,26 @@
 extends Panel
 
+#controls the UI slot of the inventory
 
 @onready var item_visual : Sprite2D = $CenterContainer/Panel/itemDisplay
+@onready var amount_text : Label = $CenterContainer/Panel/Label
 
-func update(item:InvItem):
-	if !item:
+func _ready() -> void:
+	print("slot ready")
+
+func update(slot: InvSlot):
+	if !slot.item:
 		item_visual.visible = false
+		amount_text.visible = false
 	else:
 		item_visual.visible = true
-		item_visual.texture = item.texture
+		item_visual.texture = slot.item.texture
+		if slot.amount > 1:
+			amount_text.visible = true
+		amount_text.text = str(slot.amount)
+
+func _on_slot_pressed() -> void:
+	print("slot button pressed")
+
+func _on_slot_mouse_entered() -> void:
+	print("mouse entered")

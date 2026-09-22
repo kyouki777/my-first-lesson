@@ -8,7 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://giml5pvf6tet" path="res://Assets/Sprites/Set 1.png" id="5_yj1jp"]
 [ext_resource type="Texture2D" uid="uid://citgokmdyn5vr" path="res://Assets/Circular 2 - 512x512.png" id="6_jbscp"]
 [ext_resource type="PackedScene" uid="uid://cx5nmfls3kr0v" path="res://Objects/inventory.tscn" id="8_0hs65"]
-[ext_resource type="Resource" uid="uid://6lyradus1gj0" path="res://inventory/playerInv.tres" id="8_jxgft"]
+[ext_resource type="PackedScene" uid="uid://525xuphg8rkb" path="res://Scenes/Chapter2_Scenes/item_apple.tscn" id="9_6ac67"]
+[ext_resource type="Script" uid="uid://5k17vb1mkj4g" path="res://inventory/pickup_collectable.gd" id="10_jbscp"]
+[ext_resource type="Texture2D" uid="uid://ch68vvx06jufi" path="res://Assets/book.png" id="11_ifr6l"]
+[ext_resource type="Resource" uid="uid://c5uekbamr5cx6" path="res://inventory/items/book.tres" id="11_qsrum"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1bvp3"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -812,6 +815,8 @@ sources/1 = SubResource("TileSetAtlasSource_jbscp")
 sources/2 = SubResource("TileSetAtlasSource_ifr6l")
 sources/3 = SubResource("TileSetAtlasSource_0hs65")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ticvn"]
+
 [node name="Main2" type="Node2D" unique_id=2000308086]
 script = ExtResource("1_skmaw")
 
@@ -826,7 +831,6 @@ tile_set = SubResource("TileSet_qsrum")
 z_index = 10
 y_sort_enabled = true
 position = Vector2(408, 132)
-inv = ExtResource("8_jxgft")
 
 [node name="Camera2D" type="Camera2D" parent="Player2" unique_id=2130973521]
 zoom = Vector2(4, 4)
@@ -838,12 +842,6 @@ shadow_enabled = true
 shadow_filter = 1
 texture = ExtResource("6_jbscp")
 texture_scale = 0.03
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1740972329]
-
-[node name="Label" type="Label" parent="." unique_id=1728408580]
-offset_right = 40.0
-offset_bottom = 23.0
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=333044628]
 
@@ -858,3 +856,21 @@ offset_bottom = -74.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3, 3)
+
+[node name="Apple" parent="." unique_id=933918415 instance=ExtResource("9_6ac67")]
+position = Vector2(9, 28)
+
+[node name="Book" type="StaticBody2D" parent="." unique_id=666512253]
+position = Vector2(377, 138)
+script = ExtResource("10_jbscp")
+item = ExtResource("11_qsrum")
+
+[node name="Sprite2D" type="Sprite2D" parent="Book" unique_id=703513760]
+texture = ExtResource("11_ifr6l")
+
+[node name="interactable_area" type="Area2D" parent="Book" unique_id=1056634328]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Book/interactable_area" unique_id=1150025653]
+shape = SubResource("CircleShape2D_ticvn")
+
+[connection signal="body_entered" from="Book/interactable_area" to="Book" method="_on_interactable_area_body_entered"]
