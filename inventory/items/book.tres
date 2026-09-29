@@ -7,4 +7,5 @@
 script = ExtResource("1_bfv5h")
 name = "Book"
 texture = ExtResource("2_3pur4")
+description = "An empty book."
 metadata/_custom_type_script = "uid://uorwaqr2daog"

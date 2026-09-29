@@ -44,4 +44,5 @@ text = "99"
 horizontal_alignment = 2
 
 [connection signal="mouse_entered" from="slot" to="." method="_on_slot_mouse_entered"]
+[connection signal="mouse_exited" from="slot" to="." method="_on_slot_mouse_exited"]
 [connection signal="pressed" from="slot" to="." method="_on_slot_pressed"]

@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://cx5nmfls3kr0v"]
 
-[ext_resource type="Script" uid="uid://ukj10usuc35u" path="res://Objects/inventory.gd" id="1_uwsja"]
+[ext_resource type="Script" uid="uid://ukj10usuc35u" path="res://Objects/inventory_UI.gd" id="1_uwsja"]
 [ext_resource type="Texture2D" uid="uid://wu5vro64bohy" path="res://Assets/Sprites/inventory-background.png" id="2_33ull"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://Assets/UI/kenneyUI.tres" id="3_30xvo"]
 [ext_resource type="PackedScene" uid="uid://2ctxju0dnbue" path="res://Objects/inventory_slot.tscn" id="3_ogkbk"]
+[ext_resource type="FontFile" uid="uid://k6fx05vf40o8" path="res://Assets/Font/PressStart2P.ttf" id="4_uj6eu"]
 
 [node name="Inventory" type="Control" unique_id=1116658984]
 layout_mode = 3
@@ -39,25 +40,30 @@ patch_margin_right = 8
 patch_margin_bottom = 8
 
 [node name="GridContainer" type="GridContainer" parent="NinePatchRect2" unique_id=1785835735]
+custom_minimum_size = Vector2(120, 40)
 layout_mode = 0
 offset_left = 5.0
 offset_top = 5.0
-offset_right = 229.0
+offset_right = 125.0
 offset_bottom = 45.0
 
 [node name="itemName" type="Label" parent="NinePatchRect2/GridContainer" unique_id=684248252]
 layout_mode = 2
 theme = ExtResource("3_30xvo")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_uj6eu")
 theme_override_font_sizes/font_size = 5
 text = "item"
 
 [node name="itemDescription" type="Label" parent="NinePatchRect2/GridContainer" unique_id=1073292417]
+custom_minimum_size = Vector2(120, 30)
 layout_mode = 2
 theme = ExtResource("3_30xvo")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_uj6eu")
 theme_override_font_sizes/font_size = 4
 text = "item description"
+autowrap_mode = 3
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=10044454]
 layout_mode = 1

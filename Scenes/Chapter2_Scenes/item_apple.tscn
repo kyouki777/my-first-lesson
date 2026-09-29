@@ -11,11 +11,9 @@ script = ExtResource("1_yd3kv")
 item = ExtResource("2_34t1c")
 
 [node name="Apple" type="Sprite2D" parent="." unique_id=1486339520]
-position = Vector2(363, 141)
 texture = ExtResource("3_cjee5")
 
 [node name="interactable_area" type="Area2D" parent="." unique_id=76768971]
-position = Vector2(363, 141)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="interactable_area" unique_id=1536100017]
 shape = SubResource("CircleShape2D_ik31s")

@@ -1,23 +1,25 @@
 extends CharacterBody2D
+class_name player2
 
 @export var inv:Inv
 @export var walk_speed: float = 100.0
-@onready var floor: TileMapLayer = $"../Floor"
+@onready var floor: TileMapLayer = $"../Floor" #for footstep sounds
 
 @onready var anim_player: AnimationPlayer = $sprite2/AnimationPlayer
+
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var gravity_status = false
 
 var last_anim_direction: String = "Down"
 var last_dir: Vector2
 
 var is_walking : bool = false
+var can_move : bool = false
 var current_surface: String = "wood"
 
 var last_surface : String = ""
 
-func _ready() -> void:
-	pass
 func _physics_process(delta):
-	
 	
 	var direction = Input.get_vector(
 		"ui_left",
@@ -29,7 +31,17 @@ func _physics_process(delta):
 	last_dir = direction
 
 	# Movement
-	velocity = direction.normalized() * walk_speed
+	if gravity_status == true:
+		velocity.y += gravity * delta 
+		if direction:
+			# Assign the horizontal speed to velocity.x
+			velocity.x = walk_speed * direction.normalized().x 
+		else:
+			# low down to a stop when no keys are pressed
+			velocity.x = move_toward(velocity.x, 0, walk_speed)
+
+	else: #normal top down walking
+		velocity = direction.normalized() * walk_speed
 	move_and_slide()
 
 	# Animation
@@ -75,6 +87,15 @@ func update_animation(direction: Vector2):
 	if anim_player.current_animation != anim_to_play:
 		anim_player.play(anim_to_play)
 		
+		
+func gravity_call():
+	gravity_status = true
+	print("gravity on")
+	
+func gravity_disable():
+	gravity_status = false
+	print("gravity false")
+
 #detects which surface the player is on
 func update_surface():
 	var tile_position = floor.local_to_map(floor.to_local(global_position))
@@ -87,6 +108,13 @@ func update_surface():
 	
 func player():
 	pass
-		
+
 func collect(item):
 	inv.insert(item)
+
+func start_cutscene():
+	can_move = false #not written yet
+	print("starting cutscene")
+
+func end_cutscene():
+	can_move = true

@@ -5,8 +5,8 @@ var is_open = false
 @onready var inv: Inv = preload("res://inventory/playerInv.tres")
 @onready var slots:Array = $NinePatchRect/GridContainer.get_children()
 
-#@onready var item_name = $NinePatchRect2/GridContainer/itemName
-#@onready var item_description = $NinePatchRect2/GridContainer/itemDescription
+@onready var item_name = $NinePatchRect2/GridContainer/itemName
+@onready var item_description = $NinePatchRect2/GridContainer/itemDescription
 
 func _process(delta):
 	if Input.is_action_just_pressed("q"):
@@ -32,3 +32,7 @@ func openInv():
 func closeInv():
 	is_open = false
 	visible = false
+	
+func _on_item_hovered(item: InvItem) -> void:
+	print("on item hovered")
+	item_description.text = item.description
