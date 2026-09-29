@@ -21,45 +21,47 @@ var last_surface : String = ""
 
 func _physics_process(delta):
 	
-	var direction = Input.get_vector(
-		"ui_left",
-		"ui_right",
-		"ui_up",
-		"ui_down"
-	)
+	if can_move:
+		print("can move")
+		var direction = Input.get_vector(
+			"ui_left",
+			"ui_right",
+			"ui_up",
+			"ui_down"
+		)
 
-	last_dir = direction
+		last_dir = direction
 
-	# Movement
-	if gravity_status == true:
-		velocity.y += gravity * delta 
-		if direction:
-			# Assign the horizontal speed to velocity.x
-			velocity.x = walk_speed * direction.normalized().x 
-		else:
-			# low down to a stop when no keys are pressed
-			velocity.x = move_toward(velocity.x, 0, walk_speed)
+		# Movement
+		if gravity_status == true:
+			velocity.y += gravity * delta 
+			if direction:
+				# Assign the horizontal speed to velocity.x
+				velocity.x = walk_speed * direction.normalized().x 
+			else:
+				# low down to a stop when no keys are pressed
+				velocity.x = move_toward(velocity.x, 0, walk_speed)
 
-	else: #normal top down walking
-		velocity = direction.normalized() * walk_speed
-	move_and_slide()
+		else: #normal top down walking
+			velocity = direction.normalized() * walk_speed
+		move_and_slide()
 
-	# Animation
-	update_animation(direction)
-	
-	is_walking = direction != Vector2.ZERO
-	
-	if is_walking:
-		update_surface()
+		# Animation
+		update_animation(direction)
 		
-		if current_surface != last_surface:
-			AudioManager.play_footsteps(current_surface)
-			last_surface = current_surface
+		is_walking = direction != Vector2.ZERO
+		
+		if is_walking:
+			update_surface()
 			
-		if not AudioManager.footsteps_audio.playing:
-			AudioManager.play_footsteps(current_surface)
-	else:
-		AudioManager.stop_footsteps()
+			if current_surface != last_surface:
+				AudioManager.play_footsteps(current_surface)
+				last_surface = current_surface
+				
+			if not AudioManager.footsteps_audio.playing:
+				AudioManager.play_footsteps(current_surface)
+		else:
+			AudioManager.stop_footsteps()
 
 func update_animation(direction: Vector2):
 	var anim_to_play: String = ""
@@ -112,9 +114,11 @@ func player():
 func collect(item):
 	inv.insert(item)
 
-func start_cutscene():
+func disable_movement():
 	can_move = false #not written yet
-	print("starting cutscene")
+	
+	print("disabling movement")
 
-func end_cutscene():
+func enable_movement():
 	can_move = true
+	print("enabling movement")

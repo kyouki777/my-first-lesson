@@ -20,20 +20,6 @@ clip_0/auto_advance = 0
 clip_1/name = &"FootstepsConcrete"
 clip_1/stream = SubResource("AudioStreamPlaylist_drm6w")
 clip_1/auto_advance = 0
-_transitions = {
-Vector2i(2, 3): {
-"fade_beats": 1.0,
-"fade_mode": 4,
-"from_time": 0,
-"to_time": 1
-},
-Vector2i(3, 2): {
-"fade_beats": 1.0,
-"fade_mode": 4,
-"from_time": 0,
-"to_time": 1
-}
-}
 
 [node name="AudioManager" type="Node2D" unique_id=992200988]
 script = ExtResource("1_jisk1")

@@ -14,18 +14,23 @@ extends Node2D
 @onready var stair5: CollisionShape2D = $collisions/stair5/CollisionShape2D2
 
 @onready var inv_ui = $UI/Inventory
+
+@onready var animation_player: AnimationPlayer = $opening_cutscene/AnimationPlayer
+@onready var cutscene_black: ColorRect = $UI/cutscene_black
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	inv_ui.visible = false
 	player_2.gravity_call()
 	canvas_modulate.visible = true
-
+	cutscene_black.visible = true
+	opening_cutscene()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
-
+#enables and disables colliders in the stairs
 func _on_trigger_zone_body_entered(body: Node2D) -> void:
 	if body is player2: 
 		stair2.set_deferred("disabled", false)
@@ -47,3 +52,12 @@ func _on_trigger_zone_4_body_entered(body: Node2D) -> void:
 	if body is player2: 
 		stair5.set_deferred("disabled", false)
 		print("Player entered trigger 1")
+
+func opening_cutscene():
+	player_2.disable_movement()
+	print("before")
+	animation_player.play("orphanage_hall")
+	await animation_player.animation_finished
+	animation_player.stop()
+	cutscene_black.visible = false
+	player_2.enable_movement()
